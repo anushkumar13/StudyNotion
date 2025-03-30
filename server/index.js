@@ -1,70 +1,75 @@
-import path from "path";
-
-
-
-
 const express = require("express");
-const app = express();
+const path = require("path");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 
+const { cloudinaryConnect } = require("./config/cloudinary");
+const database = require("./config/database");
+
+// Routes Import
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const contactUsRoute = require("./routes/Contact");
-const database = require("./config/database");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const {cloudinaryConnect } = require("./config/cloudinary");
-const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
 
+// Load environment variables
 dotenv.config();
+
+// Server Port
 const PORT = process.env.PORT || 4000;
 
-const _dirname = path.resolve();
-//database connect
+// Database Connection
 database.connect();
-//middlewares
+
+// Initialize Express App
+const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-	cors({
-		origin:"http://localhost:3000",
-		credentials:true,
-	})
-)
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    credentials: true,
+  })
+);
 
+// File Upload Setup
 app.use(
-	fileUpload({
-		useTempFiles:true,
-		tempFileDir:"/tmp",
-	})
-)
-//cloudinary connection
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, "tmp"),
+  })
+);
+
+// Cloudinary Connection
 cloudinaryConnect();
 
-//routes
+// API Routes
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactUsRoute);
 
-//def route
-
+// Default Route
 app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
-	});
+  res.json({
+    success: true,
+    message: "Your server is up and running...",
+  });
 });
 
-app.use(express.static(path.join(_dirname, "/src/dist")));
-app.get('*', (_, res) => {
-	res.sendFile(path.resolve(_dirname, "src", "dist", "index.html"));
-})
+// Serve Static Files (Frontend)
+app.use(express.static(path.join(__dirname, "src", "dist")));
+app.get("*", (_, res) => {
+  res.sendFile(path.resolve(__dirname, "src", "dist", "index.html"));
+});
 
+// Start Server
 app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
-})
-
+  console.log(`Server is running on port ${PORT}`);
+});
