@@ -25,7 +25,7 @@ const ExploreMore = () => {
     setCurrentCard(result[0].courses[0].heading);
   };
 
-  return (  
+  return (
     <div>
       {/* Explore more section */}
       <div>
