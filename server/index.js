@@ -18,14 +18,14 @@ const contactUsRoute = require("./routes/Contact");
 // Load environment variables
 dotenv.config();
 
+// Initialize Express App
+const app = express();
+
 // Server Port
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 // Database Connection
 database.connect();
-
-// Initialize Express App
-const app = express();
 
 // Middleware
 app.use(express.json());
@@ -69,8 +69,7 @@ app.get("*", (_, res) => {
   res.sendFile(path.resolve(__dirname, "src", "dist", "index.html"));
 });
 
-// Start Server
+// Start Server (Only one `app.listen`)
 app.listen(PORT, "0.0.0.0", () => {
-	console.log(`App is running at ${PORT}`)
-  })
-  
+  console.log(`✅ App is running at ${PORT}`);
+});
