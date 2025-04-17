@@ -10,3 +10,9 @@ const HighlightText = ({text}) => {
 };
 
 export default HighlightText;
+
+
+
+
+
+// HomePage pe jo text hai jo highlight hai ye uska component hai 
