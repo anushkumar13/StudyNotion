@@ -1,10 +1,14 @@
-import { toast } from "react-hot-toast"
+// imports
 
+import { toast } from "react-hot-toast"
 import { setLoading, setToken } from "../../slices/authSlice"
 import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
+
+
+
 
 const {
   SENDOTP_API,
@@ -14,10 +18,18 @@ const {
   RESETPASSWORD_API,
 } = endpoints
 
+
+
+
+
+      {/* OTP */}
+
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+
+
     try {
       const response = await apiConnector("POST", SENDOTP_API, {
         email,
@@ -27,13 +39,18 @@ export function sendOtp(email, navigate) {
 
       console.log(response.data.success)
 
+
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
 
+
       toast.success("OTP Sent Successfully")
       navigate("/verify-email")
-    } catch (error) {
+    } 
+    
+    
+    catch (error) {
       console.log("SENDOTP API ERROR............", error)
       toast.error("Could Not Send OTP")
     }
@@ -41,6 +58,12 @@ export function sendOtp(email, navigate) {
     toast.dismiss(toastId)
   }
 }
+
+
+
+
+
+      {/* jaise hi signup button click hoga ye code backend (controllers) ko call karega */}
 
 export function signUp(
   accountType,
@@ -52,9 +75,14 @@ export function signUp(
   otp,
   navigate
 ) {
+
+
+
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+
+
     try {
       const response = await apiConnector("POST", SIGNUP_API, {
         accountType,
@@ -66,14 +94,19 @@ export function signUp(
         otp,
       })
 
+
       console.log("SIGNUP API RESPONSE............", response)
+
 
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
       toast.success("Signup Successful")
       navigate("/login")
-    } catch (error) {
+    } 
+    
+    
+    catch (error) {
       console.log("SIGNUP API ERROR............", error)
       toast.error("Signup Failed")
       navigate("/signup")
@@ -83,10 +116,19 @@ export function signUp(
   }
 }
 
+
+
+
+
+      {/* jaise hi login button click hoga ye code backend (controllers) ko call karega */}
+
 export function login(email, password, navigate) {
+  
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+
+
     try {
       const response = await apiConnector("POST", LOGIN_API, {
         email,
@@ -94,6 +136,7 @@ export function login(email, password, navigate) {
       })
 
       console.log("LOGIN API RESPONSE............", response)
+
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -109,7 +152,10 @@ export function login(email, password, navigate) {
       localStorage.setItem("token", JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.user))
       navigate("/dashboard/my-profile")
-    } catch (error) {
+    } 
+    
+    
+    catch (error) {
       console.log("LOGIN API ERROR............", error)
       toast.error("Login Failed")
     }
@@ -117,6 +163,12 @@ export function login(email, password, navigate) {
     toast.dismiss(toastId)
   }
 }
+
+
+
+
+
+      {/* logout */}
 
 export function logout(navigate) {
   return (dispatch) => {
@@ -132,34 +184,49 @@ export function logout(navigate) {
 
 
 
+
+
+      {/* getPasswordResetToken */} 
+
 export function getPasswordResetToken(email , setEmailSent) {
   return async(dispatch) => {
-    dispatch(setLoading(true));
+    dispatch(setLoading(true));       // jab tak backend me call jaa rahi hai tab tak loading ko true mark kardo jisse spinner dikhne lag jaega
+
+
     try{
-      const response = await apiConnector("POST", RESETPASSTOKEN_API, {email,})
+      const response = await apiConnector("POST", RESETPASSTOKEN_API, {email,})      // apiConnector ka use karke hum RESETPASSTOKEN_API api call kar rahe hain, POST type hai aur email ko pass kiya gya hai
 
       console.log("RESET PASSWORD TOKEN RESPONSE....", response);
 
-      if(!response.data.success) {
+      if(!response.data.success) {       
         throw new Error(response.data.message);
       }
 
       toast.success("Reset Email Sent");
-      setEmailSent(true);
+      setEmailSent(true);                   // email sent ho gya hia to isko true mark kardo kyuki check your email wala page dikhana hai
     }
+
+
     catch(error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Failed to send email for resetting password");
     }
-    dispatch(setLoading(false));
+    dispatch(setLoading(false));           // loading ko false kardo mtlb spinner mat dikhao
   }
 }
+
+
+
+
+      {/* resetPassword */}
 
 export function resetPassword(password, confirmPassword, token) {
   return async(dispatch) => {
     dispatch(setLoading(true));
+
+
     try{
-      const response = await apiConnector("POST", RESETPASSWORD_API, {password, confirmPassword, token});
+      const response = await apiConnector("POST", RESETPASSWORD_API, {password, confirmPassword, token});           // apiConnector ka use karke hum RESETPASSWORD_API api call kar rahe hain, POST type hai aur email ko pass kiya gya hai
 
       console.log("RESET Password RESPONSE ... ", response);
 
@@ -170,10 +237,20 @@ export function resetPassword(password, confirmPassword, token) {
 
       toast.success("Password has been reset successfully");
     }
+
+
     catch(error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Unable to reset password");
     }
     dispatch(setLoading(false));
+
   }
 }
+
+
+
+
+
+// iss file mein hum bas functions bna rahe hai jo bs uss feature ke liye backend call kar rahe hain.
+// iss file mein jo functions likha hai usme koi alag se logic nahi likha gya hai bas backend me call lga rahe hain

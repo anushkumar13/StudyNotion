@@ -1,0 +1,120 @@
+
+
+
+1. sabse pehle jo file execute hoti hai vo index.js hoti hai
+
+
+2. index.js ke andar ek lauta conponent App hota hai jo <React.StrictMode> < App />   </React.StrictMode> 
+   ke andar wrap hota hai
+
+
+3. ➡️ Kabhi-kabhi configs ko ek external config service ya JSON server pe rakha jata hai, jisse app runtime pe 
+   config ko fetch karta hai.
+   
+      Example: Firebase Remote Config, AWS Parameter Store, etc.
+
+      ✅ Best for: Real-time config change without redeploy
+      ❌ Complex setup, sirf big projects me use hota hai.
+
+
+4. har component file me function create karke hi code kiya jata hai
+
+
+5. jo top level div hota hai usme height ko 100vh aur width ko 100vw define kara jata hai (write --> "w-screen min-h-screen")
+
+
+6. agar tumko store, slices etc wali functionality use karna hai to sabse pehle 'App' component ko Provider ke 
+   andar wrap karna hota hai fir Provider ke andar store provide karna padta hai aur store create bhi karna hota hai (configure store se) fir iss configure store ke andar reducer pass karna hota hai
+
+   bohot saare reducers hote hain jaise auth etc etc to inn sabko combine karke ek root reducer bna lo to iss root reducer ko store ke andar add kar do
+
+   ye sab jo alag alag reducers hain vo slices se ban rahe hain
+
+   jite bhi slices create karo unn sab ko reducer folder ke index.js ke 'rootReducer' mein add karte jao aue uss file me ye saare slices ko import bhi karna hota hai
+
+
+7. reducer ke index.js me saare slices ko import kiya jata hai aur ye bhi kiya jata hai --->
+   import {combineReducers} from "@reduxjs/toolkit";    
+
+
+8. frontend ke component ke button se services fir services se controller than response.
+
+
+9. axios me create method se tum koi bhi call kar sakte ho chahe vo GET request ho ya POST request ho ya  PUT 
+   ki request ho.
+
+
+10. services folder ka kaam sirf backend call karne ka hai
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

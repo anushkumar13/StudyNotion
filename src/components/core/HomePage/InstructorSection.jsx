@@ -1,12 +1,22 @@
+// imports 
+
 import React from 'react'
 import CTAButton from "../../../components/core/HomePage/Button";
 import { FaArrowRight } from "react-icons/fa";
 import Instructor from "../../../assets/Images/Instructor.png";
 import HighlightText from './HighlightText';
 
+
+
+
 const InstructorSection = () => {
   return (
     <div>
+
+
+        
+        {/* Become an instructor ke left wala image */}
+
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-[50%]">
             <img
@@ -15,6 +25,12 @@ const InstructorSection = () => {
               className="shadow-white shadow-[-20px_-20px_0_0]"
             />
           </div>
+
+
+
+
+          {/* Become an instructor */}
+
           <div className="lg:w-[50%] flex gap-10 flex-col">
             <h1 className="lg:w-[50%] text-4xl font-semibold ">
               Become an
@@ -27,6 +43,11 @@ const InstructorSection = () => {
               love.
             </p>
 
+
+
+
+            {/* Start Teaching Today wala button */}
+
             <div className="w-fit">
               <CTAButton active={true} linkto={"/signup"}>
                 <div className="flex items-center gap-3">
@@ -35,10 +56,16 @@ const InstructorSection = () => {
                 </div>
               </CTAButton>
             </div>
+
           </div>
+
         </div>
+        
     </div>
   )
 }
+
+
+
 
 export default InstructorSection

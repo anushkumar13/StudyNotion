@@ -89,7 +89,7 @@ const CodeBlocks = ({
 
 
         {/* Code wali animation */}
-        
+
         <div
           className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-1`}
         >
@@ -104,7 +104,9 @@ const CodeBlocks = ({
             omitDeletionAnimation={true}
           />
         </div>
+
       </div>
+      
     </div>
   );
 };

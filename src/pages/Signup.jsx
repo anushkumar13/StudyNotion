@@ -1,5 +1,10 @@
+// imports
+
 import signupImg from "../assets/Images/signup.webp"
 import Template from "../components/core/Auth/Template"
+
+
+
 
 function Signup() {
   return (
@@ -13,4 +18,11 @@ function Signup() {
   )
 }
 
+
+
+
 export default Signup
+
+
+
+// ye file Signup page ke liye hai

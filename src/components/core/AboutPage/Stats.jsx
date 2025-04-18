@@ -1,4 +1,11 @@
+// imports
+
 import React from "react";
+
+
+
+
+{/*   as an array, object banao jisme data ho taki map use kar sake   */}
 
 const Stats = [
   { count: "5K", label: "Active Students" },
@@ -7,21 +14,39 @@ const Stats = [
   { count: "50+", label: "Awards" },
 ];
 
+
+
+
 const StatsComponenet = () => {
   return (
     <div className="bg-richblack-700">
-      {/* Stats */}
+      
       <div className="flex flex-col gap-10 justify-between w-11/12 max-w-maxContent text-white mx-auto ">
         <div className="grid grid-cols-2 md:grid-cols-4 text-center">
-          {Stats.map((data, index) => {
+
+          {Stats.map((data, index) => {             // data aa raha hai aur index aa raha hai
             return (
+
               <div className="flex flex-col py-10" key={index}>
+
+
+
+
+              {/*   count --> 5K, 10+, 200+, 50+   */}
+
                 <h1 className="text-[30px] font-bold text-richblack-5">
                   {data.count}
                 </h1>
+
+
+
+
+              {/*   label --> Active Students, Mentors, Courses, Awards   */}
+
                 <h2 className="font-semibold text-[16px] text-richblack-500">
                   {data.label}
                 </h2>
+
               </div>
             );
           })}
@@ -30,5 +55,8 @@ const StatsComponenet = () => {
     </div>
   );
 };
+
+
+
 
 export default StatsComponenet;

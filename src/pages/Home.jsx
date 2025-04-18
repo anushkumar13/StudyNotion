@@ -268,7 +268,7 @@ function Home() {
         
         
         
-        {/* Reviws from Other Learner */}
+        {/* Reviws from Other Learners */}
 
         <h1 className="text-center text-4xl font-semibold mt-8">
           Reviews from other learners

@@ -1,0 +1,58 @@
+
+
+
+
+HomePage ---> Footer ---> Navbar (reducer, slices, services isi me pehli baar bna) ---> 
+
+
+
+
+
+Step 1 --> index.js me jake App component ko React.StrictMode aur BrowserRouter ke andar wrap karo aur BrowserRouter ko index.js me 
+           import bhi karo (BrowserRouter ko install bhi karna hai BrowserRouter me wrap karne se pehle)
+
+
+Step 2 ---> fir App.js me jake Routes import karo aur Home ke liye ek route banao with path = "/"
+
+
+Step 3 ---> fir 'components' folder create karo usme 'core' folder create karo fir 'core' folder me 'HomePage' file create karo
+
+
+Step 4 ---> 'pages' naam ka ek folder create karo jisme 'Home.jsx' naam ka file create karo aur 'Home.jsx' file ko App.js me 
+             import karo fir Home.jsx me codes likhna start karo (iss Home.jsx mein StudyNotion ke Home Page hai)
+
+
+Step 5 ---> HomePage pe jo texts highlighted hain una ek component banao HighlightText.jsx naam ka'components/core/HighlightText.jsx'
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

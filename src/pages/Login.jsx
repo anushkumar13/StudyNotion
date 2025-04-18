@@ -1,5 +1,10 @@
+// imports
+
 import loginImg from "../assets/Images/login.webp"
 import Template from "../components/core/Auth/Template"
+
+
+
 
 function Login() {
   return (
@@ -13,4 +18,12 @@ function Login() {
   )
 }
 
+
+
+
 export default Login
+
+
+
+
+// ye file Login page ke liye hai
