@@ -1,9 +1,12 @@
+// imports
+
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
-
 import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm"
 import CourseInformationForm from "./CourseInformation/CourseInformationForm"
 import PublishCourse from "./PublishCourse"
+
+
 
 
 export default function RenderSteps() {
@@ -24,6 +27,9 @@ export default function RenderSteps() {
     },
   ]
 
+
+
+  
   return (
     <>
       <div className="relative mb-2 flex w-full justify-center">

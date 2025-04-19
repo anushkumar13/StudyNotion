@@ -1,9 +1,14 @@
+// imports
+
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
 import { getInstructorData } from '../../../../services/operations/profileAPI';
 import InstructorChart from './InstructorChart';
 import { Link } from 'react-router-dom';
+
+
+
 
 export default function Instructor() {
     const { token } = useSelector((state) => state.auth)
@@ -12,6 +17,9 @@ export default function Instructor() {
     const [instructorData, setInstructorData] = useState(null)
     const [courses, setCourses] = useState([])
   
+
+
+
     useEffect(() => {
       ;(async () => {
         setLoading(true)
@@ -26,16 +34,25 @@ export default function Instructor() {
       })()
     }, [])
   
+
+
+
     const totalAmount = instructorData?.reduce(
       (acc, curr) => acc + curr.totalAmountGenerated,
       0
     )
   
+
+
+
     const totalStudents = instructorData?.reduce(
       (acc, curr) => acc + curr.totalStudentsEnrolled,
       0
     )
   
+
+
+
     return (
       <div>
         <div className="space-y-2">

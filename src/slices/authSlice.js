@@ -16,8 +16,6 @@ const initialState = {
 
 
 
-     // 
-
 const authSlice = createSlice({
   name: "auth",                                // ye function me pass kar rahe hain
   initialState: initialState,                  // ye function me pass kar rahe hain

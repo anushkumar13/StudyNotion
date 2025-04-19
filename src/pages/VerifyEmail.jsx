@@ -49,6 +49,8 @@ function VerifyEmail() {
     } = signupData;
 
 
+
+    
     dispatch(
       signUp(                   // isme hum log ye saari chize pass kar rahe hain
         accountType,            // ye pass kar rahe hain

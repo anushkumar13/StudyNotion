@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
@@ -8,9 +10,13 @@ import {
   createSubSection,
   updateSubSection,
 } from "../../../../../services/operations/courseDetailsAPI"
+
 import { setCourse } from "../../../../../slices/courseSlice"
 import IconBtn from "../../../../common/IconBtn"
 import Upload from "../Upload"
+
+
+
 
 export default function SubSectionModal({
   modalData,
@@ -36,6 +42,9 @@ export default function SubSectionModal({
   const { token } = useSelector((state) => state.auth)
   const { course } = useSelector((state) => state.course)
 
+
+
+
   useEffect(() => {
     if (view || edit) {
       // console.log("modalData", modalData)
@@ -44,6 +53,9 @@ export default function SubSectionModal({
       setValue("lectureVideo", modalData.videoUrl)
     }
   }, [])
+
+
+
 
   // detect whether form is updated or not
   const isFormUpdated = () => {
@@ -58,6 +70,9 @@ export default function SubSectionModal({
     }
     return false
   }
+
+
+
 
   // handle the editing of subsection
   const handleEditSubsection = async () => {
@@ -91,6 +106,9 @@ export default function SubSectionModal({
     setLoading(false)
   }
 
+
+
+
   const onSubmit = async (data) => {
     // console.log(data)
     if (view) return
@@ -103,6 +121,9 @@ export default function SubSectionModal({
       }
       return
     }
+
+
+
 
     const formData = new FormData()
     formData.append("sectionId", modalData)
@@ -122,6 +143,9 @@ export default function SubSectionModal({
     setModalData(null)
     setLoading(false)
   }
+
+
+
 
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">

@@ -1,4 +1,9 @@
+// imports
+
 import { createSlice } from "@reduxjs/toolkit"
+
+
+
 
 const initialState = {
   step: 1,
@@ -6,6 +11,9 @@ const initialState = {
   editCourse: false,
   paymentLoading: false,
 }
+
+
+
 
 const courseSlice = createSlice({
   name: "course",
@@ -31,6 +39,9 @@ const courseSlice = createSlice({
   },
 })
 
+
+
+
 export const {
   setStep,
   setCourse,
@@ -38,5 +49,8 @@ export const {
   setPaymentLoading,
   resetCourseState,
 } = courseSlice.actions
+
+
+
 
 export default courseSlice.reducer

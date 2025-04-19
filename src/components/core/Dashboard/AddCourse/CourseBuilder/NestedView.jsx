@@ -1,3 +1,5 @@
+
+
 import { useState } from "react"
 import { AiFillCaretDown } from "react-icons/ai"
 import { FaPlus } from "react-icons/fa"
@@ -10,9 +12,13 @@ import {
   deleteSection,
   deleteSubSection,
 } from "../../../../../services/operations/courseDetailsAPI"
+
 import { setCourse } from "../../../../../slices/courseSlice"
 import ConfirmationModal from "../../../../common/ConfirmationModal"
 import SubSectionModal from "./SubSectionModal"
+
+
+
 
 export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
@@ -25,6 +31,9 @@ export default function NestedView({ handleChangeEditSectionName }) {
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
 
+
+
+
   const handleDeleleSection = async (sectionId) => {
     const result = await deleteSection({
       sectionId,
@@ -36,6 +45,9 @@ export default function NestedView({ handleChangeEditSectionName }) {
     }
     setConfirmationModal(null)
   }
+
+
+
 
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
     const result = await deleteSubSection({ subSectionId, sectionId, token })
@@ -50,6 +62,9 @@ export default function NestedView({ handleChangeEditSectionName }) {
     setConfirmationModal(null)
   }
 
+
+
+
   return (
     <>
       <div
@@ -61,14 +76,17 @@ export default function NestedView({ handleChangeEditSectionName }) {
           <details key={section._id} open>
             {/* Section Dropdown Content */}
             <summary className="flex cursor-pointer items-center justify-between border-b-2 border-b-richblack-600 py-2">
+              
               <div className="flex items-center gap-x-3">
                 <RxDropdownMenu className="text-2xl text-richblack-50" />
                 <p className="font-semibold text-richblack-50">
                   {section.sectionName}
                 </p>
               </div>
+
               <div className="flex items-center gap-x-3">
                 <button
+                on
                   onClick={() =>
                     handleChangeEditSectionName(
                       section._id,
@@ -78,6 +96,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 >
                   <MdEdit className="text-xl text-richblack-300" />
                 </button>
+
+
                 <button
                   onClick={() =>
                     setConfirmationModal({
@@ -92,10 +112,16 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 >
                   <RiDeleteBin6Line className="text-xl text-richblack-300" />
                 </button>
+
+
                 <span className="font-medium text-richblack-300">|</span>
+
                 <AiFillCaretDown className={`text-xl text-richblack-300`} />
               </div>
+
             </summary>
+
+
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
               {section.subSection.map((data) => (
@@ -104,12 +130,15 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   onClick={() => setViewSubSection(data)}
                   className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
                 >
+                  
                   <div className="flex items-center gap-x-3 py-2 ">
                     <RxDropdownMenu className="text-2xl text-richblack-50" />
                     <p className="font-semibold text-richblack-50">
                       {data.title}
                     </p>
                   </div>
+
+
                   <div
                     onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-x-3"
@@ -121,6 +150,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     >
                       <MdEdit className="text-xl text-richblack-300" />
                     </button>
+
                     <button
                       onClick={() =>
                         setConfirmationModal({
@@ -136,10 +166,15 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     >
                       <RiDeleteBin6Line className="text-xl text-richblack-300" />
                     </button>
+
                   </div>
                 </div>
               ))}
+
+
+
               {/* Add New Lecture to Section */}
+              
               <button
                 onClick={() => setAddSubsection(section._id)}
                 className="mt-3 flex items-center gap-x-1 text-yellow-50"
@@ -147,10 +182,13 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 <FaPlus className="text-lg" />
                 <p>Add Lecture</p>
               </button>
+
             </div>
           </details>
         ))}
       </div>
+
+
       {/* Modal Display */}
       {addSubSection ? (
         <SubSectionModal

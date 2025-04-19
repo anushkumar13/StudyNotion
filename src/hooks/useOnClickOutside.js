@@ -1,4 +1,9 @@
+// imports
+
 import { useEffect } from "react";
+
+
+
 
 // This hook detects clicks outside of the specified component and calls the provided handler function.
 export default function useOnClickOutside(ref, handler) {
@@ -13,9 +18,15 @@ export default function useOnClickOutside(ref, handler) {
       handler(event);
     };
 
+
+
+    
     // Add event listeners for mousedown and touchstart events on the document
     document.addEventListener("mousedown", listener);
     document.addEventListener("touchstart", listener);
+
+
+
 
     // Cleanup function to remove the event listeners when the component unmounts or when the ref/handler dependencies change
     return () => {

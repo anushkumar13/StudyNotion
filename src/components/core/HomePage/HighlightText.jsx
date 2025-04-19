@@ -1,4 +1,9 @@
+// imports
+
 import React from "react";
+
+
+
 
 const HighlightText = ({text}) => {
   return (
@@ -8,6 +13,9 @@ const HighlightText = ({text}) => {
     </span>
   );
 };
+
+
+
 
 export default HighlightText;
 

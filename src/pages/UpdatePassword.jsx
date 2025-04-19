@@ -14,17 +14,27 @@ function UpdatePassword() {
   const navigate = useNavigate()          // navigate create kar rahe hain kyuki hume navigate use karna hai
   const dispatch = useDispatch()          // dispatch create kar rahe hain kyuki hume dispatch use karna hai (line - 39)
   const location = useLocation()          // location create kar rahe hain kyuki hume location use karna hai (line - 38)
+ 
+ 
+ 
   const { loading } = useSelector((state) => state.auth)
+
+
+
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   })
 
 
+  
+
   const [showPassword, setShowPassword] = useState(false)                    // ek flag banao ye decide karne ke liye ki Enter Password input field ke liye kab password show karna hai aur kab nahi. initially passwrod show nahi karenge
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)      // ek flag banao ye decide karne ke liye ki Confirm Password input field ke liye kab password show karna hai aur kab nahi. initially passwrod show nahi karenge
-
   const { password, confirmPassword } = formData     // form ke data mein se hum password aur confirmPassword nikal rahe hain taki line - 39 mein hum inn dono ko pass kar paye
+
+
+
 
   const handleOnChange = (e) => {                    // ----> yaha hum handleOnChange function bna rahe hain
     setFormData((prevData) => ({
@@ -32,6 +42,9 @@ function UpdatePassword() {
       [e.target.name]: e.target.value,               // jo bhi filed me changes kiye ho uske value ko update kar dena
     }))
   }
+
+
+
 
   const handleOnSubmit = (e) => {
     e.preventDefault()                                                         // ye line default behaviour ko htata hai 

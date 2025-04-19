@@ -21,13 +21,15 @@ const ContactUsForm = () => {
 
 
 
+        {/*   'submitContactForm' function bana raha hai jo 'contactusEndpoint.CONTACT_US_API' URL pe 'POST' request bhej raha hai, jisme form ka data send kiya jaa raha hai.   */}
+
   const submitContactForm = async (data) => {
     
     try {
       setLoading(true)
-      const res = await apiConnector(
+      const res = await apiConnector(                          // API call 'apiConnector' function se ho rahi hai, jisme method "POST"
         "POST",
-        contactusEndpoint.CONTACT_US_API,
+        contactusEndpoint.CONTACT_US_API,                      // 'CONTACT_US_API' call kar rahe hain
         data
       )
       
@@ -159,6 +161,12 @@ const ContactUsForm = () => {
 
         <div className="flex gap-5">
           <div className="flex w-[81px] flex-col gap-2">
+
+
+
+
+      {/*   Yeh code <select> tag ka use karke ek dropdown banata hai, jisme country codes aur unke respective country names dikh rahe hain.   */}
+
             <select
               type="text"
               name="firstname"
@@ -169,35 +177,58 @@ const ContactUsForm = () => {
             >
               {CountryCode.map((ele, i) => {
                 return (
+
+
+
+
+      /*   Yeh code har option ke liye ek dropdown item create karta hai, jisme country code aur country name dikh rahe hain.   */
+
                   <option key={i} value={ele.code}>
-                    {ele.code} -{ele.country}
+                    {ele.code} - {ele.country}
                   </option>
+
                 )
               })}
             </select>
+
           </div>
+
+
+
+
+      {/*   Yeh code ek input field banata hai jo user se phone number lene ke liye hai   */}
+
           <div className="flex w-[calc(100%-90px)] flex-col gap-2">
             <input
               type="number"
               name="phonenumber"
               id="phonenumber"
-              placeholder="12345 67890"
+              placeholder="xxxxx xxxxx"
               className="form-style"
-              {...register("phoneNo", {
+              {...register("phoneNo", {                                              /*   Yeh React Hook Form ka register function hai jo phoneNo field ko form me register kar raha hai.   */
                 required: {
-                  value: true,
-                  message: "Please enter your Phone Number.",
+                  value: true,                                                       /*   Yeh validation rule set karta hai ki phone number field required hai, yaani user ko is field ko bharna zaroori hai.   */
+                  message: "Please enter your Phone Number.",                        /*   Agar user ne phone number nahi diya aur form submit karne ki koshish ki, toh yeh error message "Please enter your Phone Number." dikhayi dega.   */
                 },
-                maxLength: { value: 12, message: "Invalid Phone Number" },
-                minLength: { value: 10, message: "Invalid Phone Number" },
+                maxLength: { value: 12, message: "Invalid Phone Number" },           /*   Yeh validation rule ensure karta hai ki phone number ki length 12 digits se zyada na ho, agar zyada hota hai toh "Invalid Phone Number" ka error message dikhayi dega.   */
+                minLength: { value: 10, message: "Invalid Phone Number" },           /*   Yeh validation rule ensure karta hai ki phone number ki length kam se kam 10 digits ho, agar kam hota hai toh "Invalid Phone Number" ka error message dikhayi dega.   */
               })}
             />
+
           </div>
+
         </div>
+
+
+
+
+      {/*   Yeh code error message ko display karta hai agar phone number field me koi validation error hota hai.   */}
+
         {errors.phoneNo && (
           <span className="-mt-1 text-[12px] text-yellow-100">
             {errors.phoneNo.message}
           </span>
+
         )}
       </div>
 

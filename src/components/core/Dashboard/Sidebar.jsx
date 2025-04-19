@@ -1,22 +1,36 @@
+// imports
+
 import { useState } from "react"
 import { VscSignOut } from "react-icons/vsc"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
 import { sidebarLinks } from "../../../data/dashboard-links"
 import { logout } from "../../../services/operations/authAPI"
 import ConfirmationModal from "../../common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
 
+
+
+
+  {/*   Yeh function ek Sidebar component banata hai, aur Redux store se profile state ke andar ka user aur loading value ko nikaal raha hai. loading ko yahan profileLoading naam se use kiya gaya hai.   */}
+
 export default function Sidebar() {
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile
   )
-  const { loading: authLoading } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  // to keep track of confirmation modal
-  const [confirmationModal, setConfirmationModal] = useState(null)
+
+
+
+
+  const { loading: authLoading } = useSelector((state) => state.auth)            // Yeh line Redux ke auth state se loading value ko nikaal rahi hai, aur usko authLoading naam ke variable me store kar rahi hai taaki baad me use kiya ja sake.
+  const dispatch = useDispatch()                                                 // Yeh line Redux ka dispatch function le kar dispatch naam ke variable me store karti hai, taaki hum Redux actions ko component ke andar se call (ya bhej) kar sakein.
+  const navigate = useNavigate()                                                 // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
+  const [confirmationModal, setConfirmationModal] = useState(null)               // Yeh line ek state variable confirmationModal ko initialize karti hai, jisme initially null value hoti hai. Aur setConfirmationModal function ko use karke is state ko update kiya ja sakta hai.
+
+
+
+
+  {/*   Agar profileLoading ya authLoading me se koi bhi true hai (matlab data abhi load ho raha hai), toh loading spinner dikhata hai   */}
 
   if (profileLoading || authLoading) {
     return (
@@ -26,6 +40,9 @@ export default function Sidebar() {
     )
   }
 
+
+
+  
   return (
     <>
       <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
@@ -67,3 +84,7 @@ export default function Sidebar() {
     </>
   )
 }
+
+
+
+// Is file me uss cheez ka code hai jo dropdown se "Dashboard" pe click karne ke baad left side me 'My Profile', 'Enrolled Courses', 'Your Cart', 'Settings', aur 'Logout' wale options dikhata hai.

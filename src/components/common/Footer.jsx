@@ -23,6 +23,7 @@ const Resources = [
 
 
 
+
 const Plans = ["Paid memberships", "For students", "Business solutions"];
 const Community = ["Forums", "Chapters", "Events"];
 
@@ -50,15 +51,18 @@ const Footer = () => {
               <h1 className="text-richblack-50 font-semibold text-[16px]">
                 Company
               </h1>
+
               <div className="flex flex-col gap-2">
                 {["About", "Careers", "Affiliates"].map((ele, i) => {
                   return (
+                   
                     <div
                       key={i}
                       className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
                     >
                       <Link to={ele.toLowerCase()}>{ele}</Link>
                     </div>
+
                   );
                 })}
               </div>
@@ -74,6 +78,7 @@ const Footer = () => {
                 <FaTwitter />
                 <FaYoutube />
               </div>
+
               <div></div>
             </div>
 
@@ -83,6 +88,7 @@ const Footer = () => {
               {/* Resources */}
 
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+              
               <h1 className="text-richblack-50 font-semibold text-[16px]">
                 Resources
               </h1>
@@ -102,6 +108,7 @@ const Footer = () => {
                       <Link to={ele.split(" ").join("-").toLowerCase()}>
                         {ele}
                       </Link>
+
                     </div>
                   );
                 })}
@@ -115,9 +122,11 @@ const Footer = () => {
               <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
                 Support
               </h1>
+
               <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
                 <Link to={"/help-center"}>Help Center</Link>
               </div>
+
             </div>
 
 
@@ -126,6 +135,7 @@ const Footer = () => {
                 {/* Plans */}
 
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+              
               <h1 className="text-richblack-50 font-semibold text-[16px]">
                 Plans
               </h1>
@@ -138,6 +148,7 @@ const Footer = () => {
               <div className="flex flex-col gap-2 mt-2">
                 {Plans.map((ele, index) => {
                   return (
+                    
                     <div
                       key={index}
                       className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
@@ -145,6 +156,7 @@ const Footer = () => {
                       <Link to={ele.split(" ").join("-").toLowerCase()}>
                         {ele}
                       </Link>
+
                     </div>
                   );
                 })}
@@ -170,6 +182,7 @@ const Footer = () => {
                       <Link to={ele.split(" ").join("-").toLowerCase()}>
                         {ele}
                       </Link>
+
                     </div>
                   );
                 })}
@@ -186,17 +199,21 @@ const Footer = () => {
             {FooterLink2.map((ele, i) => {
               return (
                 <div key={i} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+                  
                   <h1 className="text-richblack-50 font-semibold text-[16px]">
                     {ele.title}
                   </h1>
+
                   <div className="flex flex-col gap-2 mt-2">
                     {ele.links.map((link, index) => {
                       return (
+                        
                         <div
                           key={index}
                           className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
                         >
                           <Link to={link.link}>{link.title}</Link>
+
                         </div>
                       );
                     })}
@@ -228,9 +245,11 @@ const Footer = () => {
                       : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
                   } px-3 `}
                 >
+                 
                   <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
                     {ele}
                   </Link>
+
                 </div>
               );
             })}

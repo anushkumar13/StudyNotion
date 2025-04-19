@@ -1,9 +1,13 @@
-import { toast } from "react-hot-toast"
+// imports
 
+import { toast } from "react-hot-toast"
 import { updateCompletedLectures } from "../../slices/viewCourseSlice"
 // import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector"
 import { courseEndpoints } from "../apis"
+
+
+
 
 const {
   COURSE_DETAILS_API,
@@ -24,6 +28,9 @@ const {
   LECTURE_COMPLETION_API,
 } = courseEndpoints
 
+
+
+
 export const getAllCourses = async () => {
   const toastId = toast.loading("Loading...")
   let result = []
@@ -40,6 +47,9 @@ export const getAllCourses = async () => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
 
 export const fetchCourseDetails = async (courseId) => {
   const toastId = toast.loading("Loading...")
@@ -65,6 +75,9 @@ export const fetchCourseDetails = async (courseId) => {
   return result
 }
 
+
+
+
 // fetching the available course categories
 export const fetchCourseCategories = async () => {
   let result = []
@@ -81,6 +94,9 @@ export const fetchCourseCategories = async () => {
   }
   return result
 }
+
+
+
 
 // add the course details
 export const addCourseDetails = async (data, token) => {
@@ -105,6 +121,9 @@ export const addCourseDetails = async (data, token) => {
   return result
 }
 
+
+
+
 // edit the course details
 export const editCourseDetails = async (data, token) => {
   let result = null
@@ -128,6 +147,9 @@ export const editCourseDetails = async (data, token) => {
   return result
 }
 
+
+
+
 // create a section
 export const createSection = async (data, token) => {
   let result = null
@@ -149,6 +171,9 @@ export const createSection = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
 
 // create a subsection
 export const createSubSection = async (data, token) => {
@@ -172,6 +197,9 @@ export const createSubSection = async (data, token) => {
   return result
 }
 
+
+
+
 // update a section
 export const updateSection = async (data, token) => {
   let result = null
@@ -193,6 +221,9 @@ export const updateSection = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
 
 // update a subsection
 export const updateSubSection = async (data, token) => {
@@ -216,6 +247,9 @@ export const updateSubSection = async (data, token) => {
   return result
 }
 
+
+
+
 // delete a section
 export const deleteSection = async (data, token) => {
   let result = null
@@ -237,6 +271,10 @@ export const deleteSection = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
+
 // delete a subsection
 export const deleteSubSection = async (data, token) => {
   let result = null
@@ -258,6 +296,9 @@ export const deleteSubSection = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
 
 // fetching all courses under a specific instructor
 export const fetchInstructorCourses = async (token) => {
@@ -285,6 +326,9 @@ export const fetchInstructorCourses = async (token) => {
   return result
 }
 
+
+
+
 // delete a course
 export const deleteCourse = async (data, token) => {
   const toastId = toast.loading("Loading...")
@@ -303,6 +347,9 @@ export const deleteCourse = async (data, token) => {
   }
   toast.dismiss(toastId)
 }
+
+
+
 
 // get full details of a course
 export const getFullDetailsOfCourse = async (courseId, token) => {
@@ -336,6 +383,9 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
   return result
 }
 
+
+
+
 // mark a lecture as complete
 export const markLectureAsComplete = async (data, token) => {
   let result = null
@@ -363,6 +413,9 @@ export const markLectureAsComplete = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
+
+
 
 // create a rating for course
 export const createRating = async (data, token) => {

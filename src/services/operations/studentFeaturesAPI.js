@@ -1,3 +1,5 @@
+// imports
+
 import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
@@ -6,7 +8,12 @@ import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
 
+
+
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} = studentEndpoints;
+
+
+
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -82,6 +89,9 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
     toast.dismiss(toastId);
 }
 
+
+
+
 async function sendPaymentSuccessEmail(response, amount, token) {
     try{
         await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {
@@ -96,6 +106,9 @@ async function sendPaymentSuccessEmail(response, amount, token) {
         console.log("PAYMENT SUCCESS EMAIL ERROR....", error);
     }
 }
+
+
+
 
 //verify payment
 async function verifyPayment(bodyData, token, navigate, dispatch) {

@@ -52,11 +52,19 @@ function App() {
 
     <Navbar/>
 
+
+
+
     <Routes>
+
+
       <Route path="/" element={<Home/>} />
       <Route path="catalog/:catalogName" element={<Catalog/>} />
       <Route path="courses/:courseId" element={<CourseDetails/>} />
       
+
+
+
     <Route
           path="signup"
           element={
@@ -65,6 +73,10 @@ function App() {
             </OpenRoute>
           }
         />
+
+
+
+
     <Route
           path="login"
           element={
@@ -73,6 +85,9 @@ function App() {
             </OpenRoute>
           }
         />
+
+
+
 
     <Route
           path="forgot-password"
@@ -83,6 +98,9 @@ function App() {
           }
         />  
 
+
+
+
     <Route
           path="verify-email"
           element={
@@ -91,6 +109,9 @@ function App() {
             </OpenRoute>
           }
         />  
+
+
+
 
     <Route
           path="update-password/:id"
@@ -101,6 +122,9 @@ function App() {
           }
         />  
 
+
+
+
     <Route
           path="/about"
           element={
@@ -109,6 +133,10 @@ function App() {
             
           }
         />
+
+
+
+
     <Route path="/contact" element={<Contact />} />
 
 
@@ -121,10 +149,20 @@ function App() {
         </PrivateRoute>
       }
     >
+
+
+
+
       <Route path="dashboard/my-profile" element={<MyProfile />} />
       
+
+
+
       <Route path="dashboard/Settings" element={<Settings />} />
       
+
+
+
 
       {
         user?.accountType === ACCOUNT_TYPE.STUDENT && (
@@ -191,4 +229,4 @@ export default App;
 
 
 
-// return ke andar har ek page ka route hai 
+// iss file me return ke andar har ek page ka route hai 
