@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+// imports
 
+import React, { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"                      // form banane ke liye ye import karna padta hai taki kaam asaan ho jaye jaise form reset karna etc
 import CountryCode from "../../data/countrycode.json"
 import { apiConnector } from "../../services/apiconnector"
 import { contactusEndpoint } from "../../services/apis"
 
+
+
+
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false)
-  const {
-    register,
-    handleSubmit,
-    reset,
+  const {                                                      // useForm() hook se ye sare data nikal lo
+    register,                                                  // iska data nikal lo
+    handleSubmit,                                              // iska data nikal lo
+    reset,                                                     // iska data nikal lo
     formState: { errors, isSubmitSuccessful },
   } = useForm()
 
+
+
+
   const submitContactForm = async (data) => {
-    // console.log("Form Data - ", data)
+    
     try {
       setLoading(true)
       const res = await apiConnector(
@@ -23,13 +30,18 @@ const ContactUsForm = () => {
         contactusEndpoint.CONTACT_US_API,
         data
       )
-      // console.log("Email Res - ", res)
+      
       setLoading(false)
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
       setLoading(false)
     }
   }
+
+
+
+
+        {/*   agar form successfully submit ho gya to form ke input fields ko reset kare dena   */}
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -43,14 +55,23 @@ const ContactUsForm = () => {
     }
   }, [reset, isSubmitSuccessful])
 
+
+
+
   return (
     <form
       className="flex flex-col gap-7"
-      onSubmit={handleSubmit(submitContactForm)}
+      onSubmit={handleSubmit(submitContactForm)}                         // jab bhi form submit hoga to --> submitContactForm <-- iss function ko call kar dena
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
-          <label htmlFor="firstname" className="lable-style">
+
+
+
+
+      {/*   First Name   */}
+
+          <label htmlFor="firstname" className="lable-style">            {/*   htmlFor ka use label tag ko input tag se connect karne ke liye hota hai   */}
             First Name
           </label>
           <input
@@ -59,8 +80,14 @@ const ContactUsForm = () => {
             id="firstname"
             placeholder="Enter first name"
             className="form-style"
-            {...register("firstname", { required: true })}
+            {...register("firstname", { required: true })}               /*   iss line ka mtlb hai ki React Hook Form ko bolna ki yeh field form ka part hai aur yeh bharna zaroori hai.   */
           />
+
+
+
+
+      {/*   Agar user ne firstname field khali chhod diya, toh yeh code usko warning message dikhata hai: "Please enter your name."   */}
+
           {errors.firstname && (
             <span className="-mt-1 text-[12px] text-yellow-100">
               Please enter your name.
@@ -68,6 +95,12 @@ const ContactUsForm = () => {
           )}
         </div>
         <div className="flex flex-col gap-2 lg:w-[48%]">
+
+
+
+
+      {/*   Last Name   */}
+
           <label htmlFor="lastname" className="lable-style">
             Last Name
           </label>
@@ -77,12 +110,18 @@ const ContactUsForm = () => {
             id="lastname"
             placeholder="Enter last name"
             className="form-style"
-            {...register("lastname")}
+            {...register("lastname")}                                   /*   iss line ka mtlb hai ki "lastname" wala input, form ka part hai, usme jo bhi user likhega, form usko samjhega aur yaad rakhega. required true nahi hai mtlb ye field bharna zaruri nahi hai   */
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
+
+
+
+
+      {/*   Email Address   */}
+
         <label htmlFor="email" className="lable-style">
           Email Address
         </label>
@@ -92,8 +131,14 @@ const ContactUsForm = () => {
           id="email"
           placeholder="Enter email address"
           className="form-style"
-          {...register("email", { required: true })}
+          {...register("email", { required: true })}                    /*   Yeh code bolta hai ki "email" field ko form me add kardo aur ensure karo ki user usse bhar ke hi submit kare, warna error aayega   */
         />
+
+
+
+
+      {/*   Yeh code check karta hai ki agar "email" field me error hai (jaise user ne email nahi diya), toh ek warning message dikhata hai: "Please enter your Email address."   */}
+
         {errors.email && (
           <span className="-mt-1 text-[12px] text-yellow-100">
             Please enter your Email address.
@@ -102,6 +147,12 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
+
+
+
+
+      {/*   Phone Number   */}
+
         <label htmlFor="phonenumber" className="lable-style">
           Phone Number
         </label>
@@ -114,7 +165,7 @@ const ContactUsForm = () => {
               id="firstname"
               placeholder="Enter first name"
               className="form-style"
-              {...register("countrycode", { required: true })}
+              {...register("countrycode", { required: true })}          /*   Yeh code "countrycode" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
             >
               {CountryCode.map((ele, i) => {
                 return (
@@ -151,6 +202,12 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
+
+
+
+
+      {/*   Message   */}
+
         <label htmlFor="message" className="lable-style">
           Message
         </label>
@@ -161,14 +218,25 @@ const ContactUsForm = () => {
           rows="7"
           placeholder="Enter your message here"
           className="form-style"
-          {...register("message", { required: true })}
+          {...register("message", { required: true })}           /*   Yeh code "message" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
         />
+
+
+
+
+      {/*   Yeh code check karta hai ki agar "message" field me error hai (jaise user ne message nahi diya), toh ek warning message dikhata hai: "Please enter your Message."   */}
+
         {errors.message && (
           <span className="-mt-1 text-[12px] text-yellow-100">
             Please enter your Message.
           </span>
         )}
       </div>
+
+
+
+
+      {/*   Send Message wala button   */}
 
       <button
         disabled={loading}
@@ -181,8 +249,12 @@ const ContactUsForm = () => {
       >
         Send Message
       </button>
+
     </form>
   )
 }
+
+
+
 
 export default ContactUsForm
