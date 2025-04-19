@@ -1,14 +1,16 @@
 import React from 'react'
-
 import {Swiper, SwiperSlide} from "swiper/react"
 import "swiper/css"
 import "swiper/css/free-mode"
 import "swiper/css/pagination"
 import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper'
-
 import Course_Card from './Course_Card'
 
+
+
+
 const CourseSlider = ({Courses}) => {
+  
   return (
     <>
       {Courses?.length ? (
@@ -36,5 +38,8 @@ const CourseSlider = ({Courses}) => {
     </>
   )
 }
+
+
+
 
 export default CourseSlider

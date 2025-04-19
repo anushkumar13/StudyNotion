@@ -1,6 +1,11 @@
+// imports
+
 import React, { useEffect, useRef, useState } from "react"
 import { AiOutlineDown } from "react-icons/ai"
 import { HiOutlineVideoCamera } from "react-icons/hi"
+
+
+
 
 function CourseSubSectionAccordion({ subSec }) {
   return (
@@ -16,5 +21,8 @@ function CourseSubSectionAccordion({ subSec }) {
     </div>
   )
 }
+
+
+
 
 export default CourseSubSectionAccordion

@@ -35,3 +35,8 @@ export default function IconBtn({
       
     )
   }
+
+
+
+
+// Ye ek custom button component hai jo text ke saath icon bhi show kar sakta hai, aur outline style ya normal style dono support karta hai.

@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
+import RenderSteps from "../AddCourse/RenderSteps"
 
 import {
   fetchCourseDetails,
   getFullDetailsOfCourse,
 } from "../../../../services/operations/courseDetailsAPI"
-
-import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
-import RenderSteps from "../AddCourse/RenderSteps"
 
 
 
@@ -30,7 +29,9 @@ export default function EditCourse() {
       setLoading(true)
       const result = await getFullDetailsOfCourse(courseId, token)
       if (result?.courseDetails) {
+
         dispatch(setEditCourse(true))
+        
         dispatch(setCourse(result?.courseDetails))
       }
       setLoading(false)

@@ -1,12 +1,22 @@
+// imports
+
 import React, { useEffect, useState } from 'react'
 import RatingStars from '../../common/RatingStars'
 import GetAvgRating from '../../../utils/avgRating';
 import { Link } from 'react-router-dom';
 
+
+
+
 const Course_Card = ({course, Height}) => {
 
 
+
+
     const [avgReviewCount, setAvgReviewCount] = useState(0);
+
+
+
 
     useEffect(()=> {
         const count = GetAvgRating(course.ratingAndReviews);
@@ -15,6 +25,7 @@ const Course_Card = ({course, Height}) => {
 
 
     
+
   return (
     <>
       <Link to={`/courses/${course._id}`}>
@@ -45,5 +56,8 @@ const Course_Card = ({course, Height}) => {
     </>
   )
 }
+
+
+
 
 export default Course_Card

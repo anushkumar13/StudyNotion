@@ -29,26 +29,52 @@ export default function MyProfile() {
 
       <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
         <div className="flex items-center gap-x-4">
+          
+          
+          
+          
+    {/*   user image   */}
+
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
             className="aspect-square w-[78px] rounded-full object-cover"
           />
+
           <div className="space-y-1">
+
+
+
+
+      {/*   user first name and last name   */}
+
             <p className="text-lg font-semibold text-richblack-5">
               {user?.firstName + " " + user?.lastName}
             </p>
+
+
+
+
+      {/*   user email   */}
+
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
         </div>
+         
+
+
+
+      {/*   edit wala button   */}
+
         <IconBtn
           text="Edit"
           onclick={() => {
-            navigate("/dashboard/settings")
+            navigate("/dashboard/settings")          // jaise hi 'Edit' wala button click hoga to 'Settings' pe chale jaoge
           }}
         >
           <RiEditBoxLine />
         </IconBtn>
+
       </div>
 
 
@@ -73,12 +99,12 @@ export default function MyProfile() {
 
         <p
           className={`${
-            user?.additionalDetails?.about
+            user?.additionalDetails?.about           // Yeh code check karta hai ki agar user object, uska additionalDetails object, aur usme about property sab safely exist karte ho, toh us about ka value le aao. Agar koi bhi cheez missing ho, toh error na de.
               ? "text-richblack-5"
               : "text-richblack-400"
           } text-sm font-medium`}
         >
-          {user?.additionalDetails?.about ?? "Write Something About Yourself"}
+          {user?.additionalDetails?.about ?? "Write Something About Yourself"}           {/*   Yeh code check karta hai ki agar user?.additionalDetails?.about ka value available hai toh usse dikhaye, warna default message "Write Something About Yourself" dikhaye.   */} 
         </p>
 
       </div>
@@ -94,6 +120,7 @@ export default function MyProfile() {
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details
           </p>
+
           <IconBtn
             text="Edit"
             onclick={() => {
@@ -102,6 +129,7 @@ export default function MyProfile() {
           >
             <RiEditBoxLine />
           </IconBtn>
+          
         </div>
 
         <div className="flex max-w-[500px] justify-between">
@@ -195,4 +223,4 @@ export default function MyProfile() {
 
 
 
-// jab dropdown se dashboard click karte hain to My Profile khulta hai uss page ka code iss file me hai
+// jab dropdown se dashboard click karte hain to My Profile khulta hai, uss page ka code iss file me hai

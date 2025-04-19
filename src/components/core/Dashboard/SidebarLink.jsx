@@ -10,6 +10,7 @@ import { resetCourseState } from "../../../slices/courseSlice"
 
 export default function SidebarLink({ link, iconName }) {
 
+  
   const Icon = Icons[iconName]             // Yeh line Icons object me se iconName key ke corresponding value ko nikaal kar Icon variable mein store karti hai. Matlab, agar iconName "home" hai, toh Icons["home"] ko Icon mein assign kiya jaayega.
   const location = useLocation()
   const dispatch = useDispatch()
@@ -37,14 +38,24 @@ export default function SidebarLink({ link, iconName }) {
           : "bg-opacity-0 text-richblack-300"
       } transition-all duration-200`}
     >
+
+
+
+
+      {/*   Ye code active page ke liye sidebar me ek yellow line dikhata hai.   */}
+
       <span
         className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${
           matchRoute(link.path) ? "opacity-100" : "opacity-0"
         }`}
       ></span>
       
+
+
+
+      {/*   Icons   */}
+
       <div className="flex items-center gap-x-2">
-        {/* Icon Goes Here */}
         <Icon className="text-lg" />
         <span>{link.name}</span>
       </div>
@@ -52,3 +63,8 @@ export default function SidebarLink({ link, iconName }) {
     </NavLink>
   )
 }
+
+
+
+
+// Iss file me Navbar ke options ko click karne par kya khulega, wo decide kiya gaya hai — aur har option ke saath uska icon bhi diya gaya hai.

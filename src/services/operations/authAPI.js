@@ -176,8 +176,8 @@ export function logout(navigate) {
     dispatch(setToken(null))
     dispatch(setUser(null))
     dispatch(resetCart())
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
+    localStorage.removeItem("token")          // Ye code localStorage se "token" naam wali item ko permanently delete kar deta hai — jisse user logout ya session clear ho jata hai.
+    localStorage.removeItem("user")           // Ye code localStorage se "user" naam wali value ko delete karta hai — yani browser ke memory se user ki saved info hata di jaati hai (jaise login ke time save hui details).
     toast.success("Logged Out")
     navigate("/")
   }
