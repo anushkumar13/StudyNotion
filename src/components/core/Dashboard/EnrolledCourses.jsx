@@ -92,7 +92,7 @@ export default function EnrolledCourses() {
 
 
 
-          {/* Course Names */}
+          {/*   Course Names   */}
           
           {enrolledCourses.map((course, i, arr) => (
             
@@ -132,14 +132,27 @@ export default function EnrolledCourses() {
               </div>
 
               <div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
-              <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
-                
+             
+             
+
+
+          {/*   Progress   */}
+
+              <div className="flex w-1/5 flex-col gap-2 px-2 py-3">              
                 <p>Progress: {course.progressPercentage || 0}%</p>
+
+
+
+
+
+          {/*   Progress Bar   */}
+
                 <ProgressBar
                   completed={course.progressPercentage || 0}
                   height="8px"
                   isLabelVisible={false}
                 />
+
               </div>
             </div>
           ))}
