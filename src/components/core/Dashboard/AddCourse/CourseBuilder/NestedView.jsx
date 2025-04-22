@@ -211,8 +211,6 @@ export default function NestedView({ handleChangeEditSectionName }) {
               ))}
 
 
-
-
       {/*   "Add Lecture" wala button   */}
               
               <button
