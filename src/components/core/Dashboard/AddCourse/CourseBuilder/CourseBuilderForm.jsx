@@ -28,10 +28,10 @@ import {
 
 export default function CourseBuilderForm() {
   const {
-    register,                              // form ke input fields ko React Hook Form ke control mein laane ke liye use hota hai.
-    handleSubmit,                          // jab form submit ho, toh yeh function data ko handle karta hai.
-    setValue,                              // form ke kisi field ka manually value set karne ke kaam aata hai.
-    formState: { errors },                 // validation errors ko track karta hai.
+    register,                                          // form ke input fields ko React Hook Form ke control mein laane ke liye use hota hai.
+    handleSubmit,                                      // jab form submit ho, toh yeh function data ko handle karta hai.
+    setValue,                                          // form ke kisi field ka manually value set karne ke kaam aata hai.
+    formState: { errors },                             // validation errors ko track karta hai.
   } = useForm()
 
 
@@ -46,15 +46,15 @@ export default function CourseBuilderForm() {
 
 
 
-  {/*   handle form submission ka function    */}
+    {/*   Yeh onSubmit function form submit hone par chalta hai aur section create/update karta hai   */}
 
   const onSubmit = async (data) => {
     
-    setLoading(true)
+    setLoading(true)                                   //  Form submit hote hi loading start hoti hai
 
     let result
-
-    if (editSectionName) {
+ 
+    if (editSectionName) {                             //  Agar editSectionName hai: Matlab edit mode hai, toh existing section update hota hai using updateSection(...)
       result = await updateSection(
         {
           sectionName: data.sectionName,
@@ -64,7 +64,7 @@ export default function CourseBuilderForm() {
         token
       )
       
-    } else {
+    } else {                                           //  Agar editSectionName nahi hai:
       result = await createSection(
         {
           sectionName: data.sectionName,
@@ -76,31 +76,35 @@ export default function CourseBuilderForm() {
 
     if (result) {
       
-      dispatch(setCourse(result))
-      setEditSectionName(null)
-      setValue("sectionName", "")
+      dispatch(setCourse(result))                      //  Redux mein course data update hota hai
+      setEditSectionName(null)                         //  Edit mode cancel ho jata hai   
+      setValue("sectionName", "")                      //  Form field reset ho jata hai               
     }
-    setLoading(false)
+    setLoading(false)                                  //  Finally loading band hoti hai
   }
 
 
 
+
+    {/*   Yeh cancelEdit function basically Edit mode ko cancel karta hai aur section name input ko blank kar deta hai.    */}
 
   const cancelEdit = () => {
-    setEditSectionName(null)
-    setValue("sectionName", "")
+    setEditSectionName(null)                           //  isse jo section edit ho raha tha, uska reference hata diya jaata hai.
+    setValue("sectionName", "")                        //  form ke input field ko reset kar diya jaata hai (section name empty kar diya jaata hai).
   }
 
 
 
+
+    {/*   Yeh handleChangeEditSectionName function tab chalta hai jab user kisi section ka naam edit karna chahta hai: Agar already edit ho raha section dobara click ho gaya toh edit cancel kar deta hai, warna naye section ka naam edit karne ka mode activate karta hai.    */}
 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
     if (editSectionName === sectionId) {
       cancelEdit()
       return
     }
-    setEditSectionName(sectionId)
-    setValue("sectionName", sectionName)
+    setEditSectionName(sectionId)                      // jis section ka naam edit karna hai, uska ID store karta hai.
+    setValue("sectionName", sectionName)               // form input field ko uss section ke current name se fill kar deta hai.
   }
 
 
