@@ -1,4 +1,4 @@
-
+// imports
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -6,6 +6,8 @@ import { toast } from "react-hot-toast"
 import { IoAddCircleOutline } from "react-icons/io5"
 import { MdNavigateNext } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
+import IconBtn from "../../../../common/IconBtn"
+import NestedView from "./NestedView"
 
 import {
   createSection,
@@ -18,18 +20,18 @@ import {
   setStep,
 } from "../../../../../slices/courseSlice"
 
-import IconBtn from "../../../../common/IconBtn"
-import NestedView from "./NestedView"
 
 
 
+
+{/*   Yeh line useForm() ka use kar ke React Hook Form ka setup kar rahi hai, taaki hum form fields ko register, validate, aur submit kar sakein.   */}
 
 export default function CourseBuilderForm() {
   const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
+    register,                              // form ke input fields ko React Hook Form ke control mein laane ke liye use hota hai.
+    handleSubmit,                          // jab form submit ho, toh yeh function data ko handle karta hai.
+    setValue,                              // form ke kisi field ka manually value set karne ke kaam aata hai.
+    formState: { errors },                 // validation errors ko track karta hai.
   } = useForm()
 
 
@@ -44,10 +46,10 @@ export default function CourseBuilderForm() {
 
 
 
-  // handle form submission
+  {/*   handle form submission ka function    */}
 
   const onSubmit = async (data) => {
-    // console.log(data)
+    
     setLoading(true)
 
     let result
@@ -61,7 +63,7 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      // console.log("edit", result)
+      
     } else {
       result = await createSection(
         {
@@ -73,7 +75,7 @@ export default function CourseBuilderForm() {
     }
 
     if (result) {
-      // console.log("section result", result)
+      
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")
@@ -104,26 +106,30 @@ export default function CourseBuilderForm() {
 
 
 
+    {/*   Yeh function ensure karta hai ki kam se kam ek section aur har section me ek lecture ho — tabhi user ko 3rd step pe le jaata hai.    */}
+
   const goToNext = () => {
-    if (course.courseContent.length === 0) {
-      toast.error("Please add atleast one section")
+    if (course.courseContent.length === 0) {                                             // Check karta hai ki kam se kam ek section hona chahiye. warna ye wala error dikhayega ---> "Please add atleast one section"
+      toast.error("Please add atleast one section")                                  
       return
     }
     if (
-      course.courseContent.some((section) => section.subSection.length === 0)
+      course.courseContent.some((section) => section.subSection.length === 0)            // Check karta hai ki Har section ke andar kam se kam ek lecture (subsection) hona chahiye. aur agar nahi hai to ye wala error dikhayega ---> "Please add atleast one lecture in each section"
     ) {
       toast.error("Please add atleast one lecture in each section")
       return
     }
-    dispatch(setStep(3))
+    dispatch(setStep(3))                                                                 // Agar dono condition satisfy ho jaati hain, toh dispatch(setStep(3)) se next step (3rd step) pe le jaata hai.
   }
 
 
 
 
-  const goBack = () => {
-    dispatch(setStep(1))
-    dispatch(setEditCourse(true))
+    {/*   Jab user "back" jaata hai, toh course form ko step 1 pe le jaake edit mode activate kar deta hai.    */}
+
+  const goBack = () => { 
+    dispatch(setStep(1))                                                                 // Course creation form ko step 1 pe le jaata hai (wapis pehle page pe).
+    dispatch(setEditCourse(true))                                                        // Edit mode on karta hai, taaki existing course ko wapis se edit kiya ja sake.
   }
 
 
@@ -132,13 +138,24 @@ export default function CourseBuilderForm() {
   return (
     <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       
-      <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
+
+
+
+    {/*   Course Builder   */}
+
+      <p className="text-2xl font-semibold text-richblack-5"> Course Builder </p>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         
         <div className="flex flex-col space-y-2">
+
+
+
+
+    {/*   Section Name   */}
+
           <label className="text-sm text-richblack-5" htmlFor="sectionName">
-            Section Name <sup className="text-pink-200">*</sup>
+            Section Name <sup className="text-pink-200"> * </sup>
           </label>
 
           <input
@@ -151,6 +168,11 @@ export default function CourseBuilderForm() {
 
           {errors.sectionName && (
 
+
+
+
+    /*   Section name is required   */
+
             <span className="ml-2 text-xs tracking-wide text-pink-200">
               Section name is required
             </span>
@@ -160,16 +182,29 @@ export default function CourseBuilderForm() {
 
 
         <div className="flex items-end gap-x-4">
+
+
+
+
+    {/*   "Edit Section Name" and "Create Section" wala button   */}
+
           <IconBtn
             type="submit"
             disabled={loading}
             text={editSectionName ? "Edit Section Name" : "Create Section"}
             outline={true}
           >
-            <IoAddCircleOutline size={20} className="text-yellow-50" />
+            <IoAddCircleOutline size={20} className="text-yellow-50" />                {/*   ye "add" ka icon hai jo iske "Edit Section Name" ya to "Create Section" side me show karega   */}
           </IconBtn>
+
           {editSectionName && (
             
+
+
+
+
+    /*   "Cancel Edit" wala button   */
+
             <button
               type="button"
               onClick={cancelEdit}
@@ -182,14 +217,24 @@ export default function CourseBuilderForm() {
         </div>
       </form>
       
-      
+
+
+
+    {/*   Yeh line condition check kar rahi hai ki: Agar course.courseContent.length 0 se zyada hai (matlab course ke andar kuch content sections available hain),  toh <NestedView /> component ko render karo, aur usme handleChangeEditSectionName function ko as a prop bhejo — taaki wo component section name ko edit kar sake.   */}
+
       {course.courseContent.length > 0 && (
+
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
-      {/* Next Prev Button */}
+      
       
       <div className="flex justify-end gap-x-3">
         
+
+
+
+    {/*   "Back" wala button   */}
+
         <button
           onClick={goBack}
           className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
@@ -200,6 +245,7 @@ export default function CourseBuilderForm() {
         <IconBtn disabled={loading} text="Next" onclick={goToNext}>
           <MdNavigateNext />
         </IconBtn>
+
       </div>
 
     </div>

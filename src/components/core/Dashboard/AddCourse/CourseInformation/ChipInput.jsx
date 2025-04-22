@@ -7,6 +7,8 @@ import { useSelector } from "react-redux"
 
 
 
+{/*   Is function ChipInput ka use ek input field ko create karne ke liye hota hai jisme multiple values (ya tags) ko "chips" ki tarah add kiya ja sakta hai. Isme kuch props pass kiye ja rahe hain jo form handling aur validation ke liye use kiye jaate hain.   */}
+
 export default function ChipInput({
 
   label,
@@ -18,12 +20,10 @@ export default function ChipInput({
   getValues,
 }) {
 
-  const { editCourse, course } = useSelector((state) => state.course)
 
+  const { editCourse, course } = useSelector((state) => state.course)         //  Is line mein useSelector hook ka use ho raha hai jo Redux store se data ko fetch karta hai. Yahaan pe state.course ke andar jo bhi data hai, usme se editCourse aur course ko directly extract (destructure) kar liya gaya hai.
 
-
-
-  const [chips, setChips] = useState([])
+  const [chips, setChips] = useState([])                                      // Is line mein useState hook ka use ho raha hai jo ek state variable (chips) banata hai. Initially iski value empty array ([]) hai, jo ki baad mein kisi bhi chips ya values ko store karne ke liye use kiya ja sakta hai.
 
 
 
@@ -54,19 +54,19 @@ export default function ChipInput({
 
     if (event.key === "Enter" || event.key === ",") {
 
-      // Prevent the default behavior of the event
+    // Prevent the default behavior of the event
 
       event.preventDefault()
 
-      // Get the input value and remove any leading/trailing spaces
+    // Get the input value and remove any leading/trailing spaces
 
       const chipValue = event.target.value.trim()
 
-      // Check if the input value exists and is not already in the chips array
+    // Check if the input value exists and is not already in the chips array
 
       if (chipValue && !chips.includes(chipValue)) {
 
-        // Add the chip to the array and clear the input
+    // Add the chip to the array and clear the input
 
         const newChips = [...chips, chipValue]
         setChips(newChips)
