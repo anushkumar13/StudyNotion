@@ -31,6 +31,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+  {/*   Yeh function ek course section ko delete karta hai backend se, aur agar delete successful ho jata hai toh updated course data ko Redux mein set karta hai, aur confirmation modal ko close kar deta hai.   */}
+
   const handleDeleleSection = async (sectionId) => {
     const result = await deleteSection({
       sectionId,
@@ -45,6 +47,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
+  {/*   Yeh function ek sub-section ko delete karta hai, agar successful hota hai toh course content ko update karke Redux store mein set karta hai, aur confirmation modal ko close kar deta hai.   */}
 
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
     const result = await deleteSubSection({ subSectionId, sectionId, token })
@@ -147,7 +151,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
-      {/* Render All Sub Sections Within a Section */}
+      {/*   Render All Sub Sections Within a Section   */}
 
               {section.subSection.map((data) => (
                 <div
@@ -233,21 +237,22 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
-      {/*   Modal Display   */}
+      {/*   Yeh code modal ko add, view, ya edit mode mein dikhata hai based on kaunsa state variable (addSubSection, viewSubSection, editSubSection) active hai.   */}
 
-      {addSubSection ? (
+
+      {addSubSection ? (                                 //  Agar addSubSection truthy hai → Matlab user naya lecture add kar raha hai Toh SubSectionModal open hoga with add={true} prop
         <SubSectionModal
           modalData={addSubSection}
           setModalData={setAddSubsection}
           add={true}
         />
-      ) : viewSubSection ? (
+      ) : viewSubSection ? (                             //  Agar addSubSection nahi hai but viewSubSection truthy hai → Matlab user kisi lecture ka detail dekh raha hai Toh SubSectionModal open hoga with view={true} prop
         <SubSectionModal
           modalData={viewSubSection}
           setModalData={setViewSubSection}
           view={true}
         />
-      ) : editSubSection ? (
+      ) : editSubSection ? (                             //  Agar pehle dono nahi hai but editSubSection truthy hai → Matlab user kisi existing lecture ko edit kar raha hai Toh SubSectionModal open hoga with edit={true} prop
         <SubSectionModal
           modalData={editSubSection}
           setModalData={setEditSubSection}
