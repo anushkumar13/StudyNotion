@@ -20,7 +20,7 @@ export default function MyCourses() {
 
 
 
-  {/*   Yeh code component render hone par ek baar fetchInstructorCourses function ko call karta hai, jo courses fetch karke state mein store karta hai.   */}
+    {/*   Yeh code component render hone par ek baar fetchInstructorCourses function ko call karta hai, jo instructor ke courses fetch karke state mein store karta hai.   */}
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -39,15 +39,34 @@ export default function MyCourses() {
   return (
     <div>
       <div className="mb-14 flex items-center justify-between">
+        
+
+
+    {/*   My Courses   */}
+
         <h1 className="text-3xl font-medium text-richblack-5">My Courses</h1>
+
         <IconBtn
           text="Add Course"
           onclick={() => navigate("/dashboard/add-course")}
         >
           <VscAdd />
         </IconBtn>
+
       </div>
+
+
+
+
+    {/*   Agar confirmationModal ki value hai (yaani null nahi hai), tab hi ConfirmationModal component ko render karo aur usmein modalData ke andar confirmationModal bhej do.   */}
+
       {courses && <CoursesTable courses={courses} setCourses={setCourses} />}
+
     </div>
   )
 }
+
+
+
+
+//  jo saare course show honge unn sab ka code iss file mein hai

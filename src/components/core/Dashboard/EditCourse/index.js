@@ -26,15 +26,21 @@ export default function EditCourse() {
 
   useEffect(() => {
     ;(async () => {
+
       setLoading(true)
+      
       const result = await getFullDetailsOfCourse(courseId, token)
+      
       if (result?.courseDetails) {
 
         dispatch(setEditCourse(true))
         
         dispatch(setCourse(result?.courseDetails))
+      
       }
+      
       setLoading(false)
+    
     })()
 
   }, [])
@@ -42,7 +48,8 @@ export default function EditCourse() {
 
   if (loading) {
     return (
-      <div className="grid flex-1 place-items-center">
+     
+     <div className="grid flex-1 place-items-center">
         <div className="spinner"></div>
       </div>
     )

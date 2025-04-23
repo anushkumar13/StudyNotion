@@ -278,7 +278,7 @@ export default function SubSectionModal({
 
 
 
-  {/* Lecture Description */}
+  {/*   Lecture Description   */}
 
           <div className="flex flex-col space-y-2">
             

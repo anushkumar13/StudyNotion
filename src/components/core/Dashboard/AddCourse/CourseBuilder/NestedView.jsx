@@ -265,7 +265,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
-      {/*   Confirmation Modal   */}
+      {/*   Agar confirmationModal ki value hai (yaani null nahi hai), tab hi ConfirmationModal component ko render karo aur usmein modalData ke andar confirmationModal bhej do.   */}
 
       {confirmationModal ? (
         <ConfirmationModal modalData={confirmationModal} />
