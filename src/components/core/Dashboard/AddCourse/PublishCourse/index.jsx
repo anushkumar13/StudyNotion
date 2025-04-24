@@ -71,7 +71,7 @@ export default function PublishCourse() {
 
 
 
-    {/*   Course ko update karne ka pura process hai — jaise hi user publish ya draft karta hai, uske hisaab se server ko update bhej rahe hain. Agar sab kuch sahi gaya toh redirect kar dete hain user ko.   */}
+  {/*   Course ko update karne ka pura process hai — jaise hi user publish ya draft karta hai, uske hisaab se server ko update bhej rahe hain. Agar sab kuch sahi gaya toh redirect kar dete hain user ko.   */}
 
     const formData = new FormData()
     formData.append("courseId", course._id)                           //  Ek FormData object banaya gaya — jismein backend ke liye course ka ID bhej rahe hain.
@@ -106,7 +106,7 @@ export default function PublishCourse() {
 
 
 
-    {/*   Publish Settings   */}
+  {/*   Publish Settings   */}
 
       <p className="text-2xl font-semibold text-richblack-5">
         Publish Settings
@@ -116,7 +116,7 @@ export default function PublishCourse() {
 
 
 
-    {/*   Checkbox   */}
+  {/*   Checkbox   */}
 
         <div className="my-6 mb-8">
           <label htmlFor="public" className="inline-flex items-center text-lg">
@@ -138,7 +138,7 @@ export default function PublishCourse() {
 
 
 
-        {/*   "Back" wala button   */}
+  {/*   "Back" wala button   */}
 
         <div className="ml-auto flex max-w-max items-center gap-x-4">
           

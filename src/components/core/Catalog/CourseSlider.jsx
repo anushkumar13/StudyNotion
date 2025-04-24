@@ -1,3 +1,5 @@
+// imports
+
 import React from 'react'
 import {Swiper, SwiperSlide} from "swiper/react"
 import "swiper/css"
@@ -11,9 +13,14 @@ import Course_Card from './Course_Card'
 
 const CourseSlider = ({Courses}) => {
   
+
+
+
   return (
     <>
-      {Courses?.length ? (
+
+      {Courses?.length ? (                //  agar ek bhi course exist karta hai to ---> 
+        
         <Swiper
           slidesPerView={1}
           spaceBetween={25}
@@ -25,15 +32,23 @@ const CourseSlider = ({Courses}) => {
             },
           }}
           className="max-h-[30rem]"
+
         >
+
           {Courses?.map((course, i) => (
+            
             <SwiperSlide key={i}>
               <Course_Card course={course} Height={"h-[250px]"} />
             </SwiperSlide>
+
           ))}
+
         </Swiper>
-      ) : (
-        <p className="text-xl text-richblack-5">No Course Found</p>
+
+      ) : (                               //  agar ek bhi course exist nahi karta hai to "No Course Found" show karo
+
+        <p className="text-xl text-richblack-5"> No Course Found</p>
+
       )}
     </>
   )
@@ -43,3 +58,8 @@ const CourseSlider = ({Courses}) => {
 
 
 export default CourseSlider
+
+
+
+
+//  iss file mein course slider ka saara code hai
