@@ -47,6 +47,12 @@
 10. services folder ka kaam sirf backend call karne ka hai
 
 
+IMP
+
+11. frontend ke andar vo function jisko backend se api call karna hai usko "services" folder ke "operatons" 
+    folder ke andar likhna hai
+
+
 
 
 
