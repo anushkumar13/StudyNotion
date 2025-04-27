@@ -20,6 +20,8 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
+  {/*   inn do paragraph ke right side wala image   */}
+
   const {
     courseSectionData,
     courseEntireData,
@@ -30,22 +32,32 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
+  {/*   inn do paragraph ke right side wala image   */}
+
   useEffect(() => {
     ;(() => {
+      
       if (!courseSectionData.length) return
+      
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
       )
+      
       const currentSubSectionIndx = courseSectionData?.[
         currentSectionIndx
       ]?.subSection.findIndex((data) => data._id === subSectionId)
+      
       const activeSubSectionId =
         courseSectionData[currentSectionIndx]?.subSection?.[
           currentSubSectionIndx
         ]?._id
+
       setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)
+      
       setVideoBarActive(activeSubSectionId)
+
     })()
+
   }, [courseSectionData, courseEntireData, location.pathname])
 
 
@@ -75,10 +87,13 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
           </div>
           
           <div className="flex flex-col">
+            
             <p>{courseEntireData?.courseName}</p>
+            
             <p className="text-sm font-semibold text-richblack-500">
               {completedLectures?.length} / {totalNoOfLectures}
             </p>
+
           </div>
 
         </div>
@@ -92,15 +107,20 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
             >
 
 
-              {/* Section */}
+
+
+              {/*   Section   */}
+
               <div className="flex flex-row justify-between bg-richblack-600 px-5 py-4">
+                
                 <div className="w-[70%] font-semibold">
                   {course?.sectionName}
                 </div>
+
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[12px] font-medium">
-                    Lession {course?.subSection.length}
-                  </span> */}
+                  
+                  
+                  
                   
                   <span
                     className={`${
@@ -116,7 +136,10 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               </div>
 
 
-              {/* Sub Sections */}
+
+
+              {/*   Sub Sections   */}
+
               {activeStatus === course?._id && (
                 <div className="transition-[height] duration-500 ease-in-out">
                   {course.subSection.map((topic, i) => (

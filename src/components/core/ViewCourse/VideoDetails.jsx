@@ -42,31 +42,38 @@ const VideoDetails = () => {
 
   useEffect(() => {
     ;(async () => {
+      
       if (!courseSectionData.length) return
+      
       if (!courseId && !sectionId && !subSectionId) {
         navigate(`/dashboard/enrolled-courses`)
-      } else {
-        // console.log("courseSectionData", courseSectionData)
+      } 
+      
+      else {
+        
         const filteredData = courseSectionData.filter(
           (course) => course._id === sectionId
         )
-        // console.log("filteredData", filteredData)
+        
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         )
-        // console.log("filteredVideoData", filteredVideoData)
+        
         setVideoData(filteredVideoData[0])
         setPreviewSource(courseEntireData.thumbnail)
         setVideoEnded(false)
       }
     })()
+
   }, [courseSectionData, courseEntireData, location.pathname])
 
 
 
 
   // check if the lecture is the first video of the course
+
   const isFirstVideo = () => {
+
     const currentSectionIndx = courseSectionData.findIndex(
       (data) => data._id === sectionId
     )
@@ -80,7 +87,9 @@ const VideoDetails = () => {
 
     if (currentSectionIndx === 0 && currentSubSectionIndx === 0) {
       return true
-    } else {
+    } 
+    
+    else {
       return false
     }
   }
@@ -89,8 +98,9 @@ const VideoDetails = () => {
 
 
   // go to the next video
+
   const goToNextVideo = () => {
-    // console.log(courseSectionData)
+    
 
 
 
@@ -112,21 +122,28 @@ const VideoDetails = () => {
       currentSectionIndx
     ].subSection.findIndex((data) => data._id === subSectionId)
 
-    // console.log("no of subsections", noOfSubsections)
+    
 
     if (currentSubSectionIndx !== noOfSubsections - 1) {
+      
       const nextSubSectionId =
         courseSectionData[currentSectionIndx].subSection[
           currentSubSectionIndx + 1
         ]._id
+      
       navigate(
         `/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`
       )
-    } else {
+    } 
+    
+    else {
+      
       const nextSectionId = courseSectionData[currentSectionIndx + 1]._id
+     
       const nextSubSectionId =
         courseSectionData[currentSectionIndx + 1].subSection[0]._id
-      navigate(
+      
+        navigate(
         `/view-course/${courseId}/section/${nextSectionId}/sub-section/${nextSubSectionId}`
       )
     }
@@ -136,7 +153,9 @@ const VideoDetails = () => {
 
 
   // check if the lecture is the last video of the course
+
   const isLastVideo = () => {
+    
     const currentSectionIndx = courseSectionData.findIndex(
       (data) => data._id === sectionId
     )
@@ -147,19 +166,20 @@ const VideoDetails = () => {
     const noOfSubsections =
       courseSectionData[currentSectionIndx].subSection.length
 
-
-
-
     const currentSubSectionIndx = courseSectionData[
       currentSectionIndx
     ].subSection.findIndex((data) => data._id === subSectionId)
 
     if (
+      
       currentSectionIndx === courseSectionData.length - 1 &&
+      
       currentSubSectionIndx === noOfSubsections - 1
     ) {
       return true
-    } else {
+    } 
+    
+    else {
       return false
     }
   }
@@ -168,8 +188,9 @@ const VideoDetails = () => {
 
 
   // go to the previous video
+
   const goToPrevVideo = () => {
-    // console.log(courseSectionData)
+    
 
 
 
@@ -186,21 +207,28 @@ const VideoDetails = () => {
     ].subSection.findIndex((data) => data._id === subSectionId)
 
     if (currentSubSectionIndx !== 0) {
+      
       const prevSubSectionId =
         courseSectionData[currentSectionIndx].subSection[
           currentSubSectionIndx - 1
         ]._id
+      
       navigate(
         `/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`
       )
-    } else {
+    } 
+    
+    else {
       const prevSectionId = courseSectionData[currentSectionIndx - 1]._id
+      
       const prevSubSectionLength =
         courseSectionData[currentSectionIndx - 1].subSection.length
-      const prevSubSectionId =
+      
+        const prevSubSectionId =
         courseSectionData[currentSectionIndx - 1].subSection[
           prevSubSectionLength - 1
         ]._id
+      
       navigate(
         `/view-course/${courseId}/section/${prevSectionId}/sub-section/${prevSubSectionId}`
       )

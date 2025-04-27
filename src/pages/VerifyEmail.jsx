@@ -72,7 +72,7 @@ function VerifyEmail() {
     <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
       {loading ? (
         <div>
-          <div className="spinner"></div>       {/*  agar loading true hai to spinner dikhao  */} 
+          <div className="spinner"></div>                                  {/*  agar loading true hai to spinner dikhao  */} 
         </div>
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
@@ -102,7 +102,7 @@ function VerifyEmail() {
             <OtpInput
               value={otp}
               onChange={setOtp}
-              numInputs={6}                 // 6 number ka OTP rahega
+              numInputs={6}                                                // 6 number ka OTP rahega
               renderInput={(props) => (
                 <input
                   {...props}
@@ -151,7 +151,7 @@ function VerifyEmail() {
 
             <button
               className="flex items-center text-blue-100 gap-x-2"
-              onClick={() => dispatch(sendOtp(signupData.email))}        // Resend it pe click karoge to OTP firse send hona chahiye isliye sendOtp function ko call kar rahe hai aur input me email bhi pass kar rahe hain (signupData se email leke aaega)
+              onClick={() => dispatch(sendOtp(signupData.email))}          // Resend it pe click karoge to OTP firse send hona chahiye isliye sendOtp function ko call kar rahe hai aur input me email bhi pass kar rahe hain (signupData se email leke aaega)
             >
               <RxCountdownTimer />
               Resend it
