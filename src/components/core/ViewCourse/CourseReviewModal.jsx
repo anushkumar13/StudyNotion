@@ -32,14 +32,14 @@ export default function CourseReviewModal({ setReviewModal }) {
   useEffect(() => {
     setValue("courseExperience", "")
     setValue("courseRating", 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [])
 
 
 
 
   const ratingChanged = (newRating) => {
-    // console.log(newRating)
+    
     setValue("courseRating", newRating)
   }
 
@@ -64,10 +64,20 @@ export default function CourseReviewModal({ setReviewModal }) {
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
-        {/* Modal Header */}
+       
+       
+       
+       
+    {/*   Add Review   */}
+
         <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
-          <p className="text-xl font-semibold text-richblack-5">Add Review</p>
-          
+          <p className="text-xl font-semibold text-richblack-5"> Add Review </p>
+
+
+
+
+    {/*   Cross (x) ka button   */}
+
           <button onClick={() => setReviewModal(false)}>
             <RxCross2 className="text-2xl text-richblack-5" />
           </button>
@@ -76,7 +86,9 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
-        {/* Modal Body */}
+
+    {/*   Posting Publicly   */}
+
         <div className="p-6">
           <div className="flex items-center justify-center gap-x-4">
             
@@ -87,14 +99,28 @@ export default function CourseReviewModal({ setReviewModal }) {
             />
 
             <div className="">
-              
+
+
+
+
+    {/*   user ka full name   */} 
+
               <p className="font-semibold text-richblack-5">
                 {user?.firstName} {user?.lastName}
               </p>
+    
 
-              <p className="text-sm text-richblack-5">Posting Publicly</p>
+
+
+    {/*   Posting Publicly   */}
+
+              <p className="text-sm text-richblack-5"> Posting Publicly </p>
+
             </div>
           </div>
+
+
+
 
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -107,7 +133,13 @@ export default function CourseReviewModal({ setReviewModal }) {
               activeColor="#ffd700"
             />
             <div className="flex w-11/12 flex-col space-y-2">
-              
+
+
+
+
+
+    {/*   Add Your Experience   */}          
+
               <label
                 className="text-sm text-richblack-5"
                 htmlFor="courseExperience"
@@ -123,6 +155,11 @@ export default function CourseReviewModal({ setReviewModal }) {
               />
 
               {errors.courseExperience && (
+    
+
+
+
+    /*   Please Add Your Experience   */
 
                 <span className="ml-2 text-xs tracking-wide text-pink-200">
                   Please Add Your Experience
@@ -132,7 +169,12 @@ export default function CourseReviewModal({ setReviewModal }) {
             </div>
 
             <div className="mt-6 flex w-11/12 justify-end gap-x-2">
-              
+
+
+
+
+    {/*   "Cancel" wala button   */}          
+
               <button
                 onClick={() => setReviewModal(false)}
                 className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}

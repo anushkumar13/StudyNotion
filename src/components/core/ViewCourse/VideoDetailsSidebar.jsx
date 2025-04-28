@@ -20,7 +20,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
-  {/*   inn do paragraph ke right side wala image   */}
+    {/*   inn do paragraph ke right side wala image   */}
 
   const {
     courseSectionData,
@@ -32,29 +32,34 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
-  {/*   inn do paragraph ke right side wala image   */}
+    {/*   Jab course ka ya page ka data change hota hai, tab yeh code active section aur sub-section ka ID nikalke unko set karta hai, taaki video player aur sidebar me sahi active item dikh sake.   */}
 
   useEffect(() => {
     ;(() => {
       
-      if (!courseSectionData.length) return
+      if (!courseSectionData.length) return                                    //  Agar courseSectionData naam ka array khali hai (yaani usmein koi data nahi hai), toh seedha function ko wahi return karke band kar do. (kyunki jab data hi nahi hai, toh aage ka logic chalane ka koi matlab nahi hai.)
       
-      const currentSectionIndx = courseSectionData.findIndex(
+
+      const currentSectionIndx = courseSectionData.findIndex(                  //  Hum courseSectionData ke andar se wo section dhund rahe hain jiska _id humare diye gaye sectionId ke barabar hai. Aur us section ka index (position number) save kar rahe hain currentSectionIndx mein.
         (data) => data._id === sectionId
       )
       
-      const currentSubSectionIndx = courseSectionData?.[
+
+      const currentSubSectionIndx = courseSectionData?.[                       //  Phir hum us current section ke andar ke subSections mein se wo subSection dhund rahe hain jiska _id, subSectionId ke barabar ho. Aur us subSection ka index save kar rahe hain currentSubSectionIndx mein. (?. ka use kar rahe hain, taaki agar kuch galat ya undefined hua toh error na aaye.)
         currentSectionIndx
-      ]?.subSection.findIndex((data) => data._id === subSectionId)
+      ]?.subSection.findIndex((data) => data._id === subSectionId)              
       
-      const activeSubSectionId =
+
+      const activeSubSectionId =                                               //  Ab hum properly confirm kar ke active subSection ka id nikaal rahe hain. Yaani jis section ka index currentSectionIndx tha, uske andar ke subSection ke andar se jis subSection ka index currentSubSectionIndx hai, uska _id nikaal rahe hain. Isse humara activeSubSectionId mil gaya.
         courseSectionData[currentSectionIndx]?.subSection?.[
           currentSubSectionIndx
         ]?._id
 
-      setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)
+
+      setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)            //  Active Section ka status set kar rahe hain. Yaani jo abhi humne section ka index nikaala tha, uska _id hum setActiveStatus() function ke through active karwa rahe hain.
       
-      setVideoBarActive(activeSubSectionId)
+
+      setVideoBarActive(activeSubSectionId)                                    //  Aur finally, jo active subSection id nikaali thi, use hum setVideoBarActive() function ke through set kar rahe hain.
 
     })()
 
@@ -71,13 +76,18 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
             
             <div
               onClick={() => {
-                navigate(`/dashboard/enrolled-courses`)
+                navigate(`/dashboard/enrolled-courses`)                        //  Click karte hi user "Enrolled Courses" page pe le jaaya jaayega.
               }}
               className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
               title="back"
             >
-              <IoIosArrowBack size={30} />
+              <IoIosArrowBack size={30} />                                     {/*  Ye ek back arrow dikhata hai   */}
             </div>
+
+
+
+
+    {/*   "Add Review" wala button jo ek modal open karega   */}
 
             <IconBtn
               text="Add Review"
@@ -88,10 +98,10 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
           
           <div className="flex flex-col">
             
-            <p>{courseEntireData?.courseName}</p>
+            <p>{courseEntireData?.courseName}</p>                              {/*  Screen pe Course ka naam dikh raha hai   */}
             
             <p className="text-sm font-semibold text-richblack-500">
-              {completedLectures?.length} / {totalNoOfLectures}
+              {completedLectures?.length} / {totalNoOfLectures}                {/*  Screen pe kuch aisa dikh raha hoga jaise: "7 / 15" (Matlba 7 lectures complete ho gaye hain 15 mein se.)   */}
             </p>
 
           </div>
@@ -109,7 +119,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
-              {/*   Section   */}
+    {/*   Section   */}
 
               <div className="flex flex-row justify-between bg-richblack-600 px-5 py-4">
                 
@@ -138,7 +148,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
-              {/*   Sub Sections   */}
+    {/*   Sub Sections   */}
 
               {activeStatus === course?._id && (
                 <div className="transition-[height] duration-500 ease-in-out">
