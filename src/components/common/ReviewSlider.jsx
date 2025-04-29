@@ -24,13 +24,16 @@ function ReviewSlider() {
 
   useEffect(() => {
     ;(async () => {
+      
       const { data } = await apiConnector(
         "GET",
         ratingsEndpoints.REVIEWS_DETAILS_API
       )
+      
       if (data?.success) {
         setReviews(data?.data)
       }
+
     })()
   }, [])
 
@@ -111,7 +114,10 @@ function ReviewSlider() {
               </SwiperSlide>
             )
           })}
+
+
           {/* <SwiperSlide>Slide 1</SwiperSlide> */}
+          
         </Swiper>
       </div>
     </div>
