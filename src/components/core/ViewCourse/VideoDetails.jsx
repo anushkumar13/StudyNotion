@@ -13,6 +13,7 @@ import IconBtn from "../../common/IconBtn"
 
 
 
+
 const VideoDetails = () => {
   const { courseId, sectionId, subSectionId } = useParams()
   const navigate = useNavigate()
@@ -37,6 +38,8 @@ const VideoDetails = () => {
 
 
 
+
+    {/*   Jab user koi course ka specific section ya video subsection open kare, toh uss video ko find karke video player mein load karna. Agar section ya video nahi milta, toh user ko redirect kar do enrolled courses page pe.   */}
 
   useEffect(() => {
     ;(async () => {
@@ -213,7 +216,7 @@ const VideoDetails = () => {
 
 
 
-  // go to the previous video
+    {/* go to the previous video   */}
 
   const goToPrevVideo = () => {
 
@@ -273,6 +276,8 @@ const VideoDetails = () => {
 
 
 
+    
+  {/*   Jab user ek lecture (video) pura dekh leta hai, tab ye function backend ko batata hai ki “lecture complete ho gaya hai” — aur fir Redux state ko update karta hai, taaki UI mein bhi reflect ho jaye.   */}
 
   const handleLectureCompletion = async () => {
     
@@ -345,6 +350,7 @@ const VideoDetails = () => {
 
 
     
+
     /*   "Mark As Completed" wala button   */
 
                 <IconBtn
@@ -383,6 +389,7 @@ const VideoDetails = () => {
 
 
 
+
     /*   "Prev" wala button   */             
 
                   <button
@@ -396,6 +403,7 @@ const VideoDetails = () => {
                 )}
                 
                 {!isLastVideo() && (                             //  agar last video nahi hai to hi "Next" ka button dikhao warna mt dikhao
+
 
 
 
@@ -420,9 +428,11 @@ const VideoDetails = () => {
 
 
 
+
     {/*   Lecture ka title   */}
 
       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
+
 
 
 
@@ -434,6 +444,7 @@ const VideoDetails = () => {
     </div>
   )
 }
+
 
 
 

@@ -32,6 +32,7 @@ export default function SubSectionModal({
 
 
 
+
   {/*   Isse hum form ke inputs ko handle karne ke liye functions jaise register, handleSubmit, setValue, getValues lete hain. formState: { errors } ka matlab hai ki agar form me koi validation error hai, toh wo errors object me store hoga.   */}
 
   const {
@@ -45,10 +46,12 @@ export default function SubSectionModal({
 
 
 
-  const dispatch = useDispatch()                                   //  Redux ka hook hai jo action dispatch karne ke liye use hota hai.
-  const [loading, setLoading] = useState(false)                    //  React ka hook hai jo loading naam ka state variable define karta hai, jo initially false set hota hai.
-  const { token } = useSelector((state) => state.auth)             //  Redux ka hook hai jo state se auth object ka token retrieve karta hai
-  const { course } = useSelector((state) => state.course)          //  Redux se course object ko access karne ke liye use hota hai, jo state.course se milta hai.
+
+  const dispatch = useDispatch()                                                         //  Redux ka hook hai jo action dispatch karne ke liye use hota hai.
+  const [loading, setLoading] = useState(false)                                          //  React ka hook hai jo loading naam ka state variable define karta hai, jo initially false set hota hai.
+  const { token } = useSelector((state) => state.auth)                                   //  Redux ka hook hai jo state se auth object ka token retrieve karta hai
+  const { course } = useSelector((state) => state.course)                                //  Redux se course object ko access karne ke liye use hota hai, jo state.course se milta hai.
+
 
 
 
@@ -67,6 +70,7 @@ export default function SubSectionModal({
 
 
 
+
   {/*   Yeh function check karta hai ki kya lecture form mein koi changes kiye gaye hain ya nahi, agar kiye gaye hain toh true return karta hai.   */}
 
   const isFormUpdated = () => {
@@ -77,15 +81,17 @@ export default function SubSectionModal({
       currentValues.lectureDesc !== modalData.description ||
       currentValues.lectureVideo !== modalData.videoUrl
     ) {
+
       return true
     }
+
     return false
   }
 
 
 
 
-  
+
   {/*   handleEditSubsection function check karta hai ki kaunse fields change huye hain. Sirf wahi fields formData mein add kiye jaate hain jo original modalData se different hote hain. Yeh efficient update ke liye hota hai — unnecessary data backend ko nahi bhejte.   */}
 
   const handleEditSubsection = async () => {
@@ -106,6 +112,7 @@ export default function SubSectionModal({
     if (currentValues.lectureVideo !== modalData.videoUrl) {
       formData.append("video", currentValues.lectureVideo)
     }
+
 
 
 
@@ -135,15 +142,16 @@ export default function SubSectionModal({
 
 
 
+
   const onSubmit = async (data) => {
     
-    if (view) return                                            //  Agar view mode hai toh kuch bhi submit nahi karte — bas return kar jaate hain.
+    if (view) return                                                                     //  Agar view mode hai toh kuch bhi submit nahi karte — bas return kar jaate hain.
 
     if (edit) {
-      if (!isFormUpdated()) {                                   //  Agar edit mode hai, toh check karte hain ki form me koi change hua ya nahi (isFormUpdated)
+      if (!isFormUpdated()) {                                                            //  Agar edit mode hai, toh check karte hain ki form me koi change hua ya nahi (isFormUpdated)
         toast.error("No changes made to the form")
       } else {
-        handleEditSubsection()                                  //  Agar change hua toh handleEditSubsection() call karte hain, warna error message show kar dete hain.
+        handleEditSubsection()                                                           //  Agar change hua toh handleEditSubsection() call karte hain, warna error message show kar dete hain.
       }
       return
     }
@@ -232,14 +240,14 @@ export default function SubSectionModal({
   {/*   Lecture Video Upload   */}
 
           <Upload
-            name="lectureVideo"                                     //  Form ke field ka naam.
-            label="Lecture Video"                                   //  Field ke upar dikhega ye label.
+            name="lectureVideo"                                                          //  Form ke field ka naam.
+            label="Lecture Video"                                                        //  Field ke upar dikhega ye label.
             register={register}                                    
             setValue={setValue}                                     
             errors={errors}
-            video={true}                                            //  Bata raha hai ki yeh video file ke liye hai.
-            viewData={view ? modalData.videoUrl : null}             //  Agar view mode hai toh existing video show karega.
-            editData={edit ? modalData.videoUrl : null}             //  Agar edit mode hai toh pehle se jo video upload hai, usse dikhaayega ya pre-fill karega.
+            video={true}                                                                 //  Bata raha hai ki yeh video file ke liye hai.
+            viewData={view ? modalData.videoUrl : null}                                  //  Agar view mode hai toh existing video show karega.
+            editData={edit ? modalData.videoUrl : null}                                  //  Agar edit mode hai toh pehle se jo video upload hai, usse dikhaayega ya pre-fill karega.
           />
 
 

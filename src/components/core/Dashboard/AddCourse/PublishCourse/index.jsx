@@ -12,8 +12,9 @@ import IconBtn from "../../../../common/IconBtn"
 
 
 
+
 export default function PublishCourse() {
-  const { register, handleSubmit, setValue, getValues } = useForm()          //  form create karna hai to ye likhna padega
+  const { register, handleSubmit, setValue, getValues } = useForm()                 //  form create karna hai to ye likhna padega
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token } = useSelector((state) => state.auth)
@@ -23,7 +24,8 @@ export default function PublishCourse() {
 
 
 
-  {/*   Jab component first time render hota hai, tab yeh useEffect run hota hai (kyunki dependency array [] khali hai). Check karta hai: agar course ka status "PUBLISHED" hai, toh form ke "public" field ki value true set kar do. Matlab: agar course already published hai, toh form me public toggle pehle se hi ON rahe.   */}
+
+    {/*   Jab component first time render hota hai, tab yeh useEffect run hota hai (kyunki dependency array [] khali hai). Check karta hai: agar course ka status "PUBLISHED" hai, toh form ke "public" field ki value true set kar do. Matlab: agar course already published hai, toh form me public toggle pehle se hi ON rahe.   */}
 
   useEffect(() => {
     if (course?.status === COURSE_STATUS.PUBLISHED) {
@@ -34,7 +36,8 @@ export default function PublishCourse() {
 
 
 
-  {/*   Ye ek function hai jo user ko previous step (step 2) pe le jaata hai. dispatch(setStep(2)) ka matlab hai Redux state me course creation ka current step 2 kar do. Yeh mainly tab use hota hai jab tum form ya flow mein "Back" button dabate ho.   */}
+
+    {/*   Ye ek function hai jo user ko previous step (step 2) pe le jaata hai. dispatch(setStep(2)) ka matlab hai Redux state me course creation ka current step 2 kar do. Yeh mainly tab use hota hai jab tum form ya flow mein "Back" button dabate ho.   */}
 
   const goBack = () => {
     dispatch(setStep(2))
@@ -43,12 +46,14 @@ export default function PublishCourse() {
 
 
 
+
   {/*      */}
 
   const goToCourses = () => {
-    dispatch(resetCourseState())                                      //  Redux me course ka pura data reset kar deta hai (jaise edit ya create data hata deta hai).
-    navigate("/dashboard/my-courses")                                 //  User ko My Courses page pe bhej deta hai.
+    dispatch(resetCourseState())                                                    //  Redux me course ka pura data reset kar deta hai (jaise edit ya create data hata deta hai).
+    navigate("/dashboard/my-courses")                                               //  User ko My Courses page pe bhej deta hai.
   }
+
 
 
 
@@ -56,7 +61,10 @@ export default function PublishCourse() {
   const handleCoursePublish = async () => {
 
 
-  {/*   Check karta hai: Kya course ka status already wahi hai jo user ne select kiya hai (Published ya Draft). Agar koi change nahi hai, toh direct user ko "My Courses" page pe bhej deta hai (goToCourses()). Return lagakar niche ke code ko chalne nahi deta (kyunki publish karne ki zarurat hi nahi padti).   */}
+
+
+
+    {/*   Check karta hai: Kya course ka status already wahi hai jo user ne select kiya hai (Published ya Draft). Agar koi change nahi hai, toh direct user ko "My Courses" page pe bhej deta hai (goToCourses()). Return lagakar niche ke code ko chalne nahi deta (kyunki publish karne ki zarurat hi nahi padti).   */}
 
     if (
       (course?.status === COURSE_STATUS.PUBLISHED &&
@@ -71,24 +79,26 @@ export default function PublishCourse() {
 
 
 
-  {/*   Course ko update karne ka pura process hai — jaise hi user publish ya draft karta hai, uske hisaab se server ko update bhej rahe hain. Agar sab kuch sahi gaya toh redirect kar dete hain user ko.   */}
+
+    {/*   Course ko update karne ka pura process hai — jaise hi user publish ya draft karta hai, uske hisaab se server ko update bhej rahe hain. Agar sab kuch sahi gaya toh redirect kar dete hain user ko.   */}
 
     const formData = new FormData()
-    formData.append("courseId", course._id)                           //  Ek FormData object banaya gaya — jismein backend ke liye course ka ID bhej rahe hain.
+    formData.append("courseId", course._id)                                         //  Ek FormData object banaya gaya — jismein backend ke liye course ka ID bhej rahe hain.
 
-    const courseStatus = getValues("public")                          //  Form ke andar jo "public" field hai (checkbox ya switch ho sakta hai) — uske hisaab se decide kar rahe hain: 
-      ? COURSE_STATUS.PUBLISHED                                       //  agar true hai → PUBLISHED
-      : COURSE_STATUS.DRAFT                                           //  warna → DRAFT
+    const courseStatus = getValues("public")                                        //  Form ke andar jo "public" field hai (checkbox ya switch ho sakta hai) — uske hisaab se decide kar rahe hain: 
+      ? COURSE_STATUS.PUBLISHED                                                     //  agar true hai → PUBLISHED
+      : COURSE_STATUS.DRAFT                                                         //  warna → DRAFT
 
-    formData.append("status", courseStatus)                           //  Ab course ka final status FormData ke andar daal diya gaya hai.
-    setLoading(true)                                                  //  UI mein loading spinner dikhane ke liye loading state ko true kar diya.
+    formData.append("status", courseStatus)                                         //  Ab course ka final status FormData ke andar daal diya gaya hai.
+    setLoading(true)                                                                //  UI mein loading spinner dikhane ke liye loading state ko true kar diya.
 
-    const result = await editCourseDetails(formData, token)           //  Server pe request bhej di to update course details, using formData and user ka token.
+    const result = await editCourseDetails(formData, token)                         //  Server pe request bhej di to update course details, using formData and user ka token.
     if (result) {
-      goToCourses()                                                   //  Agar server se successful response aata hai, toh My Courses page pe redirect kar diya jaata hai.
+      goToCourses()                                                                 //  Agar server se successful response aata hai, toh My Courses page pe redirect kar diya jaata hai.
     }
-    setLoading(false)                                                 //  Finally, loading ko false kar diya — taaki spinner hata diya jaaye.
+    setLoading(false)                                                               //  Finally, loading ko false kar diya — taaki spinner hata diya jaaye.
   }
+
 
 
 
@@ -100,13 +110,15 @@ export default function PublishCourse() {
 
 
 
+
   return (
     <div className="rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       
 
 
 
-  {/*   Publish Settings   */}
+
+    {/*   Publish Settings   */}
 
       <p className="text-2xl font-semibold text-richblack-5">
         Publish Settings
@@ -116,7 +128,9 @@ export default function PublishCourse() {
 
 
 
-  {/*   Checkbox   */}
+
+
+    {/*   Checkbox   */}
 
         <div className="my-6 mb-8">
           <label htmlFor="public" className="inline-flex items-center text-lg">
@@ -138,7 +152,8 @@ export default function PublishCourse() {
 
 
 
-  {/*   "Back" wala button   */}
+
+    {/*   "Back" wala button   */}
 
         <div className="ml-auto flex max-w-max items-center gap-x-4">
           

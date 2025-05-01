@@ -8,6 +8,7 @@ import { deleteProfile } from "../../../../services/operations/SettingsAPI"
 
 
 
+
 export default function DeleteAccount() {
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
@@ -16,6 +17,9 @@ export default function DeleteAccount() {
 
 
 
+
+    {/*   Community   */}
+
   async function handleDeleteAccount() {
     try {
       dispatch(deleteProfile(token, navigate))
@@ -23,6 +27,7 @@ export default function DeleteAccount() {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
+
 
 
 
@@ -36,18 +41,45 @@ export default function DeleteAccount() {
         </div>
 
         <div className="flex flex-col space-y-2">
-          
+
+
+
+
+
+    {/*   Delete Account   */}      
+
           <h2 className="text-lg font-semibold text-richblack-5">
             Delete Account
           </h2>
 
           <div className="w-3/5 text-pink-25">
-            <p>Would you like to delete account?</p>
+
+
+
+
+
+    {/*   Would you like to delete account?   */}        
+
+            <p> Would you like to delete account? </p>
+    
+
+
+
+
+    {/*   This account may contain Paid Courses. Deleting your account is permanent and will remove all the contain associated with it.   */}
+
             <p>
               This account may contain Paid Courses. Deleting your account is
               permanent and will remove all the contain associated with it.
             </p>
+
           </div>
+    
+
+
+
+
+    {/*   "I want to delete my account." wala button   */}
 
           <button
             type="button"

@@ -14,18 +14,20 @@ import Error from "./Error"
 
 
 
+
 const Catalog = () => {
 
   const { loading } = useSelector((state) => state.profile)
-  const { catalogName } = useParams()                                    //  Ye line React Router ka useParams hook use kar rahi hai. catalogName URL ke path se extract ho raha hai (jaise /catalog/web-development). Iska use dynamic routing me hota hai taaki component ko URL ka part mile.
-  const [active, setActive] = useState(1)                                //  Ye line React useState hook se ek state variable bana rahi hai: active ek state variable hai jo abhi 1 pe set hai. setActive ek function hai jisse hum active ka value update kar sakte hain.
-  const [catalogPageData, setCatalogPageData] = useState(null);          //  Ye line React me ek state variable banati hai: catalogPageData ek state variable hai jo initially null set hai — iska matlab hai ki shuru me koi data nahi hai.setCatalogPageData ek function hai jisse hum catalogPageData ko update kar sakte hain. Iska use usually API se data fetch karke usse store karne ke liye hota hai.
-  const [categoryId, setCategoryId] = useState("");                      //  Ye line ek state variable banati hai React me: categoryId ka initial value "" (empty string) hai — matlab abhi koi category select nahi hui hai. setCategoryId se hum category ID ko update kar sakte hain — jab user koi category choose kare, to uski ID isme store hoti hai. Iska use mostly filtering ya data fetch karne ke liye hota hai based on selected category.
+  const { catalogName } = useParams()                                                    //  Ye line React Router ka useParams hook use kar rahi hai. catalogName URL ke path se extract ho raha hai (jaise /catalog/web-development). Iska use dynamic routing me hota hai taaki component ko URL ka part mile.
+  const [active, setActive] = useState(1)                                                //  Ye line React useState hook se ek state variable bana rahi hai: active ek state variable hai jo abhi 1 pe set hai. setActive ek function hai jisse hum active ka value update kar sakte hain.
+  const [catalogPageData, setCatalogPageData] = useState(null);                          //  Ye line React me ek state variable banati hai: catalogPageData ek state variable hai jo initially null set hai — iska matlab hai ki shuru me koi data nahi hai.setCatalogPageData ek function hai jisse hum catalogPageData ko update kar sakte hain. Iska use usually API se data fetch karke usse store karne ke liye hota hai.
+  const [categoryId, setCategoryId] = useState("");                                      //  Ye line ek state variable banati hai React me: categoryId ka initial value "" (empty string) hai — matlab abhi koi category select nahi hui hai. setCategoryId se hum category ID ko update kar sakte hain — jab user koi category choose kare, to uski ID isme store hoti hai. Iska use mostly filtering ya data fetch karne ke liye hota hai based on selected category.
 
 
 
 
-  {/*   Jab bhi catalogName change ho, hum API call karke category_id laate hain jo catalogName ke according hoti hai, aur usse setCategoryId se store karte hain.   */}
+
+    {/*   Jab bhi catalogName change ho, hum API call karke category_id laate hain jo catalogName ke according hoti hai, aur usse setCategoryId se store karte hain.   */}
 
     useEffect(()=> {
         const getCategories = async() => {
@@ -39,23 +41,25 @@ const Catalog = () => {
 
 
 
-  {/*   Jab categoryId change hota hai, tab hum category ke details ko fetch karte hain aur setCatalogPageData ke through state mein store karte hain.   */}
+
+    {/*   Jab categoryId change hota hai, tab hum category ke details ko fetch karte hain aur setCatalogPageData ke through state mein store karte hain.   */}
 
     useEffect(() => {
         const getCategoryDetails = async() => {
             try{
-                const res = await getCatalogaPageData(categoryId);       //  API call kar raha hai category details ko fetch karne ke liye.
-                console.log("PRinting res: ", res);                      //  Data ko console pe print kar rahe ho taaki dekh sakein ki API se kya result aa raha hai. Debugging purpose ke liye likha gaya hai.
-                setCatalogPageData(res);                                 //  Jab API se data mil jaata hai, tab usko setCatalogPageData function ke through state mein set kar rahe ho. setCatalogPageData ek React hook hai jo state ko update karega aur UI ko re-render karne ke liye trigger karega.
+                const res = await getCatalogaPageData(categoryId);                       //  API call kar raha hai category details ko fetch karne ke liye.
+                console.log("PRinting res: ", res);                                      //  Data ko console pe print kar rahe ho taaki dekh sakein ki API se kya result aa raha hai. Debugging purpose ke liye likha gaya hai.
+                setCatalogPageData(res);                                                 //  Jab API se data mil jaata hai, tab usko setCatalogPageData function ke through state mein set kar rahe ho. setCatalogPageData ek React hook hai jo state ko update karega aur UI ko re-render karne ke liye trigger karega.
             }
-            catch(error) {                                               //  Agar kuch galat hota hai (jaise network error ya API ka response nahi aata), toh error catch kiya jaata hai aur console mein error print hota hai.
+            catch(error) {                                                               //  Agar kuch galat hota hai (jaise network error ya API ka response nahi aata), toh error catch kiya jaata hai aur console mein error print hota hai.
                 console.log(error)
             }
         }
-        if(categoryId) {                                                 //  Yeh condition check kar rahi hai ki categoryId exist karta hai.
-            getCategoryDetails();                                        //  Agar categoryId valid hai, tabhi getCategoryDetails function call hota hai, warna nahi.
+        if(categoryId) {                                                                 //  Yeh condition check kar rahi hai ki categoryId exist karta hai.
+            getCategoryDetails();                                                        //  Agar categoryId valid hai, tabhi getCategoryDetails function call hota hai, warna nahi.
         }
     },[categoryId]);
+
 
 
 
@@ -81,6 +85,7 @@ const Catalog = () => {
           
           <div className=" box-content bg-richblack-800 px-4">
             <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
+
 
 
 
@@ -112,6 +117,7 @@ const Catalog = () => {
 
 
 
+
     {/*   Section 1   */}
 
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
@@ -119,7 +125,8 @@ const Catalog = () => {
 
 
 
-    {/*   Courses to get you started   */}
+
+    {/*   "Courses to get you started"   */}
 
             <div className="section_heading"> Courses to get you started </div>
             <div className="my-4 flex border-b border-b-richblack-600 text-sm">
@@ -127,7 +134,8 @@ const Catalog = () => {
 
 
 
-    {/*   Most Populer   */}
+
+    {/*   "Most Populer"   */}
 
               <p
                 className={`px-4 py-2 ${
@@ -143,7 +151,8 @@ const Catalog = () => {
 
 
 
-    {/*   New   */}
+
+    {/*   "New"   */}
 
               <p
                 className={`px-4 py-2 ${
@@ -169,6 +178,7 @@ const Catalog = () => {
 
 
 
+
     {/*   Section 2   */}
 
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
@@ -176,7 +186,8 @@ const Catalog = () => {
 
 
 
-    {/*   Top courses in   */}
+
+    {/*   "Top courses in"   */}
 
             <div className="section_heading">
               Top courses in {catalogPageData?.data?.differentCategory?.name}
@@ -193,6 +204,7 @@ const Catalog = () => {
 
 
 
+
     {/*   Section 3   */}
 
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
@@ -200,7 +212,8 @@ const Catalog = () => {
 
 
 
-    {/*   Frequently Bought   */}
+
+    {/*   "Frequently Bought"   */}
 
             <div className="section_heading"> Frequently Bought </div>
             
@@ -219,6 +232,7 @@ const Catalog = () => {
 
 
 
+
     {/*   Footer   */}
 
           <Footer />
@@ -227,6 +241,7 @@ const Catalog = () => {
       )
     }
     
+
 
 
     

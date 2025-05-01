@@ -10,6 +10,12 @@ import { Link } from 'react-router-dom';
 
 
 
+
+
+
+
+
+
 export default function Instructor() {
     const { token } = useSelector((state) => state.auth)
     const { user } = useSelector((state) => state.profile)
@@ -19,6 +25,14 @@ export default function Instructor() {
   
 
 
+
+
+
+
+
+
+
+    {/*   Jab component first time load (mount) hota hai, tab ye ek async function run karta hai jo: Instructor ka data fetch karta hai,  Instructor ke courses laata hai,  Dono ko state mein save karta hai,  Aur loading status handle karta hai   */}
 
     useEffect(() => {
       ;(async () => {
@@ -45,6 +59,14 @@ export default function Instructor() {
 
 
 
+
+
+
+
+
+
+    {/*   Ye line instructor ke sabhi courses mein se total paisa (₹) calculate kar rahi hai — jo unhone sabhi courses milakar kamaaya hai.   */}
+
     const totalAmount = instructorData?.reduce(
       (acc, curr) => acc + curr.totalAmountGenerated,
       0
@@ -52,6 +74,14 @@ export default function Instructor() {
   
 
 
+
+
+
+
+
+
+
+    {/*   Ye line instructorData array ke andar se sabhi courses ka paisa (totalAmountGenerated) jod kar ek final total paisa nikaal rahi hai using .reduce().   */}
 
     const totalStudents = instructorData?.reduce(
       (acc, curr) => acc + curr.totalStudentsEnrolled,
@@ -61,10 +91,22 @@ export default function Instructor() {
 
 
 
+
+
+
+
+
+
     return (
       <div>
         
         <div className="space-y-2">
+
+
+
+
+
+
 
 
 
@@ -96,7 +138,7 @@ export default function Instructor() {
 
 
 
-              {/* Render chart / graph */}
+    {/*   Render chart / graph   */}
             
               {totalAmount > 0 || totalStudents > 0 ? (
                 <InstructorChart courses={instructorData} />
@@ -123,10 +165,6 @@ export default function Instructor() {
               )}
             
 
-
-
-              {/*      */}
-            
               <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
 
 
@@ -146,11 +184,6 @@ export default function Instructor() {
 
                     <p className="text-lg text-richblack-200"> Total Courses </p>
 
-
-
-
-    {/*      */}
-
                     <p className="text-3xl font-semibold text-richblack-50">
                       {courses.length}
                     </p>
@@ -166,11 +199,6 @@ export default function Instructor() {
 
                     <p className="text-lg text-richblack-200"> Total Students </p>
 
-
-
-
-    {/*      */}
-
                     <p className="text-3xl font-semibold text-richblack-50">
                       {totalStudents}
                     </p>
@@ -184,11 +212,6 @@ export default function Instructor() {
     {/*   Total Income   */}
 
                     <p className="text-lg text-richblack-200"> Total Income </p>
-
-
-
-
-    {/*   Rs.   */}
 
                     <p className="text-3xl font-semibold text-richblack-50">
                       Rs. {totalAmount}
@@ -204,7 +227,7 @@ export default function Instructor() {
 
 
 
-              {/* Render 3 courses */}
+    {/* Render courses */}
             
               <div className="flex items-center justify-between">
 
@@ -218,7 +241,7 @@ export default function Instructor() {
 
 
 
-    {/*   View All   */}
+    {/*   "View All" wala button   */}
 
                 <Link to="/dashboard/my-courses">
                   <p className="text-xs font-semibold text-yellow-50"> View All </p>
@@ -252,25 +275,15 @@ export default function Instructor() {
 
 
 
-    {/*   students enrolled   */}        
+    {/*   students   */}        
 
                         <p className="text-xs font-medium text-richblack-300">
                           {course.studentsEnroled.length} students
                         </p>
 
-
-
-
-    {/*   |   */}
-
                         <p className="text-xs font-medium text-richblack-300">
                           |
                         </p>
-
-
-
-
-    {/*   Rs.   */}
 
                         <p className="text-xs font-medium text-richblack-300">
                           Rs. {course.price}
@@ -299,7 +312,7 @@ export default function Instructor() {
 
 
 
-    {/*   Create a course   */}      
+    {/*   "Create a course" wala button   */}      
 
             <Link to="/dashboard/add-course">
           

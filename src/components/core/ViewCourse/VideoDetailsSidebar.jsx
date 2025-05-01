@@ -10,12 +10,14 @@ import IconBtn from "../../common/IconBtn"
 
 
 
+
 export default function VideoDetailsSidebar({ setReviewModal }) {
   const [activeStatus, setActiveStatus] = useState("")
   const [videoBarActive, setVideoBarActive] = useState("")
   const navigate = useNavigate()
   const location = useLocation()
   const { sectionId, subSectionId } = useParams()
+
 
 
 
@@ -28,6 +30,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
     totalNoOfLectures,
     completedLectures,
   } = useSelector((state) => state.viewCourse)
+
 
 
 
@@ -68,6 +71,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
+
   return (
     <>
       <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800">
@@ -83,6 +87,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
             >
               <IoIosArrowBack size={30} />                                     {/*  Ye ek back arrow dikhata hai   */}
             </div>
+
 
 
 
@@ -119,6 +124,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
+
     {/*   Section   */}
 
               <div className="flex flex-row justify-between bg-richblack-600 px-5 py-4">
@@ -148,11 +154,13 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
 
 
+
     {/*   Sub Sections   */}
 
               {activeStatus === course?._id && (
                 <div className="transition-[height] duration-500 ease-in-out">
                   {course.subSection.map((topic, i) => (
+                    
                     <div
                       className={`flex gap-3  px-5 py-2 ${
                         videoBarActive === topic._id
@@ -176,6 +184,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                       
                       {topic.title}
                     </div>
+                    
                   ))}
                 </div>
               )}

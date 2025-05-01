@@ -5,7 +5,8 @@ const BASE_URL = "http://localhost:4000/api/v1";
 
 
 
-// AUTH ENDPOINTS
+
+    {/*   AUTH ENDPOINTS   */}
 
 export const endpoints = {
   SENDOTP_API: `${BASE_URL}/auth/sendotp`,
@@ -18,7 +19,8 @@ export const endpoints = {
 
 
 
-// PROFILE ENDPOINTS
+
+    {/*   PROFILE ENDPOINTS   */}
 
 export const profileEndpoints = {
   GET_USER_DETAILS_API: `${BASE_URL}/profile/getUserDetails`,
@@ -29,7 +31,8 @@ export const profileEndpoints = {
 
 
 
-// STUDENT ENDPOINTS
+
+    {/*   STUDENT ENDPOINTS   */}
 
 export const studentEndpoints = {
   COURSE_PAYMENT_API: `${BASE_URL}/payment/capturePayment`,
@@ -40,7 +43,8 @@ export const studentEndpoints = {
 
 
 
-// COURSE ENDPOINTS
+
+    {/*   COURSE ENDPOINTS   */}
 
 export const courseEndpoints = {
   GET_ALL_COURSE_API: `${BASE_URL}/course/getAllCourses`,
@@ -64,7 +68,8 @@ export const courseEndpoints = {
 
 
 
-// RATINGS AND REVIEWS
+
+    {/*   RATINGS AND REVIEWS   */}
 
 export const ratingsEndpoints = {
   REVIEWS_DETAILS_API: `${BASE_URL}/course/getReviews`,
@@ -73,7 +78,8 @@ export const ratingsEndpoints = {
 
 
 
-// CATEGORIES API
+
+    {/*   CATEGORIES API   */}
 
 export const categories = {
   CATEGORIES_API: `${BASE_URL}/course/showAllCategories`,
@@ -82,7 +88,8 @@ export const categories = {
 
 
 
-// CATALOG PAGE DATA
+
+    {/*   CATALOG PAGE DATA   */}
 
 export const catalogData = {
   CATALOGPAGEDATA_API: `${BASE_URL}/course/getCategoryPageDetails`,
@@ -91,7 +98,8 @@ export const catalogData = {
 
 
 
-// CONTACT-US API
+
+    {/*   CONTACT-US API   */}
 
 export const contactusEndpoint = {
   CONTACT_US_API: `${BASE_URL}/reach/contact`,
@@ -100,13 +108,16 @@ export const contactusEndpoint = {
 
 
 
-// SETTINGS PAGE API
+
+    {/*   SETTINGS PAGE API   */}
+
 export const settingsEndpoints = {
   UPDATE_DISPLAY_PICTURE_API: `${BASE_URL}/profile/updateDisplayPicture`,
   UPDATE_PROFILE_API: `${BASE_URL}/profile/updateProfile`,
   CHANGE_PASSWORD_API: `${BASE_URL}/auth/changepassword`,
   DELETE_PROFILE_API: `${BASE_URL}/profile/deleteProfile`,
 };
+
 
 
 

@@ -19,6 +19,7 @@ import {
 
 
 
+
 export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
@@ -31,19 +32,24 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
   {/*   Yeh function ek course section ko delete karta hai backend se, aur agar delete successful ho jata hai toh updated course data ko Redux mein set karta hai, aur confirmation modal ko close kar deta hai.   */}
 
   const handleDeleleSection = async (sectionId) => {
+
     const result = await deleteSection({
       sectionId,
       courseId: course._id,
       token,
     })
+
     if (result) {
       dispatch(setCourse(result))
     }
+
     setConfirmationModal(null)
   }
+
 
 
 
@@ -51,17 +57,22 @@ export default function NestedView({ handleChangeEditSectionName }) {
   {/*   Yeh function ek sub-section ko delete karta hai, agar successful hota hai toh course content ko update karke Redux store mein set karta hai, aur confirmation modal ko close kar deta hai.   */}
 
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
+
     const result = await deleteSubSection({ subSectionId, sectionId, token })
+
     if (result) {
       
       const updatedCourseContent = course.courseContent.map((section) =>
         section._id === sectionId ? result : section
       )
+      
       const updatedCourse = { ...course, courseContent: updatedCourseContent }
       dispatch(setCourse(updatedCourse))
     }
+
     setConfirmationModal(null)
   }
+
 
 
 
@@ -75,11 +86,16 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
+
       {/*   Section Dropdown   */}
 
         {course?.courseContent?.map((section) => (
 
           <details key={section._id} open>
+
+
+
 
 
       {/*   Section Dropdown Content   */}
@@ -100,6 +116,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
       {/*   edit wala button jispe click karne se "Create Section"  ---><---  "Edit Section Name"   inn dono buttons me convert hota hai. mtlb agar "Create Section" button hai to "Edit Section Name" wale button me convert ho jaega   */}
 
                 <button
@@ -116,6 +133,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 </button>
 
       
+
 
 
       {/*   jab delete karne wale icon pe click karoge to ek Confirmation Modal open hoga jisme do buttons honge ---> "Delete" aur "Cancel" wala button   */}
@@ -151,6 +169,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
       {/*   Render All Sub Sections Within a Section   */}
 
               {section.subSection.map((data) => (
@@ -177,6 +196,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
+
       {/*   "Edit" wala button   */}
 
                     <button
@@ -188,6 +209,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
                     </button>
       
+
 
 
 
@@ -217,6 +239,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
       {/*   "Add Lecture" wala button   */}
               
               <button
@@ -237,22 +260,23 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
 
 
+
       {/*   Yeh code modal ko add, view, ya edit mode mein dikhata hai based on kaunsa state variable (addSubSection, viewSubSection, editSubSection) active hai.   */}
 
 
-      {addSubSection ? (                                 //  Agar addSubSection truthy hai → Matlab user naya lecture add kar raha hai Toh SubSectionModal open hoga with add={true} prop
+      {addSubSection ? (                                                                 //  Agar addSubSection truthy hai → Matlab user naya lecture add kar raha hai Toh SubSectionModal open hoga with add={true} prop
         <SubSectionModal
           modalData={addSubSection}
           setModalData={setAddSubsection}
           add={true}
         />
-      ) : viewSubSection ? (                             //  Agar addSubSection nahi hai but viewSubSection truthy hai → Matlab user kisi lecture ka detail dekh raha hai Toh SubSectionModal open hoga with view={true} prop
+      ) : viewSubSection ? (                                                             //  Agar addSubSection nahi hai but viewSubSection truthy hai → Matlab user kisi lecture ka detail dekh raha hai Toh SubSectionModal open hoga with view={true} prop
         <SubSectionModal
           modalData={viewSubSection}
           setModalData={setViewSubSection}
           view={true}
         />
-      ) : editSubSection ? (                             //  Agar pehle dono nahi hai but editSubSection truthy hai → Matlab user kisi existing lecture ko edit kar raha hai Toh SubSectionModal open hoga with edit={true} prop
+      ) : editSubSection ? (                                                             //  Agar pehle dono nahi hai but editSubSection truthy hai → Matlab user kisi existing lecture ko edit kar raha hai Toh SubSectionModal open hoga with edit={true} prop
         <SubSectionModal
           modalData={editSubSection}
           setModalData={setEditSubSection}
@@ -261,6 +285,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
       ) : (
         <></>
       )}
+
 
 
 

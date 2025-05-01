@@ -14,6 +14,9 @@ import {
 
 
 
+
+    
+
 export default function EditCourse() {
   const dispatch = useDispatch()
   const { courseId } = useParams()
@@ -23,6 +26,9 @@ export default function EditCourse() {
 
 
 
+
+
+    {/*   Jab component mount hota hai tab useEffect chalti hai, uske andar ek async function turant call hota hai jo sabse pehle loading ko true karta hai, phir getFullDetailsOfCourse function se course ki details fetch karta hai, agar course details mil jaati hain to Redux me setEditCourse(true) se edit mode on karta hai aur setCourse(...) se course data store karta hai, finally loading ko false karta hai; aur agar loading true hoti hai to screen pe ek spinner dikhaya jaata hai.   */}
 
   useEffect(() => {
     ;(async () => {
@@ -58,8 +64,15 @@ export default function EditCourse() {
 
 
 
+
   return (
     <div>
+
+
+
+
+
+    {/*   Edit Course   */}
 
       <h1 className="mb-14 text-3xl font-medium text-richblack-5">
         Edit Course
@@ -69,6 +82,12 @@ export default function EditCourse() {
         {course ? (
           <RenderSteps />
         ) : (
+
+
+
+
+
+    /*   Course not found   */
 
           <p className="mt-14 text-center text-3xl font-semibold text-richblack-100">
             Course not found

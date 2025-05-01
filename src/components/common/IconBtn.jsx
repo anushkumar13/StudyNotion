@@ -2,6 +2,8 @@
 
 
 
+    {/*   Ye IconBtn component ek custom button banata hai jo text, icons, disabled state, outline styles, aur custom classes ke saath render ho sakta hai.   */}
+
 export default function IconBtn({
     text,
     onclick,
@@ -15,6 +17,11 @@ export default function IconBtn({
 
     return (
       
+
+
+
+    /*   Ye code ek flexible button create karta hai jo outline style ya filled style me ho sakta hai, aur text aur children ko display kar sakta hai. Iska appearance aur behavior customizable hai depending on the props passed.   */
+
       <button
         disabled={disabled}
         onClick={onclick}

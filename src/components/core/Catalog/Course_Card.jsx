@@ -8,21 +8,21 @@ import { Link } from 'react-router-dom';
 
 
 
-      {/*   Yeh ek customizable course card hai jismein course ki details aur height pass kar ke dikhaya jaa sakta hai.   */}
+    {/*   Yeh ek customizable course card hai jismein course ki details aur height pass kar ke dikhaya jaa sakta hai.   */}
 
   const Course_Card = ({course, Height}) => {
   
 
 
 
-      {/*   yeh line ek state variable create kar rahi hai jo average review count ko store karega aur jab bhi update hoga, component re-render hoga.   */}
+    {/*   yeh line ek state variable create kar rahi hai jo average review count ko store karega aur jab bhi update hoga, component re-render hoga.   */}
 
   const [avgReviewCount, setAvgReviewCount] = useState(0);
 
 
 
 
-      {/*   ab bhi course update hota hai, toh uske sabhi reviews se average rating calculate karke avgReviewCount mein set kiya jaata hai — taki screen pe updated rating dikh sake. Yeh kaam useEffect karta hai, aur GetAvgRating function sirf average nikalne ke liye hota hai.   */}
+    {/*   ab bhi course update hota hai, toh uske sabhi reviews se average rating calculate karke avgReviewCount mein set kiya jaata hai — taki screen pe updated rating dikh sake. Yeh kaam useEffect karta hai, aur GetAvgRating function sirf average nikalne ke liye hota hai.   */}
 
   useEffect(()=> {
 
@@ -44,7 +44,7 @@ import { Link } from 'react-router-dom';
 
 
 
-      {/*   Course ka thumbnail   */}
+    {/*   Course ka thumbnail   */}
 
             <img
               src={course?.thumbnail}
@@ -59,14 +59,14 @@ import { Link } from 'react-router-dom';
 
 
 
-      {/*   Course ka naam   */}
+    {/*   Course ka naam   */}
 
             <p className="text-xl text-richblack-5">{course?.courseName}</p>
             
 
 
             
-      {/*   uss particular Course ka Instructor   */}
+    {/*   uss particular Course ka Instructor   */}
 
             <p className="text-sm text-richblack-50">
               {course?.instructor?.firstName} {course?.instructor?.lastName}
@@ -81,7 +81,7 @@ import { Link } from 'react-router-dom';
 
 
 
-      {/*   kitne log rating diye hain   */}
+    {/*   kitne log rating diye hain   */}
 
               <span className="text-richblack-400">
                 {course?.ratingAndReviews?.length} Ratings
@@ -92,7 +92,7 @@ import { Link } from 'react-router-dom';
 
 
 
-      {/*   Course ka Price   */}
+    {/*   Course ka Price   */}
 
             <p className="text-xl text-richblack-5">Rs. {course?.price}</p>
           
@@ -103,6 +103,7 @@ import { Link } from 'react-router-dom';
     </>
   )
 }
+
 
 
 

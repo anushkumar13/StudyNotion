@@ -11,8 +11,8 @@ import IconBtn from "../../common/IconBtn"
 
 export default function MyProfile() {
   
-  const { user } = useSelector((state) => state.profile)             // Yeh line Redux ke profile state se user value ko nikaal kar user variable me store karti hai.
-  const navigate = useNavigate()                                     // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
+  const { user } = useSelector((state) => state.profile)                                 // Yeh line Redux ke profile state se user value ko nikaal kar user variable me store karti hai.
+  const navigate = useNavigate()                                                         // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
 
 
 
@@ -21,7 +21,7 @@ export default function MyProfile() {
     <>
 
 
-    {/*   My Profile   */}
+    {/*   "My Profile"   */}
 
       <h1 className="mb-14 text-3xl font-medium text-richblack-5">
         My Profile
@@ -69,7 +69,7 @@ export default function MyProfile() {
         <IconBtn
           text="Edit"
           onclick={() => {
-            navigate("/dashboard/settings")          // jaise hi 'Edit' wala button click hoga to 'Settings' pe chale jaoge
+            navigate("/dashboard/settings")                                              // jaise hi 'Edit' wala button click hoga to 'Settings' pe chale jaoge
           }}
         >
           <RiEditBoxLine />
@@ -99,7 +99,7 @@ export default function MyProfile() {
 
         <p
           className={`${
-            user?.additionalDetails?.about           // Yeh code check karta hai ki agar user object, uska additionalDetails object, aur usme about property sab safely exist karte ho, toh us about ka value le aao. Agar koi bhi cheez missing ho, toh error na de.
+            user?.additionalDetails?.about                                               // Yeh code check karta hai ki agar user object, uska additionalDetails object, aur usme about property sab safely exist karte ho, toh us about ka value le aao. Agar koi bhi cheez missing ho, toh error na de.
               ? "text-richblack-5"
               : "text-richblack-400"
           } text-sm font-medium`}
@@ -111,6 +111,7 @@ export default function MyProfile() {
 
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
         <div className="flex w-full items-center justify-between">
+
 
 
 
@@ -139,6 +140,7 @@ export default function MyProfile() {
 
 
 
+
     {/*   First Name   */}
 
               <p className="mb-2 text-sm text-richblack-600">First Name</p>
@@ -147,6 +149,7 @@ export default function MyProfile() {
               </p>
             </div>
             <div>
+
 
 
 
@@ -160,6 +163,7 @@ export default function MyProfile() {
             </div>
 
             <div>
+
 
 
 
@@ -179,6 +183,7 @@ export default function MyProfile() {
 
 
 
+
     {/*   Last Name   */}
 
               <p className="mb-2 text-sm text-richblack-600">Last Name</p>
@@ -192,6 +197,7 @@ export default function MyProfile() {
 
 
 
+
     {/*   Phone Number   */}
 
               <p className="mb-2 text-sm text-richblack-600">Phone Number</p>
@@ -201,6 +207,7 @@ export default function MyProfile() {
             </div>
 
             <div>
+
 
 
 
@@ -219,6 +226,7 @@ export default function MyProfile() {
     </>
   )
 }
+
 
 
 

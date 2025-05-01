@@ -12,10 +12,10 @@ import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
 
 export default function EnrolledCourses() {
 
-  const { token } = useSelector((state) => state.auth)                // Yeh line Redux ke auth state se token value ko nikaal kar token variable me store karti hai.
-  const navigate = useNavigate()                                      // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
+  const { token } = useSelector((state) => state.auth)                         // Yeh line Redux ke auth state se token value ko nikaal kar token variable me store karti hai.
+  const navigate = useNavigate()                                               // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
 
-  const [enrolledCourses, setEnrolledCourses] = useState(null)        // Yeh line ek state variable enrolledCourses ko initialize karti hai, jisme initially null value hoti hai. Aur setEnrolledCourses function ko use karke is state ko update kiya ja sakta hai.
+  const [enrolledCourses, setEnrolledCourses] = useState(null)                 // Yeh line ek state variable enrolledCourses ko initialize karti hai, jisme initially null value hoti hai. Aur setEnrolledCourses function ko use karke is state ko update kiya ja sakta hai.
   
   
   
@@ -48,14 +48,15 @@ export default function EnrolledCourses() {
     <>
 
 
-    {/*   Enrolled Courses   */}
+    {/*   "Enrolled Courses"   */}
 
       <div className="text-3xl text-richblack-50">Enrolled Courses</div>
 
 
 
 
-    {/*   agar kisi course me enrolled nahi ho to ye dikhaega   */}
+
+    {/*   "agar kisi course me enrolled nahi ho to ye dikhaega"   */}
 
       {!enrolledCourses ? (
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
@@ -66,7 +67,8 @@ export default function EnrolledCourses() {
 
 
 
-    /*   You have not enrolled in any course yet.   */
+
+    /*   "You have not enrolled in any course yet."   */
 
         <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
           You have not enrolled in any course yet.
@@ -78,21 +80,23 @@ export default function EnrolledCourses() {
 
 
 
+
     /*   agar kisi course me enrolled ho to ye dikhega  */
 
         <div className="my-8 text-richblack-5">
           {/* Headings */}
           <div className="flex rounded-t-lg bg-richblack-500 ">
           
-            <p className="w-[45%] px-5 py-3">Course Name</p>            {/*   Course Name   */}       
-            <p className="w-1/4 px-2 py-3">Duration</p>                 {/*   Duration   */}
-            <p className="flex-1 px-2 py-3">Progress</p>                {/*   Progress   */}
+            <p className="w-[45%] px-5 py-3"> Course Name </p>            {/*   Course Name   */}       
+            <p className="w-1/4 px-2 py-3"> Duration </p>                 {/*   Duration   */}
+            <p className="flex-1 px-2 py-3"> Progress </p>                {/*   Progress   */}
           </div> 
 
 
 
 
-          {/*   Course Names   */}
+
+    {/*   Course Names   */}
           
           {enrolledCourses.map((course, i, arr) => (
             
@@ -121,6 +125,7 @@ export default function EnrolledCourses() {
                 <div className="flex max-w-xs flex-col gap-2">
 
                   <p className="font-semibold">{course.courseName}</p>
+
                   <p className="text-xs text-richblack-300">
                     {course.courseDescription.length > 50
                       ? `${course.courseDescription.slice(0, 50)}...`
@@ -136,16 +141,18 @@ export default function EnrolledCourses() {
              
 
 
-          {/*   Progress   */}
 
-              <div className="flex w-1/5 flex-col gap-2 px-2 py-3">              
-                <p>Progress: {course.progressPercentage || 0}%</p>
+    {/*   Progress   */}
+
+              <div className="flex w-1/5 flex-col gap-2 px-2 py-3">      
+
+                <p> Progress: {course.progressPercentage || 0}% </p>
 
 
 
 
 
-          {/*   Progress Bar   */}
+    {/*   Progress Bar   */}
 
                 <ProgressBar
                   completed={course.progressPercentage || 0}
@@ -161,6 +168,7 @@ export default function EnrolledCourses() {
     </>
   )
 }
+
 
 
 

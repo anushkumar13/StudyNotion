@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast"
 
 
 
-       // initial state define kar rahe hain
+       
+    {/*   Company   */}
 
 const initialState = {
   cart: localStorage.getItem("cart")
@@ -23,6 +24,9 @@ const initialState = {
 
 
 
+
+    {/*   Company   */}
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -31,7 +35,8 @@ const cartSlice = createSlice({
 
 
 
-        // ADD TO CART   
+
+    /*   Company   */
 
     addToCart: (state, action) => {
       const course = action.payload
@@ -42,7 +47,8 @@ const cartSlice = createSlice({
 
 
 
-        // If the course is already in the cart, do not modify the quantity and show Course already in cart
+
+    {/*   If the course is already in the cart, do not modify the quantity and show Course already in cart   */}
 
         toast.error("Course already in cart")
         return
@@ -51,20 +57,23 @@ const cartSlice = createSlice({
 
 
 
-      // If the course is not in the cart, add it to the cart
+
+    {/*   If the course is not in the cart, add it to the cart   */}
 
       state.cart.push(course)
 
 
 
-      // Update the total quantity and price
+
+    {/*   Update the total quantity and price   */}
 
       state.totalItems++
       state.total += course.price
 
 
 
-      // Update to localstorage
+
+    {/*   Update to localstorage   */}
 
       localStorage.setItem("cart", JSON.stringify(state.cart))
       localStorage.setItem("total", JSON.stringify(state.total))
@@ -73,7 +82,8 @@ const cartSlice = createSlice({
 
 
 
-      // show toast Course added to cart
+
+    {/*   show toast Course added to cart   */}
 
       toast.success("Course added to cart")
     },
@@ -81,7 +91,8 @@ const cartSlice = createSlice({
 
 
 
-      // REMOVE FROM CART
+
+    /*   REMOVE FROM CART   */
 
     removeFromCart: (state, action) => {
       const courseId = action.payload
@@ -92,7 +103,8 @@ const cartSlice = createSlice({
 
 
 
-        // If the course is found in the cart, remove it
+
+    {/*   If the course is found in the cart, remove it   */}
 
         state.totalItems--
         state.total -= state.cart[index].price
@@ -101,7 +113,8 @@ const cartSlice = createSlice({
 
 
 
-        // Update to localstorage
+
+    {/*   Update to localstorage   */}
 
         localStorage.setItem("cart", JSON.stringify(state.cart))
         localStorage.setItem("total", JSON.stringify(state.total))
@@ -110,7 +123,8 @@ const cartSlice = createSlice({
 
 
 
-        // show toast Course removed from cart
+
+    {/*   show toast Course removed from cart   */}
 
         toast.success("Course removed from cart")
       }
@@ -119,7 +133,8 @@ const cartSlice = createSlice({
 
 
 
-    // RESET CART
+
+    /*   RESET CART   */
 
     resetCart: (state) => {
       state.cart = []
@@ -129,7 +144,8 @@ const cartSlice = createSlice({
 
 
 
-      // Update to localstorage
+
+    {/*   Update to localstorage   */}
 
       localStorage.removeItem("cart")
       localStorage.removeItem("total")
@@ -141,7 +157,9 @@ const cartSlice = createSlice({
 
 
 
+
 export const { addToCart, removeFromCart, resetCart } = cartSlice.actions
+
 
 
 
@@ -150,4 +168,6 @@ export default cartSlice.reducer
 
 
 
-// iss slice me cart related saare kaam ho rahe hain
+
+
+//   iss slice me cart related saare kaam ho rahe hain

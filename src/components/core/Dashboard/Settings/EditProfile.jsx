@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom"
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
 
+
+
+
+
+    {/*   Yeh line ek array banati hai jismein 5 gender options hain: "Male", "Female", "Non-Binary", "Prefer not to say", aur "Other" — inhe user ko gender select karne ke liye form dropdown ya radio button me dikhaya ja sakta hai.   */}
+
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+
 
 
 
@@ -20,6 +27,9 @@ export default function EditProfile() {
 
 
 
+
+    {/*   Yeh code React Hook Form ka use karta hai form validation aur submission ke liye.     register: Yeh function form ke input fields ko register karta hai, jisse unko track kiya ja sake.     handleSubmit: Yeh function form submit hone par validation check karta hai aur form data ko handle karta hai.     formState: { errors }: Yeh part form ke errors ko track karta hai, jo form submission ke time validation fail hone par show hote hain.   */}
+
   const {
     register,
     handleSubmit,
@@ -28,6 +38,9 @@ export default function EditProfile() {
 
 
 
+
+
+    {/*   Yeh function submitProfileForm form submit hone par call hota hai, aur yeh data ko server par bhejne ka kaam karta hai.     data: Yeh parameter form ke input values ko represent karta hai.     dispatch(updateProfile(token, data)): Yeh Redux action ko dispatch karta hai, jisme user ka token aur form data pass hota hai, jisse profile update kiya jaata hai.     try-catch: Agar koi error aata hai during the dispatch, toh woh catch block me handle hota hai, aur error message console me print hota hai.   */}
 
   const submitProfileForm = async (data) => {
     
@@ -41,18 +54,31 @@ export default function EditProfile() {
 
 
 
+
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
         
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-          
+
+
+
+
+
+    {/*   "Profile Information"   */}      
+
           <h2 className="text-lg font-semibold text-richblack-5">
             Profile Information
           </h2>
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "First Name"   */}
 
               <label htmlFor="firstName" className="lable-style">
                 First Name
@@ -69,6 +95,12 @@ export default function EditProfile() {
               />
 
               {errors.firstName && (
+    
+
+
+
+
+    /*   "Please enter your first name."   */
 
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your first name.
@@ -78,6 +110,12 @@ export default function EditProfile() {
             </div>
 
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "Last Name"   */}
 
               <label htmlFor="lastName" className="lable-style">
                 Last Name
@@ -94,6 +132,13 @@ export default function EditProfile() {
               />
 
               {errors.lastName && (
+
+
+
+
+
+    /*   "Please enter your last name."   */
+
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your last name.
                 </span>
@@ -104,6 +149,12 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "Date of Birth"   */}
 
               <label htmlFor="dateOfBirth" className="lable-style">
                 Date of Birth
@@ -138,6 +189,12 @@ export default function EditProfile() {
 
 
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "Gender"   */}
 
               <label htmlFor="gender" className="lable-style">
                 Gender
@@ -164,6 +221,12 @@ export default function EditProfile() {
               </select>
 
               {errors.gender && (
+    
+
+
+
+
+    /*   "Please enter your Date of Birth."   */
 
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your Date of Birth.
@@ -176,6 +239,12 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "Contact Number"   */}
 
               <label htmlFor="contactNumber" className="lable-style">
                 Contact Number
@@ -209,6 +278,12 @@ export default function EditProfile() {
 
 
             <div className="flex flex-col gap-2 lg:w-[48%]">
+    
+
+
+
+
+    {/*   "About"   */}
 
               <label htmlFor="about" className="lable-style">
                 About
@@ -225,6 +300,12 @@ export default function EditProfile() {
               />
 
               {errors.about && (
+    
+
+
+
+
+    /*   "Please enter your About."   */
 
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your About.
@@ -237,6 +318,12 @@ export default function EditProfile() {
 
 
         <div className="flex justify-end gap-2">
+    
+
+
+
+
+    {/*   "Cancel" wala button   */}
 
           <button
             onClick={() => {

@@ -10,16 +10,22 @@ import Plan_your_lessons from "../../../assets/Images/Plan_your_lessons.svg";
 
 
 
+
 const LearningLanguageSection = () => {
   return (
     <div>
 
 
-              {/* Paragraph */}
+
+
+
+    {/*   Paragraph   */}
 
         <div className="text-4xl font-semibold text-center my-10">
-            Your swiss knife for
+            Your swiss knife for 
+
             <HighlightText text={"learning any language"} />
+
             <div className="text-center text-richblack-700 font-medium lg:w-[75%] mx-auto leading-6 text-base mt-3">
               Using spin making learning multiple languages easy. with 20+
               languages realistic voice-over, progress tracking, custom schedule
@@ -29,12 +35,12 @@ const LearningLanguageSection = () => {
 
 
               
-              {/* Cards */}
+    {/*   Cards   */}
 
             <div className="flex flex-col lg:flex-row items-center justify-center mt-8 lg:mt-0">
 
 
-              {/* Know your progress Card */}
+    {/*   Know your progress Card   */}
 
               <img
                 src={Know_your_progress}
@@ -43,7 +49,7 @@ const LearningLanguageSection = () => {
               />
 
 
-              {/* Compare with others Card */}
+    {/*   Compare with others Card   */}
 
               <img
                 src={Compare_with_others}
@@ -52,7 +58,7 @@ const LearningLanguageSection = () => {
               />
 
 
-              {/* Plan your lessons Card */}
+    {/*   Plan your lessons Card   */}
 
               <img
                 src={Plan_your_lessons}
@@ -66,12 +72,14 @@ const LearningLanguageSection = () => {
 
 
 
-            {/* Learn More Button */}
+    {/*   "Learn More" Button   */}
 
           <div className="w-fit mx-auto lg:mb-20 mb-8 -mt-5">
+            
             <CTAButton active={true} linkto={"/signup"}>
-              <div className="">Learn More</div>
+              <div className=""> Learn More </div>
             </CTAButton>
+
           </div>
           
     </div>

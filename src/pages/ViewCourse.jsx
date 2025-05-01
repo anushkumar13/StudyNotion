@@ -17,11 +17,15 @@ import {
 
 
 
+
+    {/*      */}
+
 export default function ViewCourse() {
-  const { courseId } = useParams()
-  const { token } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
-  const [reviewModal, setReviewModal] = useState(false)
+  const { courseId } = useParams()                                                       //  Ye hook se courseId ko URL se fetch karta hai.
+  const { token } = useSelector((state) => state.auth)                                   //  Ye state.auth se token ko fetch karta hai (user ki login status check karne ke liye).
+  const dispatch = useDispatch()                                                         //  Ye Redux ka hook hai, jo actions dispatch karne ke liye use hota hai. 
+  const [reviewModal, setReviewModal] = useState(false)                                  //  Ye reviewModal state create karta hai, jo initially false hai (matlab modal show nahi ho raha).
+
 
 
 
@@ -37,6 +41,7 @@ export default function ViewCourse() {
       dispatch(setEntireCourseData(courseData.courseDetails))                            //  Poora course ka data (title, description, price, image) Redux store mein save kar diya.
       dispatch(setCompletedLectures(courseData.completedVideos))                         //  Kaunse videos already complete kar chuke ho, woh Redux mein store kar diya.
  
+
 
 
 
@@ -56,7 +61,8 @@ export default function ViewCourse() {
 
 
 
-  {/*   Yeh ek layout bana raha hai — jisme left side mein ek sidebar hai aur right side mein main content area hai (jahan Outlet ka content render hoga).   */}
+
+    {/*   Yeh ek layout bana raha hai — jisme left side mein ek sidebar hai aur right side mein main content area hai (jahan Outlet ka content render hoga).   */}
 
   return (
     <>
@@ -70,6 +76,7 @@ export default function ViewCourse() {
 
         </div>
       </div>
+
 
 
 

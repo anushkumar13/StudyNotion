@@ -8,21 +8,24 @@ import { resetCourseState } from "../../../slices/courseSlice"
 
 
 
+
 export default function SidebarLink({ link, iconName }) {
 
   
-  const Icon = Icons[iconName]             // Yeh line Icons object me se iconName key ke corresponding value ko nikaal kar Icon variable mein store karti hai. Matlab, agar iconName "home" hai, toh Icons["home"] ko Icon mein assign kiya jaayega.
+  const Icon = Icons[iconName]                                                           // Yeh line Icons object me se iconName key ke corresponding value ko nikaal kar Icon variable mein store karti hai. Matlab, agar iconName "home" hai, toh Icons["home"] ko Icon mein assign kiya jaayega.
   const location = useLocation()
   const dispatch = useDispatch()
 
 
 
 
-  {/*   Yeh matchRoute function ek route ko pass karta hai aur matchPath ka use karke check karta hai ki wo route current location.pathname (jo current page ka URL hai) se match karta hai ya nahi. Agar match hota hai, toh yeh true return karega.   */}
+
+    {/*   Yeh matchRoute function ek route ko pass karta hai aur matchPath ka use karke check karta hai ki wo route current location.pathname (jo current page ka URL hai) se match karta hai ya nahi. Agar match hota hai, toh yeh true return karega.   */}
   
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
   }
+
 
 
 
@@ -42,7 +45,8 @@ export default function SidebarLink({ link, iconName }) {
 
 
 
-      {/*   Ye code active page ke liye sidebar me ek yellow line dikhata hai.   */}
+
+    {/*   Ye code active page ke liye sidebar me ek yellow line dikhata hai.   */}
 
       <span
         className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${
@@ -53,7 +57,8 @@ export default function SidebarLink({ link, iconName }) {
 
 
 
-      {/*   Icons   */}
+
+    {/*   Icons   */}
 
       <div className="flex items-center gap-x-2">
         <Icon className="text-lg" />
@@ -63,6 +68,7 @@ export default function SidebarLink({ link, iconName }) {
     </NavLink>
   )
 }
+
 
 
 

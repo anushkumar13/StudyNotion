@@ -1,7 +1,7 @@
 // imports
 
 import React, { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"                      // form banane ke liye ye import karna padta hai taki kaam asaan ho jaye jaise form reset karna etc
+import { useForm } from "react-hook-form"                                            // form banane ke liye ye import karna padta hai taki kaam asaan ho jaye jaise form reset karna etc
 import CountryCode from "../../data/countrycode.json"
 import { apiConnector } from "../../services/apiconnector"
 import { contactusEndpoint } from "../../services/apis"
@@ -9,33 +9,40 @@ import { contactusEndpoint } from "../../services/apis"
 
 
 
+
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false)
-  const {                                                      // useForm() hook se ye sare data nikal lo
-    register,                                                  // iska data nikal lo
-    handleSubmit,                                              // iska data nikal lo
-    reset,                                                     // iska data nikal lo
+  const {                                                                            // useForm() hook se ye sare data nikal lo
+    register,                                                                        // iska data nikal lo
+    handleSubmit,                                                                    // iska data nikal lo
+    reset,                                                                           // iska data nikal lo
     formState: { errors, isSubmitSuccessful },
   } = useForm()
 
 
 
 
-        {/*   'submitContactForm' function bana raha hai jo 'contactusEndpoint.CONTACT_US_API' URL pe 'POST' request bhej raha hai, jisme form ka data send kiya jaa raha hai.   */}
+
+    {/*   'submitContactForm' function bana raha hai jo 'contactusEndpoint.CONTACT_US_API' URL pe 'POST' request bhej raha hai, jisme form ka data send kiya jaa raha hai.   */}
 
   const submitContactForm = async (data) => {
     
     try {
+
       setLoading(true)
-      const res = await apiConnector(                          // API call 'apiConnector' function se ho rahi hai, jisme method "POST"
+      
+      const res = await apiConnector(                                                // API call 'apiConnector' function se ho rahi hai, jisme method "POST"
         "POST",
-        contactusEndpoint.CONTACT_US_API,                      // 'CONTACT_US_API' call kar rahe hain
+        contactusEndpoint.CONTACT_US_API,                                            // 'CONTACT_US_API' call kar rahe hain
         data
       )
       
       setLoading(false)
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
+
       setLoading(false)
     }
   }
@@ -43,7 +50,8 @@ const ContactUsForm = () => {
 
 
 
-        {/*   agar form successfully submit ho gya to form ke input fields ko reset kare dena   */}
+
+    {/*   agar form successfully submit ho gya to form ke input fields ko reset kare dena   */}
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -60,10 +68,11 @@ const ContactUsForm = () => {
 
 
 
+
   return (
     <form
       className="flex flex-col gap-7"
-      onSubmit={handleSubmit(submitContactForm)}                         // jab bhi form submit hoga to --> submitContactForm <-- iss function ko call kar dena
+      onSubmit={handleSubmit(submitContactForm)}                                     // jab bhi form submit hoga to --> submitContactForm <-- iss function ko call kar dena
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
@@ -71,19 +80,22 @@ const ContactUsForm = () => {
 
 
 
+
       {/*   First Name   */}
 
-          <label htmlFor="firstname" className="lable-style">            {/*   htmlFor ka use label tag ko input tag se connect karne ke liye hota hai   */}
+          <label htmlFor="firstname" className="lable-style">                        {/*   htmlFor ka use label tag ko input tag se connect karne ke liye hota hai   */}
             First Name
           </label>
+
           <input
             type="text"
             name="firstname"
             id="firstname"
             placeholder="Enter first name"
             className="form-style"
-            {...register("firstname", { required: true })}               /*   iss line ka mtlb hai ki React Hook Form ko bolna ki yeh field form ka part hai aur yeh bharna zaroori hai.   */
+            {...register("firstname", { required: true })}                           /*   iss line ka mtlb hai ki React Hook Form ko bolna ki yeh field form ka part hai aur yeh bharna zaroori hai.   */
           />
+
 
 
 
@@ -91,12 +103,15 @@ const ContactUsForm = () => {
       {/*   Agar user ne firstname field khali chhod diya, toh yeh code usko warning message dikhata hai: "Please enter your name."   */}
 
           {errors.firstname && (
+            
             <span className="-mt-1 text-[12px] text-yellow-100">
               Please enter your name.
             </span>
+
           )}
         </div>
         <div className="flex flex-col gap-2 lg:w-[48%]">
+
 
 
 
@@ -106,13 +121,14 @@ const ContactUsForm = () => {
           <label htmlFor="lastname" className="lable-style">
             Last Name
           </label>
+
           <input
             type="text"
             name="lastname"
             id="lastname"
             placeholder="Enter last name"
             className="form-style"
-            {...register("lastname")}                                   /*   iss line ka mtlb hai ki "lastname" wala input, form ka part hai, usme jo bhi user likhega, form usko samjhega aur yaad rakhega. required true nahi hai mtlb ye field bharna zaruri nahi hai   */
+            {...register("lastname")}                                                /*   iss line ka mtlb hai ki "lastname" wala input, form ka part hai, usme jo bhi user likhega, form usko samjhega aur yaad rakhega. required true nahi hai mtlb ye field bharna zaruri nahi hai   */
           />
         </div>
       </div>
@@ -122,19 +138,22 @@ const ContactUsForm = () => {
 
 
 
+
       {/*   Email Address   */}
 
         <label htmlFor="email" className="lable-style">
           Email Address
         </label>
+
         <input
           type="email"
           name="email"
           id="email"
           placeholder="Enter email address"
           className="form-style"
-          {...register("email", { required: true })}                    /*   Yeh code bolta hai ki "email" field ko form me add kardo aur ensure karo ki user usse bhar ke hi submit kare, warna error aayega   */
+          {...register("email", { required: true })}                                 /*   Yeh code bolta hai ki "email" field ko form me add kardo aur ensure karo ki user usse bhar ke hi submit kare, warna error aayega   */
         />
+
 
 
 
@@ -142,13 +161,16 @@ const ContactUsForm = () => {
       {/*   Yeh code check karta hai ki agar "email" field me error hai (jaise user ne email nahi diya), toh ek warning message dikhata hai: "Please enter your Email address."   */}
 
         {errors.email && (
+          
           <span className="-mt-1 text-[12px] text-yellow-100">
             Please enter your Email address.
           </span>
+
         )}
       </div>
 
       <div className="flex flex-col gap-2">
+
 
 
 
@@ -165,6 +187,7 @@ const ContactUsForm = () => {
 
 
 
+
       {/*   Yeh code <select> tag ka use karke ek dropdown banata hai, jisme country codes aur unke respective country names dikh rahe hain.   */}
 
             <select
@@ -173,10 +196,11 @@ const ContactUsForm = () => {
               id="firstname"
               placeholder="Enter first name"
               className="form-style"
-              {...register("countrycode", { required: true })}          /*   Yeh code "countrycode" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
+              {...register("countrycode", { required: true })}                       /*   Yeh code "countrycode" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
             >
               {CountryCode.map((ele, i) => {
                 return (
+
 
 
 
@@ -192,6 +216,7 @@ const ContactUsForm = () => {
             </select>
 
           </div>
+
 
 
 
@@ -222,9 +247,11 @@ const ContactUsForm = () => {
 
 
 
+
       {/*   Yeh code error message ko display karta hai agar phone number field me koi validation error hota hai.   */}
 
         {errors.phoneNo && (
+
           <span className="-mt-1 text-[12px] text-yellow-100">
             {errors.phoneNo.message}
           </span>
@@ -237,11 +264,13 @@ const ContactUsForm = () => {
 
 
 
+
       {/*   Message   */}
 
         <label htmlFor="message" className="lable-style">
           Message
         </label>
+
         <textarea
           name="message"
           id="message"
@@ -249,8 +278,9 @@ const ContactUsForm = () => {
           rows="7"
           placeholder="Enter your message here"
           className="form-style"
-          {...register("message", { required: true })}           /*   Yeh code "message" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
+          {...register("message", { required: true })}                               /*   Yeh code "message" field ko form me add kar deta hai aur ensure karta hai ki user is field ko bhar ke hi form submit kare, warna error dikhega.   */
         />
+
 
 
 
@@ -258,16 +288,19 @@ const ContactUsForm = () => {
       {/*   Yeh code check karta hai ki agar "message" field me error hai (jaise user ne message nahi diya), toh ek warning message dikhata hai: "Please enter your Message."   */}
 
         {errors.message && (
+
           <span className="-mt-1 text-[12px] text-yellow-100">
             Please enter your Message.
           </span>
+
         )}
       </div>
 
 
 
 
-      {/*   Send Message wala button   */}
+
+      {/*   "Send Message" wala button   */}
 
       <button
         disabled={loading}
@@ -284,6 +317,7 @@ const ContactUsForm = () => {
     </form>
   )
 }
+
 
 
 

@@ -10,6 +10,9 @@ import { Player } from "video-react"
 
 
 
+
+{/*      */}
+
 export default function Upload({
   name,
   label,
@@ -32,6 +35,8 @@ export default function Upload({
 
 
 
+  {/*      */}
+
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0]
     if (file) {
@@ -43,6 +48,10 @@ export default function Upload({
 
 
 
+
+
+  {/*      */}
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: !video
       ? { "image/*": [".jpeg", ".jpg", ".png"] }
@@ -52,6 +61,9 @@ export default function Upload({
 
 
 
+
+
+  {/*      */}
 
   const previewFile = (file) => {
     
@@ -65,6 +77,9 @@ export default function Upload({
 
 
 
+
+  {/*      */}
+
   useEffect(() => {
     register(name, { required: true })
     
@@ -72,6 +87,9 @@ export default function Upload({
 
 
 
+
+
+  {/*      */}
 
   useEffect(() => {
     setValue(name, selectedFile)
@@ -81,6 +99,7 @@ export default function Upload({
 
 
   
+
   return (
     <div className="flex flex-col space-y-2">
       

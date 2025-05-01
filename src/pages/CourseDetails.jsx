@@ -20,6 +20,7 @@ import Error from "./Error"
 
 
 
+
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile)
   const { token } = useSelector((state) => state.auth)
@@ -33,7 +34,10 @@ function CourseDetails() {
   
   
   
+
   
+    {/*   Ye pura code kaam karta hai is tarah: Jab component load hota hai ya courseId change hota hai...     Tab wo backend/API se course details fetch karta hai...     Agar data mil gaya, toh setResponse() se state update hoti hai...     Agar error aaya, toh console me error message dikhata hai...   */}
+
   useEffect(() => {
     ;(async () => {
       
@@ -56,12 +60,16 @@ function CourseDetails() {
 
 
 
+  const [avgReviewCount, setAvgReviewCount] = useState(0)                                /*   ye line React ke andar ek state variable bana rahi hai jiska naam hai: jo kisi course ka average review count ya rating represent karta hoga.   */
+  const [isActive, setIsActive] = useState(Array(0))                                     /*   Ye line ek empty array isActive ko state ke roop mein set karti hai, jisme tum baad mein elements add ya modify kar sakte ho.   */
+  const [totalNoOfLectures, setTotalNoOfLectures] = useState(0)                          /*   ye line ek state variable totalNoOfLectures create kar rahi hai, jisme initially 0 set hai. Tum is variable ko update karne ke liye setTotalNoOfLectures function use karoge.   */
+   
   
-  const [avgReviewCount, setAvgReviewCount] = useState(0)
   
   
-  
-  
+
+    {/*   Jab response update hota hai, tum course ke ratings se average calculate karte ho. Fir setAvgReviewCount ke through wo average avgReviewCount state mein store karte ho. Isse tumhare paas average rating ki updated value hoti hai, jo tum UI pe dikha sakte ho.   */}
+
   useEffect(() => {
     const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews)
     setAvgReviewCount(count)
@@ -71,11 +79,7 @@ function CourseDetails() {
 
 
 
-  
-  const [isActive, setIsActive] = useState(Array(0))
-
-
-
+    {/*   Agar id already isActive array mein nahi hai, toh usse add karna. Agar id already hai, toh usse array se remove karna.   */}
 
   const handleActive = (id) => {
     
@@ -86,13 +90,11 @@ function CourseDetails() {
     )
   }
 
-  
-
-
-  const [totalNoOfLectures, setTotalNoOfLectures] = useState(0)
 
 
 
+
+    {/*   Jab response update hota hai, tab ye code chalega. Ye total number of lectures calculate karega by iterating through courseContent aur har section ki sub-sections ka count add karega. Final count ko setTotalNoOfLectures se state mein store karega.     Agar loading ya response nahi hai, toh ek spinner show karega.     Agar response.success false hai, toh ek error component show karega.   */}
 
   useEffect(() => {
     let lectures = 0
@@ -119,6 +121,9 @@ function CourseDetails() {
 
 
 
+
+    {/*   ye line destructuring ka use kar rahi hai: response.data?.courseDetails se course ke details ko extract karke directly variables mein store kar rahi hai. Jaise: course_id, courseName, courseDescription, etc. ko unke respective values assign kiye ja rahe hain.   */}
+
   const {
     _id: course_id,
     courseName,
@@ -135,6 +140,9 @@ function CourseDetails() {
 
 
 
+
+
+    {/*   Agar token hai (user logged in hai), toh buyCourse function call karega aur course purchase karega.     Agar token nahi hai (user logged in nahi hai), toh ek confirmation modal show karega, jisme user ko login karne ka option milega.   */}
 
   const handleBuyCourse = () => {
     
@@ -154,6 +162,9 @@ function CourseDetails() {
   }
 
 
+ 
+
+    {/*   Agar paymentLoading true hai (matlab payment process ho raha hai), toh ek loading spinner dikhayega center mein.   */}
 
   if (paymentLoading) {
     
@@ -170,6 +181,7 @@ function CourseDetails() {
   return (
     <>
       <div className={`relative w-full bg-richblack-800`}>
+        
         
         
         
@@ -222,7 +234,7 @@ function CourseDetails() {
 
 
 
-    {/*   Created By   */}
+    {/*   "Created By"   */}
 
                 <p className="">
                   Created By {`${instructor.firstName} ${instructor.lastName}`}
@@ -236,7 +248,7 @@ function CourseDetails() {
 
 
 
-    {/*   Created at   */}
+    {/*   "Created at"   */}
 
                 <p className="flex items-center gap-2">
                   {" "}
@@ -246,7 +258,7 @@ function CourseDetails() {
 
 
 
-    {/*   English   */}
+    {/*   "English"   */}
 
                 <p className="flex items-center gap-2">
                   {" "}
@@ -262,7 +274,7 @@ function CourseDetails() {
 
 
 
-              {/*   Rs.   */}
+    {/*   Rs.   */}
 
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
                 Rs. {price}
@@ -413,9 +425,21 @@ function CourseDetails() {
           </div>
         </div>
       </div>
+    
+
+
+
+
+    {/*   Footer   */}
 
       <Footer />
+    
 
+
+
+
+    {/*   Jab confirmationModal true ya valid object ho, tab <ConfirmationModal /> component ko render karna. Simple words mein: conditional rendering karna.   */}
+    
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
 
     </>

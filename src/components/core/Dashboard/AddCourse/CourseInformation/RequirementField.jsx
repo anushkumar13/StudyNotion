@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 
 
 
+
 export default function RequirementsField({
   name,
   label,
@@ -16,9 +17,10 @@ export default function RequirementsField({
 })
 
 {
-  const { editCourse, course } = useSelector((state) => state.course)       //  Yeh code line useSelector hook ka use kar ke Redux store se editCourse aur course ko fetch kar raha hai.
-  const [requirement, setRequirement] = useState("")                        //  Yeh line ek state variable requirement define karti hai, jiska initial value empty string ("") hai. useState hook ka use karke yeh value track ki jaati hai. Is state ko update karne ke liye setRequirement function ka use hota hai.
-  const [requirementsList, setRequirementsList] = useState([])              //  Yeh line ek state variable requirementsList define karti hai, jiska initial value ek empty array ([]) hai. useState hook ka use karke yeh array ki value ko track kiya jaata hai. setRequirementsList function ke through is array ko update kiya jaata hai.
+  const { editCourse, course } = useSelector((state) => state.course)               //  Yeh code line useSelector hook ka use kar ke Redux store se editCourse aur course ko fetch kar raha hai.
+  const [requirement, setRequirement] = useState("")                                //  Yeh line ek state variable requirement define karti hai, jiska initial value empty string ("") hai. useState hook ka use karke yeh value track ki jaati hai. Is state ko update karne ke liye setRequirement function ka use hota hai.
+  const [requirementsList, setRequirementsList] = useState([])                      //  Yeh line ek state variable requirementsList define karti hai, jiska initial value ek empty array ([]) hai. useState hook ka use karke yeh array ki value ko track kiya jaata hai. setRequirementsList function ke through is array ko update kiya jaata hai.
+
 
 
 
@@ -36,12 +38,14 @@ export default function RequirementsField({
 
 
 
+
     {/*   Jab requirementsList ki value change hoti hai, tab setValue function ko use karke us updated value ko form field mein set kar diya jaata hai. Yeh automatically form ke state ko update karta hai.   */}
 
   useEffect(() => {
     setValue(name, requirementsList)
     
   }, [requirementsList])
+
 
 
 
@@ -58,13 +62,15 @@ export default function RequirementsField({
 
 
 
+
     {/*   Jab user kisi requirement ko remove karta hai, toh wo requirement requirementsList se index ke according delete ho jaati hai aur list update ho jaati hai   */}
 
   const handleRemoveRequirement = (index) => {
     const updatedRequirements = [...requirementsList]
-    updatedRequirements.splice(index, 1)                            //  Yeh line updatedRequirements array me se diye gaye index par jo element hai usko hata deti hai. Simplified explanation: ➡️ splice(index, 1) ka matlab hai — index number par jao aur 1 item delete kar do. Ye generally kisi list se ek item delete karne ke liye use hota hai.
+    updatedRequirements.splice(index, 1)                                            //  Yeh line updatedRequirements array me se diye gaye index par jo element hai usko hata deti hai. Simplified explanation: ➡️ splice(index, 1) ka matlab hai — index number par jao aur 1 item delete kar do. Ye generally kisi list se ek item delete karne ke liye use hota hai.
     setRequirementsList(updatedRequirements)
   }
+
 
 
 
@@ -89,6 +95,7 @@ export default function RequirementsField({
 
 
 
+
     {/*   'Add' wala Button   */}
 
         <button
@@ -104,6 +111,7 @@ export default function RequirementsField({
 
 
 
+
     {/*   Yeh code ek list display kar raha hai sirf tab jab requirementsList empty nahi ho. Simplified explanation: Agar requirementsList me items hain (length > 0), toh ul ke andar map se har item (requirement) ek <li> me dikhaya jaata hai. Har item ko index ke saath uniquely identify kiya gaya hai using key={index}.   */}
 
       {requirementsList.length > 0 && (
@@ -112,6 +120,7 @@ export default function RequirementsField({
             <li key={index} className="flex items-center text-richblack-5">
               
               <span>{requirement}</span>
+
 
 
 

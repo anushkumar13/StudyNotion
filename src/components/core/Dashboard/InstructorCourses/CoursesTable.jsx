@@ -22,6 +22,7 @@ import {
 
 
 
+
 export default function CoursesTable({ courses, setCourses }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -33,23 +34,25 @@ export default function CoursesTable({ courses, setCourses }) {
 
 
 
+
   {/*   Jab user kisi course ko delete karne ka button dabata hai, toh ye function kaam karta hai.   */}
 
-  const handleCourseDelete = async (courseId) => {                //  Is function ko ek courseId milta hai — yaani kaunsa course delete karna hai.
+  const handleCourseDelete = async (courseId) => {                                       //  Is function ko ek courseId milta hai — yaani kaunsa course delete karna hai.
 
-    setLoading(true)                                              //  Ye line loading state ko true kar deti hai — taaki UI mein spinner ya disabled button dikh sake.
+    setLoading(true)                                                                     //  Ye line loading state ko true kar deti hai — taaki UI mein spinner ya disabled button dikh sake.
     
-    await deleteCourse({ courseId: courseId }, token)             //  deleteCourse() ek API call function hai jo course ko server se hata deta hai. Isme courseId aur token (authentication token) bheja jaata hai. Ye await ki wajah se asynchronous hai — pehle delete hone ka intezaar karega.
+    await deleteCourse({ courseId: courseId }, token)                                    //  deleteCourse() ek API call function hai jo course ko server se hata deta hai. Isme courseId aur token (authentication token) bheja jaata hai. Ye await ki wajah se asynchronous hai — pehle delete hone ka intezaar karega.
     
-    const result = await fetchInstructorCourses(token)            //  Delete hone ke baad, abhi server se dubara sari courses ki list mangaayi ja rahi hai. fetchInstructorCourses() bhi ek API call hai — jo sirf tumhare (instructor ke) courses laata hai. result mein updated list aati hai.
+    const result = await fetchInstructorCourses(token)                                   //  Delete hone ke baad, abhi server se dubara sari courses ki list mangaayi ja rahi hai. fetchInstructorCourses() bhi ek API call hai — jo sirf tumhare (instructor ke) courses laata hai. result mein updated list aati hai.
     
-    if (result) {                                                 //  "Agar server se updated course list aa gayi, to UI mein dikhado." setCourses(result) ka matlab hai: state update karo, taaki UI dubara re-render ho jaaye aur deleted course gayab ho jaaye.
+    if (result) {                                                                        //  "Agar server se updated course list aa gayi, to UI mein dikhado." setCourses(result) ka matlab hai: state update karo, taaki UI dubara re-render ho jaaye aur deleted course gayab ho jaaye.
       setCourses(result)
     }
-    setConfirmationModal(null)                                    //  Modal ko null kar diya, taaki wo confirm popup band ho jaaye.
+    setConfirmationModal(null)                                                           //  Modal ko null kar diya, taaki wo confirm popup band ho jaaye.
 
-    setLoading(false)                                             //  Finally loading ko false kar diya — ab sab kuch normal ho gaya.
+    setLoading(false)                                                                    //  Finally loading ko false kar diya — ab sab kuch normal ho gaya.
   }
+
 
 
 
@@ -83,7 +86,7 @@ export default function CoursesTable({ courses, setCourses }) {
         </Thead>
 
         <Tbody>
-          {courses?.length === 0 ? (                              //  agar courses ki length 0 ke barabar hai mtlb ki total courses 0 hai to "No courses found" show karo
+          {courses?.length === 0 ? (                                                     //  agar courses ki length 0 ke barabar hai mtlb ki total courses 0 hai to "No courses found" show karo
             
             <Tr>
               
@@ -101,8 +104,14 @@ export default function CoursesTable({ courses, setCourses }) {
                 className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
               >
                 
-                <Td className="flex flex-1 gap-x-4">              {/*   ye pehla column hai   */}
-                  
+                <Td className="flex flex-1 gap-x-4">                                     {/*   ye pehla column hai   */}
+
+
+
+
+
+    {/*   Course Thumbnail   */}              
+
                   <img
                     src={course?.thumbnail}
                     alt={course?.courseName}
@@ -110,11 +119,23 @@ export default function CoursesTable({ courses, setCourses }) {
                   />
 
                   <div className="flex flex-col justify-between">
-                    
+
+
+
+
+
+    {/*   Course Name   */}
+
                     <p className="text-lg font-semibold text-richblack-5">
                       {course.courseName}
                     </p>
 
+
+
+
+
+    {/*   Course Description   */}
+ 
                     <p className="text-xs text-richblack-300">
                       {course.courseDescription.split(" ").length >
                       TRUNCATE_LENGTH
@@ -124,20 +145,38 @@ export default function CoursesTable({ courses, setCourses }) {
                             .join(" ") + "..."
                         : course.courseDescription}
                     </p>
+    
+
+
+
+
+    {/*   Created:    */}
 
                     <p className="text-[12px] text-white">
                       Created: {formatDate(course.createdAt)}
                     </p>
 
                     {course.status === COURSE_STATUS.DRAFT ? (
-                      
+
+
+
+
+
+    /*   Drafted   */                 
+
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
                         <HiClock size={14} />
                         Drafted
                       </p>
 
                     ) : (
-                      
+
+
+
+
+
+    /*   Published   */
+
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-yellow-100">
                         
                         <div className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-100 text-richblack-700">
@@ -152,17 +191,17 @@ export default function CoursesTable({ courses, setCourses }) {
                 </Td>
 
 
-                <Td className="text-sm font-medium text-richblack-100">           {/*   ye hai 2nd column   */}
+                <Td className="text-sm font-medium text-richblack-100">                  {/*   ye hai 2nd column   */}
                   2hr 30min
                 </Td>
 
 
-                <Td className="text-sm font-medium text-richblack-100">           {/*   ye hai 3rd column   */}
+                <Td className="text-sm font-medium text-richblack-100">                  {/*   ye hai 3rd column   */}
                   ₹{course.price}
                 </Td>
 
 
-                <Td className="text-sm font-medium text-richblack-100 ">          {/*   ye hai 4th column   */}
+                <Td className="text-sm font-medium text-richblack-100 ">                 {/*   ye hai 4th column   */}
                   
                   <button
                     disabled={loading}
@@ -188,7 +227,7 @@ export default function CoursesTable({ courses, setCourses }) {
                           ? () => handleCourseDelete(course._id)
                           : () => {},
                         btn2Handler: !loading
-                          ? () => setConfirmationModal(null)                        //  isse modal bnd ho jata hai
+                          ? () => setConfirmationModal(null)                             //  isse modal bnd ho jata hai
                           : () => {},
                       })
                     }}
@@ -208,13 +247,15 @@ export default function CoursesTable({ courses, setCourses }) {
 
 
 
-  {/*   Agar confirmationModal ki value hai (yaani null nahi hai), tab hi ConfirmationModal component ko render karo aur usmein modalData ke andar confirmationModal bhej do.   */}
+
+    {/*   Agar confirmationModal ki value hai (yaani null nahi hai), tab hi ConfirmationModal component ko render karo aur usmein modalData ke andar confirmationModal bhej do.   */}
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
 
     </>
   )
 }
+
 
 
 

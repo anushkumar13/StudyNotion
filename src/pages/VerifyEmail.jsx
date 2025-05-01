@@ -12,16 +12,18 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 function VerifyEmail() {
-  const [otp, setOtp] = useState("");                                      // ye OTP ka state variable
-  const { signupData, loading } = useSelector((state) => state.auth);      // line - 45 pe jo jo pass kiya gaya hai vo data pehle lao to sahi, to ye vo saare data laega
-  const dispatch = useDispatch();                                          // dispatch use karna hai to ye to likhna hi padega (line - 41) mein use hua hai
-  const navigate = useNavigate();                                          // navigate use karna hai to ye to likhna hi padega (line - 25) mein use hua hai
+  const [otp, setOtp] = useState("");                                                    //  ye OTP ka state variable
+  const { signupData, loading } = useSelector((state) => state.auth);                    //  line - 45 pe jo jo pass kiya gaya hai vo data pehle lao to sahi, to ye vo saare data laega
+  const dispatch = useDispatch();                                                        //  dispatch use karna hai to ye to likhna hi padega (line - 41) mein use hua hai
+  const navigate = useNavigate();                                                        //  navigate use karna hai to ye to likhna hi padega (line - 25) mein use hua hai
 
 
 
 
-  {/*  agar signupData mein koi sa bhi data missing hai to signup wale page pe le jao  */}
+
+    {/*   agar signupData mein koi sa bhi data missing hai to signup wale page pe le jao   */}
 
   useEffect(() => {
     
@@ -35,31 +37,32 @@ function VerifyEmail() {
 
 
 
-  {/*  Signup wale action ko dispatch karo  */}
+    {/*   Signup wale action ko dispatch karo   */}
 
   const handleVerifyAndSignup = (e) => {
     e.preventDefault();
-    const {                     // signupData se ye saare data nikal lo
-      accountType,              // iska data nikalo
-      firstName,                // iska data nikalo
-      lastName,                 // iska data nikalo
-      email,                    // iska data nikalo
-      password,                 // iska data nikalo
-      confirmPassword,          // iska data nikalo
+    const {                                                                              // signupData se ye saare data nikal lo
+      accountType,                                                                       // iska data nikalo
+      firstName,                                                                         // iska data nikalo
+      lastName,                                                                          // iska data nikalo
+      email,                                                                             // iska data nikalo
+      password,                                                                          // iska data nikalo
+      confirmPassword,                                                                   // iska data nikalo
     } = signupData;
+
 
 
 
     
     dispatch(
-      signUp(                   // isme hum log ye saari chize pass kar rahe hain
-        accountType,            // ye pass kar rahe hain
-        firstName,              // ye pass kar rahe hain
-        lastName,               // ye pass kar rahe hain
-        email,                  // ye pass kar rahe hain
-        password,               // ye pass kar rahe hain
-        confirmPassword,        // ye pass kar rahe hain
-        otp,                    // ye pass kar rahe hain
+      signUp(                                                                            // isme hum log ye saari chize pass kar rahe hain
+        accountType,                                                                     // ye pass kar rahe hain
+        firstName,                                                                       // ye pass kar rahe hain
+        lastName,                                                                        // ye pass kar rahe hain
+        email,                                                                           // ye pass kar rahe hain
+        password,                                                                        // ye pass kar rahe hain
+        confirmPassword,                                                                 // ye pass kar rahe hain
+        otp,                                                                             // ye pass kar rahe hain
         navigate
       )
     );
@@ -68,24 +71,31 @@ function VerifyEmail() {
 
 
 
+
   return (
     <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
       {loading ? (
         <div>
-          <div className="spinner"></div>                                  {/*  agar loading true hai to spinner dikhao  */} 
+          <div className="spinner"></div>                                                {/*  agar loading true hai to spinner dikhao  */} 
         </div>
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
 
 
-        {/*  Verify Email  */}
+
+
+
+    {/*   Verify Email   */}
 
           <h1 className="text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]">
             Verify Email
           </h1>
 
 
-        {/*  A verification code has been sent to you. Enter the code below  */}
+
+
+
+    {/*   A verification code has been sent to you. Enter the code below   */}
 
           <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">
             A verification code has been sent to you. Enter the code below
@@ -97,12 +107,14 @@ function VerifyEmail() {
 
 
 
-        {/*  OTP dalne ke liye  */}
+
+
+    {/*   OTP dalne ke liye   */}
 
             <OtpInput
               value={otp}
               onChange={setOtp}
-              numInputs={6}                                                // 6 number ka OTP rahega
+              numInputs={6}                                                              // 6 number ka OTP rahega
               renderInput={(props) => (
                 <input
                   {...props}
@@ -122,7 +134,8 @@ function VerifyEmail() {
 
 
 
-        {/*  Verify Email wala button  */}
+
+    {/*   Verify Email wala button   */}
 
             <button
               type="submit"
@@ -135,7 +148,8 @@ function VerifyEmail() {
 
 
 
-        {/*  <-- Back To Signup wala button  */}
+
+    {/*   <-- Back To Signup wala button   */}
 
           <div className="mt-6 flex items-center justify-between">
             <Link to="/signup">
@@ -147,11 +161,12 @@ function VerifyEmail() {
 
 
 
-        {/*  Resend it wala button  */}
+
+    {/*   Resend it wala button   */}
 
             <button
               className="flex items-center text-blue-100 gap-x-2"
-              onClick={() => dispatch(sendOtp(signupData.email))}          // Resend it pe click karoge to OTP firse send hona chahiye isliye sendOtp function ko call kar rahe hai aur input me email bhi pass kar rahe hain (signupData se email leke aaega)
+              onClick={() => dispatch(sendOtp(signupData.email))}                        // Resend it pe click karoge to OTP firse send hona chahiye isliye sendOtp function ko call kar rahe hai aur input me email bhi pass kar rahe hain (signupData se email leke aaega)
             >
               <RxCountdownTimer />
               Resend it
@@ -163,6 +178,7 @@ function VerifyEmail() {
     </div>
   );
 }
+
 
 
 

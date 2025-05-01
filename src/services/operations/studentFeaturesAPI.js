@@ -10,13 +10,15 @@ import { resetCart } from "../../slices/cartSlice";
 
 
 
+   {/*   Company   */}
+
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} = studentEndpoints;            //  studentEndpoints ek object hai, jisme 3 API URLs stored hain.
 
 
 
 
 
-{/*   Yeh function JavaScript ka ek external file (jaise Razorpay ka SDK) dynamically load karta hai. Agar script successfully load ho jaye, toh resolve(true) return karta hai, warna agar load fail ho jaye toh resolve(false) deta hai.   */}
+    {/*   Yeh function JavaScript ka ek external file (jaise Razorpay ka SDK) dynamically load karta hai. Agar script successfully load ho jaye, toh resolve(true) return karta hai, warna agar load fail ho jaye toh resolve(false) deta hai.   */}
 
 function loadScript(src) {                                                                                   //  Ye ek function hai jiska naam hai loadScript. Isme hum ek src parameter pass karte hain (jo hota hai external JavaScript file ka URL, jaise Razorpay ka SDK URL).
     
@@ -41,7 +43,7 @@ function loadScript(src) {                                                      
 
 
 
-{/*   Ye function tab chalta hai jab koi user course purchase karne ke liye "Buy Now" pe click karta hai.   */}
+    {/*   Yeh function ek user ko course purchase karne ke liye payment process handle karta hai. Pehle ek loading notification dikhaata hai user ko. Phir Razorpay ka checkout script load kar raha hai, agar script load nahi hoti toh ek error toast show hota hai. Uske baad backend ko payment order create karne ke liye request bheji jaati hai. Agar backend se success nahi aata toh error throw hoti hai. Jab backend se Razorpay ka order create ho jaata hai, toh Razorpay ke payment options ko configure kiya jaata hai. Payment hone ke baad ek handler function hota hai jo payment success email bhejta hai aur backend ko verify karne ke liye response send karta hai. Agar payment fail hota hai, toh payment failed ka error toast show hota hai. Agar function ke beech mein koi bhi error hoti hai, toh ek error toast dikhaata hai: "Could not make Payment." Aur finally, loading toast ko dismiss kar diya jaata hai.   */}
 
 export async function buyCourse(token, courses, userDetails, navigate, dispatch) {
     
@@ -89,7 +91,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
             }
         }
 
-        //miss hogya tha 
+    
 
         const paymentObject = new window.Razorpay(options);                                                  //  Razorpay ke popup ko create kar raha hai.
         
@@ -117,7 +119,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
 
 
 
-{/*   Jab student ka payment successfully ho jaata hai Razorpay ke through, tab usko ek confirmation email bhejna   */}
+    {/*   Jab student ka payment successfully ho jaata hai Razorpay ke through, tab usko ek confirmation email bhejna   */}
 
 async function sendPaymentSuccessEmail(response, amount, token) {                                            //  response: Isme Razorpay ka payment response hota hai (razorpay_order_id, razorpay_payment_id),  amount: Kitne paise pay kiye gaye (ye backend ko dikhane ke liye hai),  token: User ka auth token jo verify karta hai ki request authorized user se aa rahi hai
     
@@ -143,7 +145,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {               
 
 
 
-{/*   Yeh function Razorpay se payment hone ke baad payment ko backend ke through verify karta hai, aur agar sab kuch sahi hai toh user ko course mein enroll kar deta hai.   */}
+    {/*   Yeh function Razorpay se payment hone ke baad payment ko backend ke through verify karta hai, aur agar sab kuch sahi hai toh user ko course mein enroll kar deta hai.   */}
 
 async function verifyPayment(bodyData, token, navigate, dispatch) {                                          //  Jab Razorpay se payment successful hoti hai, tab ye function call hota hai. Ye backend ko verify karta hai ki payment genuine hai ya nahi.
     

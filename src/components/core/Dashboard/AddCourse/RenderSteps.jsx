@@ -9,14 +9,16 @@ import PublishCourse from "./PublishCourse"
 
 
 
+
 export default function RenderSteps() {
 
-  const { step } = useSelector((state) => state.course)         /*   Redux store ke course slice se step value nikal ke local variable step me store kar raha hai — taaki current course step ko track kiya ja sake.   */
+  const { step } = useSelector((state) => state.course)                             /*   Redux store ke course slice se step value nikal ke local variable step me store kar raha hai — taaki current course step ko track kiya ja sake.   */
 
 
 
 
-  {/*   Yeh ek array hai jo course creation ke 3 steps ko define karta hai — har step ka id aur title diya gaya hai.   */}
+
+    {/*   Yeh ek array hai jo course creation ke 3 steps ko define karta hai — har step ka id aur title diya gaya hai.   */}
 
   const steps = [
     {
@@ -35,6 +37,7 @@ export default function RenderSteps() {
 
 
 
+
   
   return (
     <>
@@ -50,11 +53,19 @@ export default function RenderSteps() {
                 className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px] ${
                   step === item.id
 
-        /*   agar step === item ki id hai to yellowish dikhao   */
+
+
+
+
+    /*   agar step === item ki id hai to yellowish dikhao   */
 
                     ? "border-yellow-50 bg-yellow-900 text-yellow-50"
 
-                  /*   nahi to to gray dikhao   */
+
+
+
+
+    /*   nahi to to gray dikhao   */
 
                     : "border-richblack-700 bg-richblack-800 text-richblack-300"
 
@@ -62,14 +73,20 @@ export default function RenderSteps() {
               >
 
 
-        {/*   agar step > item ki id hai to tick (✅ jaisa) dikhao   */}
+
+
+
+    {/*   agar step > item ki id hai to tick (✅ jaisa) dikhao   */}
 
                 {step > item.id ? (
                   <FaCheck className="font-bold text-richblack-900" />
                 ) : (
 
 
-        /*   nahi to uss step ka number (item.id) dikhana.   */   
+
+
+
+    /*   nahi to uss step ka number (item.id) dikhana.   */   
 
                   item.id
                 )}
@@ -81,7 +98,8 @@ export default function RenderSteps() {
 
 
 
-        {/*   Yeh code ek progress line (line between steps) bana raha hai — lekin sirf tab jab current step last step nahi ho.   */}
+
+    {/*   Yeh code ek progress line (line between steps) bana raha hai — lekin sirf tab jab current step last step nahi ho.   */}
 
             {item.id !== steps.length && (
               <>
@@ -89,7 +107,10 @@ export default function RenderSteps() {
                   className={`h-[calc(34px/2)] w-[33%]  border-dashed border-b-2 ${
 
 
-        /*   Agar current step item.id se aage hai, toh yellow border dikhao (complete step), warna black border dikhao (incomplete step).   */
+
+
+
+    /*   Agar current step item.id se aage hai, toh yellow border dikhao (complete step), warna black border dikhao (incomplete step).   */
 
                   step > item.id  ? "border-yellow-50" : "border-richblack-500"
                 } `}
@@ -114,7 +135,8 @@ export default function RenderSteps() {
 
 
 
-        {/*   Yeh line har step ke title ka color decide karti hai. Agar current step (step) us step (item.id) ke barabar ya bada hai → color white (text-richblack-5) ho jaata hai. Nahi to color grey (text-richblack-500) ho jaata hai.    */}
+
+    {/*   Yeh line har step ke title ka color decide karti hai. Agar current step (step) us step (item.id) ke barabar ya bada hai → color white (text-richblack-5) ho jaata hai. Nahi to color grey (text-richblack-500) ho jaata hai.    */}
 
               <p
                 className={`text-sm ${
@@ -129,13 +151,19 @@ export default function RenderSteps() {
         ))}
       </div>
 
-      {/* Render specific component based on current step */}
-      {step === 1 && <CourseInformationForm />}                  {/*   iss component me Course ke information ka form hai ka code   */}
-      {step === 2 && <CourseBuilderForm />}                      {/*   iss component me Course Builder ka form hai ka code   */}
-      {step === 3 &&  <PublishCourse /> }                        {/*   iss component me Course ke publish karne ka form ka code hai   */}
+
+
+
+
+    {/* Render specific component based on current step */}
+
+      {step === 1 && <CourseInformationForm />}                                     {/*   iss component me Course ke information ka form hai ka code   */}
+      {step === 2 && <CourseBuilderForm />}                                         {/*   iss component me Course Builder ka form hai ka code   */}
+      {step === 3 &&  <PublishCourse /> }                                           {/*   iss component me Course ke publish karne ka form ka code hai   */}
     </>
   )
 }
+
 
 
 

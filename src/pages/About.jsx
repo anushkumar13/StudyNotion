@@ -16,6 +16,7 @@ import Footer from "../components/common/Footer"
 
 
 
+
 const About = () => {
   return (
     <div>
@@ -24,8 +25,9 @@ const About = () => {
           
           
           
+
           
-          {/*   Driving Innovation in Online Education for a Brighter Future   */}
+    {/*   "Driving Innovation in Online Education for a Brighter Future"   */}
 
           <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
             Driving Innovation in Online Education for a
@@ -33,8 +35,9 @@ const About = () => {
 
 
           
+
           
-          {/*   Driving Innovation in Online Education for a Brighter Future heading ke niche ka paragraph   */}
+    {/*   "Driving Innovation in Online Education for a Brighter Future heading ke niche ka paragraph"   */}
 
             <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
               Studynotion is at the forefront of driving innovation in online
@@ -48,7 +51,8 @@ const About = () => {
 
 
 
-          {/*   teen images   */}
+
+    {/*   teen images   */}
 
           <div className="sm:h-[70px] lg:h-[150px]"></div>
           <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
@@ -62,7 +66,8 @@ const About = () => {
 
 
 
-          {/*   'We are passionate about...' wala quote   */}
+
+    {/*   " 'We are passionate about...' " wala quote   */}
 
       <section className="border-b border-richblack-700">
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
@@ -82,7 +87,8 @@ const About = () => {
 
 
 
-          {/*   Our Founding Story   */}
+
+    {/*   "Our Founding Story"   */}
 
               <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
                 Our Founding Story
@@ -91,7 +97,8 @@ const About = () => {
 
 
 
-          {/*   Our Founding Story heading ke niche wale dono paragraph   */}
+
+    {/*   "Our Founding Story heading ke niche wale dono paragraph"   */}
 
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
                 Our e-learning platform was born out of a shared vision and
@@ -115,7 +122,8 @@ const About = () => {
 
 
 
-          {/*   inn do paragraph ke right side wala image   */}
+
+    {/*   inn do paragraph ke right side wala image   */}
 
             <div>
               <img
@@ -131,7 +139,8 @@ const About = () => {
 
 
 
-          {/*   Our Vision   */}
+
+    {/*   "Our Vision"   */}
 
               <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
                 Our Vision
@@ -140,7 +149,8 @@ const About = () => {
 
 
 
-          {/*   'Our Vision' heading ke niche wala paragraph   */}
+
+    {/*   " 'Our Vision' heading ke niche wala paragraph "   */}
 
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
                 With this vision in mind, we set out on a journey to create an
@@ -157,7 +167,8 @@ const About = () => {
 
 
 
-          {/*   Our Mission   */}
+
+    {/*   "Our Mission"   */}
 
               <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] ">
               Our Mission
@@ -166,7 +177,8 @@ const About = () => {
 
 
 
-          {/*   'Our Mission' heading ke niche ka paragraph   */}
+
+    {/*   " 'Our Mission' " heading ke niche ka paragraph   */}
 
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
               Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.
@@ -179,7 +191,8 @@ const About = () => {
 
 
 
-          {/*  5K Active Students, 10+ Mentors, 200+ Courses, 50+ Awards  */}
+
+    {/*   "5K Active Students, 10+ Mentors, 200+ Courses, 50+ Awards"   */}
 
         <StatsComponenet />
 
@@ -188,14 +201,16 @@ const About = () => {
         
         
         
-          {/*  World-Class Learning for Anyone, Anywhere etc.. wala  */}
+
+    {/*   "World-Class Learning for Anyone, Anywhere etc.. wala"   */}
 
         <LearningGrid />
 
 
 
 
-          {/*  Get in Touch We'd love to here for you, Please fill out this form.  */}
+
+    {/*   "Get in Touch We'd love to here for you, Please fill out this form."   */}
 
         <ContactFormSection />
 
@@ -207,9 +222,10 @@ const About = () => {
       <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         
         
+
         
         
-          {/* Reviws from Other Learner */}
+    {/*   "Reviws from Other Learner"   */}
 
         <h1 className="text-center text-4xl font-semibold mt-8">
           Reviews from other learners
@@ -218,15 +234,17 @@ const About = () => {
 
 
 
-          {/*  ReviewSlider  */}
+
+    {/*  ReviewSlider  */}
 
         <ReviewSlider />
       </div>
 
 
 
+
  
-          {/*  Footer  */}
+    {/*  Footer  */}
 
       <Footer />
     </div>
@@ -236,7 +254,9 @@ const About = () => {
 
 
 
+
 export default About
+
 
 
 

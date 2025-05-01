@@ -15,43 +15,52 @@ import ProfileDropdown from "../core/Auth/ProfileDropDown"
 
 
 
+
 function Navbar() {
 
-  const { token } = useSelector((state) => state.auth)            // auth se token ko leke aao
-  const { user } = useSelector((state) => state.profile)          // profile se user ko leke aao
-  const { totalItems } = useSelector((state) => state.cart)       // cart se totalItems leke aao
+  const { token } = useSelector((state) => state.auth)                          // auth se token ko leke aao
+  const { user } = useSelector((state) => state.profile)                        // profile se user ko leke aao
+  const { totalItems } = useSelector((state) => state.cart)                     // cart se totalItems leke aao
   const location = useLocation()
-
-
-  const [subLinks, setSubLinks] = useState([])                    // SubLinks vo hai jab HomePage pe Catalog pe hover karte ho to dropdown me jo dikhata hai unke links 
+  const [subLinks, setSubLinks] = useState([])                                  // SubLinks vo hai jab HomePage pe Catalog pe hover karte ho to dropdown me jo dikhata hai unke links 
   const [loading, setLoading] = useState(false)
 
 
 
 
-        {/* sari categories ki list laane ke liye (jo Catalog pe hover karne pe dikhaega) api call kar rahe hain */}
+
+    {/*   sari categories ki list laane ke liye (jo Catalog pe hover karne pe dikhaega) api call kar rahe hain   */}
 
   useEffect(() => {
     ;(async () => {
+
       setLoading(true)
+
       try {
+
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)                               // jo list aayi hai usko SubLinks me store karo
-      } catch (error) {
+        setSubLinks(res.data.data)                                              // jo list aayi hai usko SubLinks me store karo
+      } 
+      
+      catch (error) {
         console.log("Could not fetch Categories.", error)
       }
+
       setLoading(false)
+
     })()
   }, [])
 
 
 
 
-        {/* to check ki current path kisi route se match kar raha hai ?? */}
+
+    {/*   to check ki current path kisi route se match kar raha hai ??   */}
 
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
   }
+
 
 
 
@@ -67,7 +76,7 @@ function Navbar() {
 
 
 
-        {/* StudyNotion Logo */}
+    {/*   StudyNotion Logo   */}
 
         <Link to="/">
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
@@ -76,7 +85,7 @@ function Navbar() {
 
 
 
-        {/* Navigation bar links (Home, Catalog, About Us, Contact Us) */}
+    {/*   Navigation bar links (Home, Catalog, About Us, Contact Us)   */}
 
         <nav className="hidden md:block">
           <ul className="flex gap-x-6 text-richblack-25">
@@ -92,27 +101,36 @@ function Navbar() {
                       }`}
                     >
                       <p>{link.title}</p>
-                      <BsChevronDown />    {/* dropdown logo */}
+                      <BsChevronDown />                                         {/*   dropdown logo   */}
 
 
 
-                        {/* Catalog pe ja hover karte hai to jo dibba aata hai rectangle type ka */}
+
+    {/*   Catalog pe ja hover karte hai to jo dibba aata hai rectangle type ka   */}
 
                       <div className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]">
 
 
 
-                        {/* Catalog pe ja hover karte hai to jo dibbe ke upar triangle type aata hai */}
+
+    {/*   Catalog pe ja hover karte hai to jo dibbe ke upar triangle type aata hai   */}
 
                         <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
                        
                         
 
 
-                        {/* Catalog pe ja hover karne pe jo data dikhta hai */}
+    {/*   Catalog pe ja hover karne pe jo data dikhta hai   */}
                         
                         {loading ? (
-                          <p className="text-center">Loading...</p>
+
+
+
+
+    /*   Loading...   */
+
+                          <p className="text-center"> Loading... </p>
+
                         ) : (subLinks && subLinks.length) ? (
                           <>
                             {subLinks
@@ -120,6 +138,7 @@ function Navbar() {
                                 (subLink) => subLink?.courses?.length > 0
                               )
                               ?.map((subLink, i) => (
+                               
                                 <Link
                                   to={`/catalog/${subLink.name
                                     .split(" ")
@@ -128,12 +147,22 @@ function Navbar() {
                                   className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
                                   key={i}
                                 >
+                                  
                                   <p>{subLink.name}</p>
+
                                 </Link>
+
                               ))}
                           </>
                         ) : (
-                          <p className="text-center">No Courses Found</p>
+
+
+
+
+    /*   No Courses Found   */
+                          
+                          <p className="text-center"> No Courses Found </p>
+
                         )}
                       </div>
                     </div>
@@ -141,9 +170,12 @@ function Navbar() {
                 ) : (
 
 
-                  // Home, About Us and Contact Us wale ke liye 
+
+
+    /*   Home, About Us and Contact Us wale ke liye   */
 
                   <Link to={link?.path}>
+
                     <p
                       className={`${
                         matchRoute(link?.path)
@@ -153,7 +185,9 @@ function Navbar() {
                     >
                       {link.title}
                     </p>
+
                   </Link>
+               
                 )}
               </li>
             ))}
@@ -163,55 +197,75 @@ function Navbar() {
 
 
 
-          {/* Login / Signup / Dashboard Button */}
+
+    {/*   Login / Signup / Dashboard Button   */}
 
         <div className="hidden items-center gap-x-4 md:flex">
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+            
             <Link to="/dashboard/cart" className="relative">
               <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
               {totalItems > 0 && (
+                
                 <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
                   {totalItems}
                 </span>
+              
               )}
+           
             </Link>
+          
           )}
 
 
 
-          {/* agar logged in nahi hai to login button dikhao */}
+
+
+    {/*   agar logged in nahi hai to login button dikhao   */}
 
           {token === null && (
+            
             <Link to="/login">
+              
               <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
                 Log in
               </button>
+            
             </Link>
+          
           )}
 
 
 
 
-          {/* agar logged in nahi hai to signup button dikhao */}
+
+    {/*   agar logged in nahi hai to signup button dikhao   */}
 
           {token === null && (
+            
             <Link to="/signup">
+            
               <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
                 Sign up
               </button>
+            
             </Link>
+          
           )}
 
 
 
 
-          {/* agar logged in hai to drop down dikhao */}
+
+    {/*   agar logged in hai to drop down dikhao   */}
 
           {token !== null && <ProfileDropdown />}
         </div>
+        
         <button className="mr-4 md:hidden">
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
         </button>
+      
       </div>
     </div>
   )

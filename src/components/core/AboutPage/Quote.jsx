@@ -6,8 +6,10 @@ import HighlightText from '../HomePage/HighlightText'
 
 
 
+
 const Quote = () => {
   return (
+
 
 
     /*   We are passionate about revolutionizing the way we learn. Our innovative platform   */
@@ -54,6 +56,7 @@ const Quote = () => {
     </div>
   )
 }
+
 
 
 

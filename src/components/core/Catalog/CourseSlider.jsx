@@ -11,15 +11,17 @@ import Course_Card from './Course_Card'
 
 
 
+
 const CourseSlider = ({Courses}) => {
   
+
 
 
 
   return (
     <>
 
-      {Courses?.length ? (                //  agar ek bhi course exist karta hai to ---> 
+      {Courses?.length ? (                                                           //  agar ek bhi course exist karta hai to ---> 
         
         <Swiper
           slidesPerView={1}
@@ -45,7 +47,7 @@ const CourseSlider = ({Courses}) => {
 
         </Swiper>
 
-      ) : (                               //  agar ek bhi course exist nahi karta hai to "No Course Found" show karo
+      ) : (                                                                          //  agar ek bhi course exist nahi karta hai to "No Course Found" show karo
 
         <p className="text-xl text-richblack-5"> No Course Found</p>
 

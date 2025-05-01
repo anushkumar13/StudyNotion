@@ -8,6 +8,9 @@ import { FaArrowRight } from "react-icons/fa";
 
 
 
+
+{/*   Yeh component dynamic aur reusable hai jisme har prop ke zariye content ko customize kiya jaa sakta hai, jaise ki heading, code block ka content, button labels, aur styles (background gradient aur code text color). Iska use kisi bhi page me kiya jaa sakta hai jaha pe aapko ek styled code block display karna ho.   */}
+
 const CodeBlocks = ({
   position,
   heading,
@@ -18,12 +21,16 @@ const CodeBlocks = ({
   backgroundGradient,
   codeColor,
 }) => {
+
+
   return (
     <div className={`flex ${position} my-20 justify-between flex-col lg:gap-10 gap-10`}>
 
 
 
-      {/* heading */}
+
+
+    {/* heading */}
 
       <div className="w-[100%] lg:w-[50%] flex flex-col gap-8">
         {heading}
@@ -31,7 +38,8 @@ const CodeBlocks = ({
 
 
 
-        {/* Sub Heading */}
+
+    {/* Sub Heading */}
 
         <div className="text-richblack-300 text-base font-bold w-[85%] -mt-3">
           {subheading}
@@ -40,7 +48,8 @@ const CodeBlocks = ({
 
 
 
-        {/* Buttons */}
+
+    {/* Buttons */}
 
         <div className="flex gap-7 mt-7">
 
@@ -61,7 +70,8 @@ const CodeBlocks = ({
 
 
 
-      {/* backgroundGradient */}
+
+    {/* backgroundGradient */}
 
       <div className="h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
         {backgroundGradient}
@@ -69,7 +79,8 @@ const CodeBlocks = ({
 
 
 
-        {/* Indexing */}
+
+    {/* Indexing */}
 
         <div className="text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold ">
           <p>1</p>
@@ -88,7 +99,8 @@ const CodeBlocks = ({
 
 
 
-        {/* Code wali animation */}
+
+    {/* Code wali animation */}
 
         <div
           className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-1`}
@@ -110,6 +122,7 @@ const CodeBlocks = ({
     </div>
   );
 };
+
 
 
 

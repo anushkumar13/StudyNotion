@@ -11,6 +11,7 @@ import IconBtn from "../../common/IconBtn"
 
 
 
+
 export default function CourseReviewModal({ setReviewModal }) {
   const { user } = useSelector((state) => state.profile)
   const { token } = useSelector((state) => state.auth)
@@ -18,6 +19,9 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
+
+    {/*   Ye line form ko manage karne ke liye 4 important cheezein extract kar rahi hai — register, handleSubmit, setValue, aur errors — jinka use form fields, submission, validation, aur errors handle karne ke liye hota hai.   */}
 
   const {
     register,
@@ -29,6 +33,9 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
+    {/*   Jab component load hota hai, tab form ke courseExperience ko khaali aur courseRating ko 0 set kar dete hain taaki form fresh state me shuru ho.   */}
+
   useEffect(() => {
     setValue("courseExperience", "")
     setValue("courseRating", 0)
@@ -38,6 +45,9 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
+    {/*   Ye function ratingChanged tab chalta hai jab user koi naya rating select karta hai (jaise 3 stars ya 5 stars click karta hai). Us time pe ye function newRating value ko form ke courseRating field me update karta hai using setValue.   */}
+
   const ratingChanged = (newRating) => {
     
     setValue("courseRating", newRating)
@@ -45,6 +55,9 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
+
+    {/*   Ye ek function hai jo jab form submit hota hai, tab call hota hai. Iska kaam hai:     1). Review and rating data ko lena     2). createRating() naam ke function ko call karna (jo shayad backend API call karega)     3).    */}
 
   const onSubmit = async (data) => {
     await createRating(
@@ -61,6 +74,7 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
@@ -68,10 +82,12 @@ export default function CourseReviewModal({ setReviewModal }) {
        
        
        
-    {/*   Add Review   */}
+
+    {/*   "Add Review"   */}
 
         <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
           <p className="text-xl font-semibold text-richblack-5"> Add Review </p>
+
 
 
 
@@ -83,6 +99,7 @@ export default function CourseReviewModal({ setReviewModal }) {
           </button>
 
         </div>
+
 
 
 
@@ -103,6 +120,7 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
+
     {/*   user ka full name   */} 
 
               <p className="font-semibold text-richblack-5">
@@ -112,7 +130,8 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
-    {/*   Posting Publicly   */}
+
+    {/*   "Posting Publicly"   */}
 
               <p className="text-sm text-richblack-5"> Posting Publicly </p>
 
@@ -138,7 +157,7 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
-    {/*   Add Your Experience   */}          
+    {/*   "Add Your Experience"   */}          
 
               <label
                 className="text-sm text-richblack-5"
@@ -159,7 +178,8 @@ export default function CourseReviewModal({ setReviewModal }) {
 
 
 
-    /*   Please Add Your Experience   */
+
+    /*   "Please Add Your Experience"   */
 
                 <span className="ml-2 text-xs tracking-wide text-pink-200">
                   Please Add Your Experience
@@ -169,6 +189,7 @@ export default function CourseReviewModal({ setReviewModal }) {
             </div>
 
             <div className="mt-6 flex w-11/12 justify-end gap-x-2">
+
 
 
 

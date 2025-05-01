@@ -6,6 +6,7 @@ import Template from "../components/core/Auth/Template"
 
 
 
+
 function Signup() {
   return (
     <Template
@@ -17,6 +18,7 @@ function Signup() {
     />
   )
 }
+
 
 
 

@@ -12,6 +12,7 @@ import SidebarLink from "./SidebarLink"
 
 
 
+
     {/*   Yeh function ek Sidebar component banata hai, aur Redux store se profile state ke andar ka user aur loading value ko nikaal raha hai. loading ko yahan profileLoading naam se use kiya gaya hai.   */}
 
 export default function Sidebar() {
@@ -22,10 +23,12 @@ export default function Sidebar() {
 
 
 
-  const { loading: authLoading } = useSelector((state) => state.auth)            // Yeh line Redux ke auth state se loading value ko nikaal rahi hai, aur usko authLoading naam ke variable me store kar rahi hai taaki baad me use kiya ja sake.
-  const dispatch = useDispatch()                                                 // Yeh line Redux ka dispatch function le kar dispatch naam ke variable me store karti hai, taaki hum Redux actions ko component ke andar se call (ya bhej) kar sakein.
-  const navigate = useNavigate()                                                 // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
-  const [confirmationModal, setConfirmationModal] = useState(null)               // Yeh line ek state variable confirmationModal ko initialize karti hai, jisme initially null value hoti hai. Aur setConfirmationModal function ko use karke is state ko update kiya ja sakta hai.
+
+  const { loading: authLoading } = useSelector((state) => state.auth)                    // Yeh line Redux ke auth state se loading value ko nikaal rahi hai, aur usko authLoading naam ke variable me store kar rahi hai taaki baad me use kiya ja sake.
+  const dispatch = useDispatch()                                                         // Yeh line Redux ka dispatch function le kar dispatch naam ke variable me store karti hai, taaki hum Redux actions ko component ke andar se call (ya bhej) kar sakein.
+  const navigate = useNavigate()                                                         // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
+  const [confirmationModal, setConfirmationModal] = useState(null)                       // Yeh line ek state variable confirmationModal ko initialize karti hai, jisme initially null value hoti hai. Aur setConfirmationModal function ko use karke is state ko update kiya ja sakta hai.
+
 
 
 
@@ -42,6 +45,7 @@ export default function Sidebar() {
 
 
 
+
   
   return (
     <>
@@ -49,7 +53,7 @@ export default function Sidebar() {
         <div className="flex flex-col">
           
           {sidebarLinks.map((link) => {
-            if (link.type && user?.accountType !== link.type) return null              // iss line ka mtlb hai ki Agar kisi link ka type hai aur user ka accountType uss type se match nahi karta, toh wo link sidebar me show nahi hoga. Jaise maan lo koi link sirf Instructor ke liye hai (link.type === "Instructor") Aur agar current user Student hai (user.accountType === "Student") Toh wo link skip kar diya jayega, dikhaya hi nahi jayega sidebar me.
+            if (link.type && user?.accountType !== link.type) return null                // iss line ka mtlb hai ki Agar kisi link ka type hai aur user ka accountType uss type se match nahi karta, toh wo link sidebar me show nahi hoga. Jaise maan lo koi link sirf Instructor ke liye hai (link.type === "Instructor") Aur agar current user Student hai (user.accountType === "Student") Toh wo link skip kar diya jayega, dikhaya hi nahi jayega sidebar me.
             return (
               <SidebarLink key={link.id} link={link} iconName={link.icon} />
             )
@@ -60,12 +64,14 @@ export default function Sidebar() {
 
 
 
+
     {/*   Ek thin horizontal line dikhana Sidebar ke center me jo do sections ko visually alag kare.   */}
 
         <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
         
         
         
+
         
     {/*   Ye 'Settings' naam ka ek sidebar link create kar raha hai jo '/dashboard/settings' page pe le jata hai aur uske saath ek gear icon (⚙️) dikhata hai.   */}
 
@@ -74,6 +80,7 @@ export default function Sidebar() {
             link={{ name: "Settings", path: "/dashboard/settings" }}
             iconName="VscSettingsGear"
           />
+
 
 
 
@@ -87,12 +94,13 @@ export default function Sidebar() {
                 text2: "You will be logged out of your account.",
                 btn1Text: "Logout",
                 btn2Text: "Cancel",
-                btn1Handler: () => dispatch(logout(navigate)),         // Ye code user ko logout karne ke liye logout action ko dispatch karta hai aur navigate function ke through login page pe redirect karta hai.
-                btn2Handler: () => setConfirmationModal(null),         // Ye code confirmation modal ko band karne ke liye setConfirmationModal ko null set karta hai, jisse modal dikhna band ho jata hai.
+                btn1Handler: () => dispatch(logout(navigate)),                           // Ye code user ko logout karne ke liye logout action ko dispatch karta hai aur navigate function ke through login page pe redirect karta hai.
+                btn2Handler: () => setConfirmationModal(null),                           // Ye code confirmation modal ko band karne ke liye setConfirmationModal ko null set karta hai, jisse modal dikhna band ho jata hai.
               })
             }
             className="px-8 py-2 text-sm font-medium text-richblack-300"
           >
+
 
 
 
@@ -114,6 +122,7 @@ export default function Sidebar() {
     </>
   )
 }
+
 
 
 

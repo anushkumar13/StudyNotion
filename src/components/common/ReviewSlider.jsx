@@ -15,9 +15,11 @@ import { ratingsEndpoints } from "../../services/apis"
 
 
 
+
 function ReviewSlider() {
   const [reviews, setReviews] = useState([])
   const truncateWords = 15
+
 
 
 
@@ -38,6 +40,7 @@ function ReviewSlider() {
   }, [])
 
   
+
 
 
   return (
@@ -123,6 +126,7 @@ function ReviewSlider() {
     </div>
   )
 }
+
 
 
 

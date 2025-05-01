@@ -7,10 +7,15 @@ import { ImTree } from "react-icons/im";
 
 
 
+
+    {/*   Is code ka main purpose ek course card component create karna hai jo different courses ko display karta hai. Yeh component dynamic hai, jisme course details (jaise heading, description, level, lesson number) show hote hain aur jab user card par click karta hai, toh selected card ka visual style change hota hai.     1). Card Style: Agar current card select kiya gaya ho, toh uska background white hota hai aur shadow effect bhi add hota hai, warna dark theme maintain hoti hai.     2). Card Content: Card ke andar heading, description, level, aur lesson number show kiya jata hai.     3). Interaction: Jab user kisi card par click karta hai, toh selected card ko highlight karne ke liye setCurrentCard function call hota hai.   */}
+
 const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
+  
   return (
 
     <div
+
       className={`w-[360px] lg:w-[30%] ${
         currentCard === cardData?.heading
           ? "bg-white shadow-[12px_12px_0_0] shadow-yellow-50"
@@ -18,16 +23,20 @@ const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
       }  text-richblack-25 h-[300px] box-border cursor-pointer`}
       onClick={() => setCurrentCard(cardData?.heading)}
     >
+
       <div className="border-b-[2px] border-richblack-400 border-dashed h-[80%] p-6 flex flex-col gap-3">
+        
         <div
           className={` ${
             currentCard === cardData?.heading && "text-richblack-800"
           } font-semibold text-[20px]`}
         >
+
           {cardData?.heading}
         </div>
 
         <div className="text-richblack-400">{cardData?.description}</div>
+
       </div>
 
       <div
@@ -35,18 +44,35 @@ const CourseCard = ({cardData, currentCard, setCurrentCard}) => {
           currentCard === cardData?.heading ? "text-blue-300" : "text-richblack-300"
         } px-6 py-3 font-medium`}
       >
-        {/* Level */}
+
+
+
+
+
+
+    {/* Level */}
+
         <div className="flex items-center gap-2 text-[16px]">
           <HiUsers />
           <p>{cardData?.level}</p>
         </div>
 
-        {/* Flow Chart */}
+
+
+
+
+
+    {/* Flow Chart */}
+
         <div className="flex items-center gap-2 text-[16px]">
           <ImTree />
+
           <p>{cardData?.lessionNumber} Lession</p>
+
         </div>
+
       </div>
+
     </div>
   );
 };

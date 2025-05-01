@@ -8,37 +8,51 @@ import UpdatePassword from "./UpdatePassword"
 
 
 
+
 export default function Settings() {
 
   return (
     <>
+    
+
+
+
+
+    {/*   "Edit Profile"   */}
 
       <h1 className="mb-14 text-3xl font-medium text-richblack-5">
         Edit Profile
       </h1>
 
-      {/* Change Profile Picture */}
+
+
+
+
+    {/* Change Profile Picture */}
 
       <ChangeProfilePicture />
 
 
 
 
-      {/* Profile */}
+
+    {/* Profile */}
 
       <EditProfile />
 
 
 
 
-      {/* Password */}
+
+    {/* Password */}
 
       <UpdatePassword />
 
 
 
 
-      {/* Delete Account */}
+
+    {/* Delete Account */}
 
       <DeleteAccount />
 
