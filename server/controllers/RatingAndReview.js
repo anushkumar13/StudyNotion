@@ -1,16 +1,34 @@
+
+
 const RatingAndReview = require("../models/RatingAndRaview");
 const Course = require("../models/Course");
 const { mongo, default: mongoose } = require("mongoose");
 
-//createRating
+
+
+
+
+
+
+
+
+
+{/*   createRating   */}
+
 exports.createRating = async (req, res) => {
+
     try{
 
-        //get user id
+    //get user id
+
         const userId = req.user.id;
-        //fetchdata from req body
+
+    //fetchdata from req body
+
         const {rating, review, courseId} = req.body;
-        //check if user is enrolled or not
+
+    //check if user is enrolled or not
+
         const courseDetails = await Course.findOne(
                                     {_id:courseId,
                                     studentsEnrolled: {$elemMatch: {$eq: userId} },
@@ -22,7 +40,9 @@ exports.createRating = async (req, res) => {
                 message:'Student is not enrolled in the course',
             });
         }
-        //check if user already reviewed the course
+
+    //check if user already reviewed the course
+
         const alreadyReviewed = await RatingAndReview.findOne({
                                                 user:userId,
                                                 course:courseId,
@@ -33,14 +53,17 @@ exports.createRating = async (req, res) => {
                         message:'Course is already reviewed by the user',
                     });
                 }
-        //create rating and review
+
+    //create rating and review
+
         const ratingReview = await RatingAndReview.create({
                                         rating, review, 
                                         course:courseId,
                                         user:userId,
                                     });
        
-        //update course with this rating/review
+    //update course with this rating/review
+
         const updatedCourseDetails = await Course.findByIdAndUpdate({_id:courseId},
                                     {
                                         $push: {
@@ -49,13 +72,16 @@ exports.createRating = async (req, res) => {
                                     },
                                     {new: true});
         console.log(updatedCourseDetails);
-        //return response
+
+    //return response
+
         return res.status(200).json({
             success:true,
             message:"Rating and Review created Successfully",
             ratingReview,
         })
     }
+
     catch(error) {
         console.log(error);
         return res.status(500).json({
@@ -67,12 +93,23 @@ exports.createRating = async (req, res) => {
 
 
 
-//getAverageRating
+
+
+
+
+
+
+
+{/*   getAverageRating   */}
+
 exports.getAverageRating = async (req, res) => {
     try {
-            //get course ID
+
+    //get course ID
+
             const courseId = req.body.courseId;
-            //calculate avg rating
+            
+    //calculate avg rating
 
             const result = await RatingAndReview.aggregate([
                 {
@@ -88,7 +125,8 @@ exports.getAverageRating = async (req, res) => {
                 }
             ])
 
-            //return rating
+    //return rating
+
             if(result.length > 0) {
 
                 return res.status(200).json({
@@ -98,13 +136,15 @@ exports.getAverageRating = async (req, res) => {
 
             }
             
-            //if no rating/Review exist
+    //if no rating/Review exist
+
             return res.status(200).json({
                 success:true,
                 message:'Average Rating is 0, no ratings given till now',
                 averageRating:0,
             })
     }
+
     catch(error) {
         console.log(error);
         return res.status(500).json({
@@ -115,28 +155,43 @@ exports.getAverageRating = async (req, res) => {
 }
 
 
-//getAllRatingAndReviews
+
+
+
+
+
+
+
+
+{/*   getAllRatingAndReviews   */}
 
 exports.getAllRating = async (req, res) => {
+
     try{
-            const allReviews = await RatingAndReview.find({})
-                                    .sort({rating: "desc"})
-                                    .populate({
-                                        path:"user",
+            const allReviews = await RatingAndReview.find({})                                      //  RatingAndReview collection me se sabhi reviews fetch karta hai.
+                                    .sort({rating: "desc"})                                        //  Reviews ko descending order me sort karta hai — matlab sabse acchi rating pehle.
+
+                                    .populate({                                                    //  Jo user ne review diya hai, uska firstName, lastName, email, aur image bhi le aata hai (foreign key jaisa kaam).
+
+                                        path:"user", 
                                         select:"firstName lastName email image",
-                                    })
-                                    .populate({
+                                    }) 
+
+                                    .populate({                                                    //  Jo course ke liye review diya gaya hai, uska sirf courseName populate karta hai.
                                         path:"course",
                                         select: "courseName",
                                     })
-                                    .exec();
-            return res.status(200).json({
+
+                                    .exec();                                                       //  Query ko execute karta hai (yeh optional but achha practice hai readability ke liye).
+
+            return res.status(200).json({                                                          //  Agar sab sahi ho gaya toh client ko saare reviews bhej deta hai JSON format me.
                 success:true,
                 message:"All reviews fetched successfully",
                 data:allReviews,
             });
-    }   
-    catch(error) {
+    }  
+
+    catch(error) {                                                                                 //  Agar koi error aata hai, toh catch block us error ko console me print karta hai aur 500 status ke saath error message bhejta hai.
         console.log(error);
         return res.status(500).json({
             success:false,
