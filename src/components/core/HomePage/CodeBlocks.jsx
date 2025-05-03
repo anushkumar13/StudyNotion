@@ -64,6 +64,7 @@ const CodeBlocks = ({
           <CTAButton active={ctabtn2.active} linkto={ctabtn2.link}>
             {ctabtn2.btnText}
           </CTAButton>
+
         </div>
       </div>
 
@@ -83,6 +84,7 @@ const CodeBlocks = ({
     {/* Indexing */}
 
         <div className="text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold ">
+          
           <p>1</p>
           <p>2</p>
           <p>3</p>
@@ -94,6 +96,7 @@ const CodeBlocks = ({
           <p>9</p>
           <p>10</p>
           <p>11</p>
+          
         </div>
 
 

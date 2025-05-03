@@ -68,7 +68,7 @@ function App() {
     <Route
           path="signup"
           element={
-            <OpenRoute>         {/* OpenRoute mtlb jo bhi non logged in user hain vahi iss path ko access kar paaye */}
+            <OpenRoute>                                                        {/*   OpenRoute mtlb jo bhi non logged in user hain vahi iss path ko access kar paaye   */}
               <Signup />
             </OpenRoute>
           }

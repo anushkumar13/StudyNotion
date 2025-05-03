@@ -24,16 +24,18 @@ function ReviewSlider() {
 
 
 
-  useEffect(() => {
-    ;(async () => {
+  {/*   Jab page load ho, toh ek baar API call karo, reviews lao, aur state me set karo taaki UI me dikh sake.   */}
+ 
+  useEffect(() => {                                                                                     //  Jab component screen pe first time load hota hai (yaani render hota hai), tab React is useEffect ke andar ka code chalata hai. Ye ek side effect hook hai jo mostly data fetch karne ke liye use hota hai.
+    ;(async () => {                                                                                     //  Yahan ek anonymous async function banaya gaya hai jo turant start bhi ho raha hai (();) Ye syntax thoda ajeeb lagta hai par iska matlab hai: "ek async function banao aur turant chala do". Aur pehle ; isliye lagaya gaya hai taaki agar upar koi JS statement ho toh syntax error na aaye.
       
-      const { data } = await apiConnector(
+      const { data } = await apiConnector(                                                              //  apiConnector() naam ka function ek custom wrapper ho sakta hai (shayad Axios ka). Ye ek GET request bhej raha hai REVIEWS_DETAILS_API endpoint par. Aur await ka matlab hai: ruk jao jab tak response na mil jaye. Fir jo bhi data response me aata hai, use destructure karke data me store kiya gaya hai.
         "GET",
         ratingsEndpoints.REVIEWS_DETAILS_API
       )
       
-      if (data?.success) {
-        setReviews(data?.data)
+      if (data?.success) {                                                                              //  Agar data aaya aur usme success true hai (safe optional chaining ke saath), toh iska matlab API call successful thi.
+        setReviews(data?.data)                                                                          //  Ab data?.data ke andar actual reviews honge. Toh unko setReviews() function se tumhari React state me daal diya gaya hai. Jisse tumhara component rerender karega aur naye reviews dikhane lagega.
       }
 
     })()
