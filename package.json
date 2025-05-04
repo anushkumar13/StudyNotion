@@ -36,6 +36,7 @@
     "react-super-responsive-table": "^5.2.1",
     "react-type-animation": "^3.0.1",
     "redux-toolkit": "^1.1.2",
+    "scripts": "^0.1.0",
     "swiper": "^9.4.1",
     "video-react": "^0.16.0",
     "web-vitals": "^2.1.4"
@@ -48,6 +49,7 @@
   "bugs": {
     "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
   },
+<<<<<<< HEAD
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -55,6 +57,8 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
   },
+=======
+>>>>>>> a45b9857344ae81ab75ea350cbe9749728aa6c32
   "eslintConfig": {
     "extends": [
       "react-app",
