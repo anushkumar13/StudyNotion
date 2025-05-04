@@ -11,6 +11,7 @@ import CTAButton from "../../../components/core/HomePage/Button";
 {/*   as an array, object banao taki map  method ka use kar sake   */}
 
 const LearningGridArray = [
+
   {
     order: -1,
     heading: "World-Class Learning for",
@@ -65,7 +66,7 @@ const LearningGrid = () => {
   return (
     <div className="grid mx-auto w-[350px] xl:w-fit grid-cols-1 xl:grid-cols-4 mb-12">
 
-      {LearningGridArray.map((card, i) => {                                          // card pass karo aur uska i yani inex pass karo
+      {LearningGridArray.map((card, i) => {                                          // card pass karo aur uska i yani index pass karo
         return (
 
           <div

@@ -13,9 +13,10 @@ import SidebarLink from "./SidebarLink"
 
 
 
-    {/*   Yeh function ek Sidebar component banata hai, aur Redux store se profile state ke andar ka user aur loading value ko nikaal raha hai. loading ko yahan profileLoading naam se use kiya gaya hai.   */}
+    {/*   Yeh function ek Sidebar component banata hai, aur Redux store se profile state ke andar ka user aur loading value ko nikal raha hai. loading ko yahan profileLoading naam se use kiya gaya hai.   */}
 
 export default function Sidebar() {
+
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile
   )
@@ -53,7 +54,8 @@ export default function Sidebar() {
         <div className="flex flex-col">
           
           {sidebarLinks.map((link) => {
-            if (link.type && user?.accountType !== link.type) return null                // iss line ka mtlb hai ki Agar kisi link ka type hai aur user ka accountType uss type se match nahi karta, toh wo link sidebar me show nahi hoga. Jaise maan lo koi link sirf Instructor ke liye hai (link.type === "Instructor") Aur agar current user Student hai (user.accountType === "Student") Toh wo link skip kar diya jayega, dikhaya hi nahi jayega sidebar me.
+            
+            if (link.type && user?.accountType !== link.type) return null                // iss line ka mtlb hai ki Agar kisi link ka type aur user ka accountType uss type se match nahi karta, toh wo link sidebar me show nahi hoga. Jaise maan lo koi link sirf Instructor ke liye hai (link.type === "Instructor") Aur agar current user Student hai (user.accountType === "Student") Toh wo link skip kar diya jayega, dikhaya hi nahi jayega sidebar me.
             return (
               <SidebarLink key={link.id} link={link} iconName={link.icon} />
             )

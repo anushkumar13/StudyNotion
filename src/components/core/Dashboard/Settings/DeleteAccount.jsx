@@ -10,6 +10,7 @@ import { deleteProfile } from "../../../../services/operations/SettingsAPI"
 
 
 export default function DeleteAccount() {
+
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,12 +19,15 @@ export default function DeleteAccount() {
 
 
 
-    {/*   Community   */}
+    {/*   DeleteAccount function call kar raha hai   */}
 
   async function handleDeleteAccount() {
+
     try {
       dispatch(deleteProfile(token, navigate))
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
@@ -86,7 +90,7 @@ export default function DeleteAccount() {
             className="w-fit cursor-pointer italic text-pink-300"
             onClick={handleDeleteAccount}
           >
-            I want to delete my account.
+            Yes, I want to delete my account.
           </button>
 
         </div>

@@ -26,8 +26,8 @@ import Signup from "./pages/Signup"
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/ContactUs";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error"
 import Catalog from "./pages/Catalog";
@@ -129,7 +129,7 @@ function App() {
           path="/about"
           element={
             
-              <About />
+              <AboutUs />
             
           }
         />

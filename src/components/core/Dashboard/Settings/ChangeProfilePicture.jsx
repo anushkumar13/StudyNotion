@@ -11,6 +11,7 @@ import IconBtn from "../../../common/IconBtn"
 
 
 export default function ChangeProfilePicture() {
+
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
@@ -33,14 +34,14 @@ export default function ChangeProfilePicture() {
 
 
 
-    {/*   Jab user koi file select karta hai, handleFileChange function chalta hai. Yeh function selected file (e.target.files[0]) ko check karta hai, aur agar file hai to usse imageFile state me store karta hai aur preview ke liye previewFile(file) function call karta hai.   */}
+    {/*   Ye function tab call hota hai jab user apne file input se koi file select karta hai. Yeh function selected file (e.target.files[0]) ko check karta hai, aur agar file hai to usse imageFile state me store karta hai aur preview ke liye previewFile(file) function call karta hai.   */}
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0]                                                       //   Jab user koi file select karta hai, to e.target.files ek array-like object hota hai jisme wo sari files hoti hain.     e.target.files[0] se hum first file ko le rahe hain (agar ek se zyada files select ho, tab pehli file ko lete hain).  
     
-    if (file) {
-      setImageFile(file)
-      previewFile(file)
+    if (file) {                                                                          //   Hum ye check kar rahe hain ki agar koi file select hui ho tab hum setImageFile(file) aur previewFile(file) run karte hain.
+      setImageFile(file)                                                                 //   Ye function ko React state ko update karne ke liye use kiya gaya hai. setImageFile wo state setter function hoga jo tumne useState hook se banaya hoga, jisme tum selected file ko store karte ho.                    
+      previewFile(file)                                                                  //   Ye ek aur function hai jo file ka preview dikhane ke liye use hota hai.
     }
   }
 
@@ -51,10 +52,10 @@ export default function ChangeProfilePicture() {
   {/*   previewFile function ka kaam hai image file ka preview dikhana. Jab user image upload karta hai, toh yeh function FileReader use karta hai us image ko read karne ke liye. Pehle readAsDataURL(file) se file ko read karta hai (yeh us image ko base64 format me convert karta hai), fir onloadend ke andar setPreviewSource(reader.result) se us converted image ko preview ke liye state me store kar deta hai.   */}
 
   const previewFile = (file) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onloadend = () => {
-      setPreviewSource(reader.result)
+    const reader = new FileReader()                                                      //   Ye browser ka ek built-in object hai. Iska kaam hota hai: file ko read karna aur use kisi format (jaise text, URL, base64) me convert karna.
+    reader.readAsDataURL(file)                                                           //   Ye line bolti hai:-> "O reader bhai, is file ko padho aur uska Data URL bana do (jo ek image preview banane ke kaam aata hai)".   Ye process asynchronous hoti hai — matlab turant result nahi aata.
+    reader.onloadend = () => {                                                           //   Jab file padh li jati hai, aur convert ho jati hai — tab onloadend waala function chalega.  Matlab:  "Jo data mila (i.e., file ka base64 encoded version), use state me daal do — taaki image preview dikh sake."
+      setPreviewSource(reader.result)                                                    //   Ye hota hai file ka Data URL (base64 string), jaise: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...      Isse tum img ke src me use kar sakte ho:  <img src={previewSource} alt="preview" />
     }
   }
 
@@ -71,9 +72,9 @@ export default function ChangeProfilePicture() {
 
       setLoading(true)
 
-      const formData = new FormData()
+      const formData = new FormData()                                                              //   Ek special object jo tumhari file/data ko waise hi package karta hai jaise HTML forms me hota hai. Server ko samajhne me easy hota hai.
 
-      formData.append("displayPicture", imageFile)
+      formData.append("displayPicture", imageFile)                                                 //   Form ke andar ek field banaya "displayPicture" naam se — aur usme imageFile ko daal diya (jo file user ne select ki hai).
       
       dispatch(updateDisplayPicture(token, formData)).then(() => {
         setLoading(false)
@@ -93,6 +94,7 @@ export default function ChangeProfilePicture() {
     {/*   Yeh useEffect hook tab run hota hai jab imageFile change hota hai. Agar imageFile available hota hai (i.e., user ne koi naya image select kiya), toh previewFile(imageFile) function call karke us image ka preview bana diya jata hai aur previewSource state me set kar diya jata hai, jisse image screen pe dikh sake before upload.   */}
 
   useEffect(() => {
+
     if (imageFile) {
       previewFile(imageFile)
     }
@@ -115,7 +117,7 @@ export default function ChangeProfilePicture() {
 
           <img
             src={previewSource || user?.image}
-            alt={`profile-${user?.firstName}`}
+            alt={"profile-pic"}
             className="aspect-square w-[78px] rounded-full object-cover"
           />
 
@@ -152,6 +154,12 @@ export default function ChangeProfilePicture() {
               >
                 Select
               </button>
+    
+
+
+
+
+    {/*   "Upload" wala button   */}
 
               <IconBtn
                 text={loading ? "Uploading..." : "Upload"}
@@ -161,6 +169,7 @@ export default function ChangeProfilePicture() {
                   <FiUpload className="text-lg text-richblack-900" />
                 )}
               </IconBtn>
+    
 
             </div>
           </div>

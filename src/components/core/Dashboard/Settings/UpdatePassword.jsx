@@ -123,7 +123,7 @@ export default function UpdatePassword() {
 
 
 
-    /*   "New Password"   */
+    {/*   "New Password"   */}
 
               <label htmlFor="newPassword" className="lable-style">
                 New Password

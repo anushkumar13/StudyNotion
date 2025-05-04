@@ -127,7 +127,7 @@ export function signUp(
 
 
 
-    {/*   jaise hi login button click hoga ye code backend (controllers) ko call karegalogin function mein pehle ek loading toast show hota hai aur setLoading(true) se Redux state ko loading ke liye set kiya jata hai. Phir apiConnector ka use karke LOGIN_API ko email aur password ke sath POST request bheja jata hai. Agar response success hota hai, toh success toast dikhaya jata hai, setToken ke through user ka token Redux state mein set hota hai aur user ka image set kiya jata hai. Agar user ka image available nahi hai, toh default image generate hoti hai. Uske baad setUser ke through user details Redux state mein store kiye jate hain, aur token aur user information ko localStorage mein store kiya jata hai. Finally, user ko /dashboard/my-profile page pe navigate kar diya jata hai. Agar response fail hota hai, toh error toast show hota hai aur setLoading(false) ke through loading state ko false kiya jata hai, phir loading toast ko dismiss kiya jata hai.   */}
+    {/*   jaise hi login button click hoga ye code backend (controllers) ko call karega. login function mein pehle ek loading toast show hota hai aur setLoading(true) se Redux state ko loading ke liye set kiya jata hai. Phir apiConnector ka use karke LOGIN_API ko email aur password ke sath POST request bheja jata hai. Agar response success hota hai, toh success toast dikhaya jata hai, setToken ke through user ka token Redux state mein set hota hai aur user ka image set kiya jata hai. Agar user ka image available nahi hai, toh default image generate hoti hai. Uske baad setUser ke through user details Redux state mein store kiye jate hain, aur token aur user information ko localStorage mein store kiya jata hai. Finally, user ko /dashboard/my-profile page pe navigate kar diya jata hai. Agar response fail hota hai, toh error toast show hota hai aur setLoading(false) ke through loading state ko false kiya jata hai, phir loading toast ko dismiss kiya jata hai.   */}
 
 export function login(email, password, navigate) {
   
@@ -150,14 +150,18 @@ export function login(email, password, navigate) {
       }
 
       toast.success("Login Successful")
+
       dispatch(setToken(response.data.token))
-      const userImage = response.data?.user?.image
-        ? response.data.user.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
-      dispatch(setUser({ ...response.data.user, image: userImage }))
+
+      const userImage = response.data?.user?.image                                                                                                   //   Yeh line check karti hai: Agar user.image already available hai (matlab user ne image upload ki hai), to use wahi wali image.
+        ? response.data.user.image 
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`                            //   Agar image nahi hai (null, undefined, etc.), to dicebear se ek default avatar bana do initials ke saath (first name + last name).
       
-      localStorage.setItem("token", JSON.stringify(response.data.token))
-      localStorage.setItem("user", JSON.stringify(response.data.user))
+        dispatch(setUser({ ...response.data.user, image: userImage }))                                                                               //   Yeh line redux me user ki updated info store karti hai:
+      
+      localStorage.setItem("token", JSON.stringify(response.data.token))                                                                             //   Token ko localStorage me store karo. yani browser me save karo taki jab site reload ho to ye use ho sake
+      localStorage.setItem("user", JSON.stringify(response.data.user))                                                                               //   User ke details (name, email, image...) ko bhi ocalStorage me daal do
+
       navigate("/dashboard/my-profile")
     } 
     
@@ -166,6 +170,7 @@ export function login(email, password, navigate) {
       console.log("LOGIN API ERROR............", error)
       toast.error("Login Failed")
     }
+
     dispatch(setLoading(false))
     toast.dismiss(toastId)
   }
@@ -178,6 +183,7 @@ export function login(email, password, navigate) {
     {/*   logout   */}
 
 export function logout(navigate) {
+  
   return (dispatch) => {
 
     dispatch(setToken(null))

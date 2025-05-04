@@ -118,7 +118,7 @@ export const settingsEndpoints = {
   DELETE_PROFILE_API: `${BASE_URL}/profile/deleteProfile`,
 };
 
-
+ 
 
 
 

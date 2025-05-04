@@ -17,7 +17,7 @@ import Footer from "../components/common/Footer"
 
 
 
-const About = () => {
+const AboutUs = () => {
   return (
     <div>
       <section className="bg-richblack-700">
@@ -67,7 +67,7 @@ const About = () => {
 
 
 
-    {/*   " 'We are passionate about...' " wala quote   */}
+    {/*   'We are passionate about...' wala quote   */}
 
       <section className="border-b border-richblack-700">
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
@@ -255,7 +255,7 @@ const About = () => {
 
 
 
-export default About
+export default AboutUs
 
 
 

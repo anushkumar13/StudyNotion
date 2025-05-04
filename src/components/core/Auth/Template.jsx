@@ -11,6 +11,7 @@ import SignupForm from "./SignupForm"
 
 
 function Template({ title, description1, description2, image, formType }) {
+  
   const { loading } = useSelector((state) => state.auth)
 
 

@@ -21,18 +21,22 @@ export default function RenderSteps() {
     {/*   Yeh ek array hai jo course creation ke 3 steps ko define karta hai — har step ka id aur title diya gaya hai.   */}
 
   const steps = [
+
     {
       id: 1,
       title: "Course Information",
     },
+
     {
       id: 2,
       title: "Course Builder",
     },
+
     {
       id: 3,
       title: "Publish",
     },
+    
   ]
 
 
@@ -157,8 +161,8 @@ export default function RenderSteps() {
 
     {/* Render specific component based on current step */}
 
-      {step === 1 && <CourseInformationForm />}                                     {/*   iss component me Course ke information ka form hai ka code   */}
-      {step === 2 && <CourseBuilderForm />}                                         {/*   iss component me Course Builder ka form hai ka code   */}
+      {step === 1 && <CourseInformationForm />}                                     {/*   iss component me Course ke information ka form ka code hai   */}
+      {step === 2 && <CourseBuilderForm />}                                         {/*   iss component me Course Builder ka form ka code hai   */}
       {step === 3 &&  <PublishCourse /> }                                           {/*   iss component me Course ke publish karne ka form ka code hai   */}
     </>
   )

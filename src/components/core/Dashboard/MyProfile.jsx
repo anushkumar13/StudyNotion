@@ -9,10 +9,12 @@ import IconBtn from "../../common/IconBtn"
 
 
 
+
 export default function MyProfile() {
   
   const { user } = useSelector((state) => state.profile)                                 // Yeh line Redux ke profile state se user value ko nikaal kar user variable me store karti hai.
   const navigate = useNavigate()                                                         // Yeh line React Router ka useNavigate() hook use karke navigate function banati hai, taaki hum JavaScript ke through kisi bhi route (page) pe programmatically jaa sakein.
+
 
 
 
@@ -33,11 +35,12 @@ export default function MyProfile() {
           
           
           
+
     {/*   user image   */}
 
           <img
             src={user?.image}
-            alt={`profile-${user?.firstName}`}
+            alt={"profile-pic"}
             className="aspect-square w-[78px] rounded-full object-cover"
           />
 
@@ -46,7 +49,8 @@ export default function MyProfile() {
 
 
 
-      {/*   user first name and last name   */}
+
+    {/*   user first name and last name   */}
 
             <p className="text-lg font-semibold text-richblack-5">
               {user?.firstName + " " + user?.lastName}
@@ -55,7 +59,8 @@ export default function MyProfile() {
 
 
 
-      {/*   user email   */}
+
+    {/*   user email   */}
 
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
@@ -64,7 +69,8 @@ export default function MyProfile() {
 
 
 
-      {/*   edit wala button   */}
+
+    {/*   edit wala button   */}
 
         <IconBtn
           text="Edit"
@@ -84,9 +90,11 @@ export default function MyProfile() {
 
 
 
+
     {/*   About   */}
 
           <p className="text-lg font-semibold text-richblack-5">About</p>
+          
           <IconBtn
             text="Edit"
             onclick={() => {
@@ -95,7 +103,9 @@ export default function MyProfile() {
           >
             <RiEditBoxLine />
           </IconBtn>
+
         </div>
+
 
         <p
           className={`${

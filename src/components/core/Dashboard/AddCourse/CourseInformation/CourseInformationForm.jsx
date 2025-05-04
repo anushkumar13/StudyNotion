@@ -23,7 +23,7 @@ import {
 
 
 
-    {/*   Yeh code ek asynchronous function getCategories ko call karta hai jo course categories fetch karta hai, aur phir un categories ko courseCategories mein store kar deta hai. aur jab categories aa jati hai to loading ko false kar deta hai mtlb ki spinner ko hta deta hai   */}
+    {/*   ""   */}
 
 export default function CourseInformationForm() {
 
