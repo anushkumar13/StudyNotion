@@ -56,7 +56,7 @@ function Home() {
     {/*   Heading   */}
 
         <div className="text-center text-4xl font-semibold">
-          Empower Your Future aksjdgbsajkgb
+          Empower Your Future with
           <HighlightText text={"Coding Skills"} />
         </div>
 
