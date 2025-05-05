@@ -57,7 +57,7 @@ function Home() {
 
         <div className="text-center text-4xl font-semibold">
           Empower Your Future with
-          <HighlightText text={"The Anush Kumar"} />
+          <HighlightText text={"Coding Skills"} />
         </div>
 
 
