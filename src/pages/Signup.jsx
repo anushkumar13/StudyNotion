@@ -1,6 +1,6 @@
 // imports
 
-import signupImg from "../assets/Images/signup.webp"
+import signupImg from "../assets/Images/signup.jpg"
 import Template from "../components/core/Auth/Template"
 
 

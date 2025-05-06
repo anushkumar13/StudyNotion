@@ -1,6 +1,6 @@
 // imports
 
-import loginImg from "../assets/Images/login.webp"
+import loginImg from "../assets/Images/login.jpg"
 import Template from "../components/core/Auth/Template"
 
 

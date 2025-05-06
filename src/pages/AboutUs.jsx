@@ -2,9 +2,9 @@
 
 import React from "react"
 import FoundingStory from "../assets/Images/FoundingStory.png"
-import BannerImage1 from "../assets/Images/aboutus1.webp"
-import BannerImage2 from "../assets/Images/aboutus2.webp"
-import BannerImage3 from "../assets/Images/aboutus3.webp"
+import BannerImage1 from "../assets/Images/aboutus1.jpg"
+import BannerImage2 from "../assets/Images/aboutus2.jpg"
+import BannerImage3 from "../assets/Images/aboutus3.jpg"
 import ContactFormSection from "../components/core/AboutPage/ContactFormSection"
 import LearningGrid from "../components/core/AboutPage/LearningGrid"
 import Quote from "../components/core/AboutPage/Quote"
