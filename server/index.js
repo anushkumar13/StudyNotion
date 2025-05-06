@@ -37,10 +37,10 @@ app.use(cookieParser());
 
 app.use(
 	cors({
-		origin:"http://localhost:3000",
-		credentials:true,
+	  origin: ["http://localhost:3000", "https://studynotion2-pbe9.vercel.app"],
+	  credentials: true,
 	})
-)
+  )
 
 app.use(
 	fileUpload({
