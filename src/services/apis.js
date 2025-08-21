@@ -1,6 +1,6 @@
 // ✅ Backend ka sahi base URL set kiya (http se chalana hai, https nahi)
 
-const BASE_URL = "https://studynotion2-3iy3.onrender.com";
+const BASE_URL = "http://localhost:4000/api/v1";
 
 
 
